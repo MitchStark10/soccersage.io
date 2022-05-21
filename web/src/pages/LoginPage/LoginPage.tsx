@@ -1,11 +1,13 @@
 import { MetaTags } from '@redwoodjs/web';
+import { H1 } from 'src/components/Core/Text/H1';
+import { LoginForm } from 'src/components/Forms/LoginForm';
 
 const LoginPage = () => {
     return (
         <>
             <MetaTags title="Login" description="Login page" />
-
-            <h1>Login</h1>
+            <H1 className="text-center">Login</H1>
+            <LoginForm />
         </>
     );
 };

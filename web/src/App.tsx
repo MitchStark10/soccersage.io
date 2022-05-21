@@ -1,8 +1,8 @@
 import { FatalErrorBoundary, RedwoodProvider } from '@redwoodjs/web';
 import { RedwoodApolloProvider } from '@redwoodjs/web/apollo';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import FatalErrorPage from 'src/pages/FatalErrorPage';
 import Routes from 'src/Routes';
+import 'typeface-roboto';
 import './index.css';
 import './scaffold.css';
 
