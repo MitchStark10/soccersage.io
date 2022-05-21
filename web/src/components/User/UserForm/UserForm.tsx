@@ -1,130 +1,110 @@
 import {
-  Form,
-  FormError,
-  FieldError,
-  Label,
-  TextField,
-  Submit,
-} from '@redwoodjs/forms'
-
-
+    FieldError,
+    Form,
+    FormError,
+    Label,
+    Submit,
+    TextField
+} from '@redwoodjs/forms';
 
 const UserForm = (props) => {
-  const onSubmit = (data) => {
+    const onSubmit = (data) => {
+        props.onSave(data, props?.user?.id);
+    };
 
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    props.onSave(data, props?.user?.id)
-  }
+    return (
+        <div className="rw-form-wrapper">
+            <Form onSubmit={onSubmit} error={props.error}>
+                <FormError
+                    error={props.error}
+                    wrapperClassName="rw-form-error-wrapper"
+                    titleClassName="rw-form-error-title"
+                    listClassName="rw-form-error-list"
+                />
 
-  return (
-    <div className="rw-form-wrapper">
-      <Form onSubmit={onSubmit} error={props.error}>
-        <FormError
-          error={props.error}
-          wrapperClassName="rw-form-error-wrapper"
-          titleClassName="rw-form-error-title"
-          listClassName="rw-form-error-list"
-        />
-      
-        <Label
-          name="email"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Email
-        </Label>
-        
-          <TextField
-            name="email"
-            defaultValue={props.user?.email}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+                <Label
+                    name="email"
+                    className="rw-label"
+                    errorClassName="rw-label rw-label-error"
+                >
+                    Email
+                </Label>
 
-        <FieldError name="email" className="rw-field-error" />
+                <TextField
+                    name="email"
+                    defaultValue={props.user?.email}
+                    className="rw-input"
+                    errorClassName="rw-input rw-input-error"
+                    validation={{ required: true }}
+                />
 
-        <Label
-          name="username"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Username
-        </Label>
-        
-          <TextField
-            name="username"
-            defaultValue={props.user?.username}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+                <FieldError name="email" className="rw-field-error" />
 
-        <FieldError name="username" className="rw-field-error" />
+                <Label
+                    name="username"
+                    className="rw-label"
+                    errorClassName="rw-label rw-label-error"
+                >
+                    Username
+                </Label>
 
-        <Label
-          name="status"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Status
-        </Label>
-        
-          <TextField
-            name="status"
-            defaultValue={props.user?.status}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+                <TextField
+                    name="username"
+                    defaultValue={props.user?.username}
+                    className="rw-input"
+                    errorClassName="rw-input rw-input-error"
+                    validation={{ required: true }}
+                />
 
-        <FieldError name="status" className="rw-field-error" />
+                <FieldError name="username" className="rw-field-error" />
 
-        <Label
-          name="sessionCookie"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Session cookie
-        </Label>
-        
-          <TextField
-            name="sessionCookie"
-            defaultValue={props.user?.sessionCookie}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+                <Label
+                    name="status"
+                    className="rw-label"
+                    errorClassName="rw-label rw-label-error"
+                >
+                    Status
+                </Label>
 
-        <FieldError name="sessionCookie" className="rw-field-error" />
+                <TextField
+                    name="status"
+                    defaultValue={props.user?.status}
+                    className="rw-input"
+                    errorClassName="rw-input rw-input-error"
+                    validation={{ required: true }}
+                />
 
-        <div className="rw-button-group">
-          <Submit
-            disabled={props.loading}
-            className="rw-button rw-button-blue"
-          >
-            Save
-          </Submit>
+                <FieldError name="status" className="rw-field-error" />
+
+                <Label
+                    name="sessionCookie"
+                    className="rw-label"
+                    errorClassName="rw-label rw-label-error"
+                >
+                    Session cookie
+                </Label>
+
+                <TextField
+                    name="sessionCookie"
+                    defaultValue={props.user?.sessionCookie}
+                    className="rw-input"
+                    errorClassName="rw-input rw-input-error"
+                    validation={{ required: true }}
+                />
+
+                <FieldError name="sessionCookie" className="rw-field-error" />
+
+                <div className="rw-button-group">
+                    <Submit
+                        disabled={props.loading}
+                        className="rw-button rw-button-blue"
+                    >
+                        Save
+                    </Submit>
+                </div>
+            </Form>
         </div>
-      </Form>
-    </div>
-  )
-}
+    );
+};
 
-export default UserForm
+export default UserForm;
