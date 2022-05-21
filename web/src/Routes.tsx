@@ -7,15 +7,20 @@
 // 'src/pages/HomePage/HomePage.js'         -> HomePage
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
-import { Set, Router, Route } from '@redwoodjs/router'
-import UsersLayout from 'src/layouts/UsersLayout'
+import { Route, Router, Set } from '@redwoodjs/router'
+import GamesLayout from 'src/layouts/GamesLayout'
 import PredictionsLayout from 'src/layouts/PredictionsLayout'
 import TeamsLayout from 'src/layouts/TeamsLayout'
-import GamesLayout from 'src/layouts/GamesLayout'
+import UsersLayout from 'src/layouts/UsersLayout'
+import Layout from './layouts/Layout/Layout'
 
+// TODO: Add authentication for the scaffolding pages
 const Routes = () => {
   return (
     <Router>
+      <Layout>
+        <Route path="/" page={HomePage} name="home" />
+      </Layout>
       <Set wrap={UsersLayout}>
         <Route path="/users/new" page={UserNewUserPage} name="newUser" />
         <Route path="/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
