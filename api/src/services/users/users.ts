@@ -2,7 +2,7 @@ import { db } from 'src/lib/db';
 import {
     MutationResolvers,
     QueryResolvers,
-    UserResolvers
+    UserResolvers,
 } from 'types/graphql';
 
 export const users: QueryResolvers['users'] = () => {
