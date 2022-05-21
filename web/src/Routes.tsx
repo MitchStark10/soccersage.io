@@ -8,12 +8,26 @@
 // 'src/pages/Admin/BooksPage/BooksPage.js' -> AdminBooksPage
 
 import { Set, Router, Route } from '@redwoodjs/router'
+import UsersLayout from 'src/layouts/UsersLayout'
+import PredictionsLayout from 'src/layouts/PredictionsLayout'
 import TeamsLayout from 'src/layouts/TeamsLayout'
 import GamesLayout from 'src/layouts/GamesLayout'
 
 const Routes = () => {
   return (
     <Router>
+      <Set wrap={UsersLayout}>
+        <Route path="/users/new" page={UserNewUserPage} name="newUser" />
+        <Route path="/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
+        <Route path="/users/{id:Int}" page={UserUserPage} name="user" />
+        <Route path="/users" page={UserUsersPage} name="users" />
+      </Set>
+      <Set wrap={PredictionsLayout}>
+        <Route path="/predictions/new" page={PredictionNewPredictionPage} name="newPrediction" />
+        <Route path="/predictions/{id:Int}/edit" page={PredictionEditPredictionPage} name="editPrediction" />
+        <Route path="/predictions/{id:Int}" page={PredictionPredictionPage} name="prediction" />
+        <Route path="/predictions" page={PredictionPredictionsPage} name="predictions" />
+      </Set>
       <Set wrap={TeamsLayout}>
         <Route path="/teams/new" page={TeamNewTeamPage} name="newTeam" />
         <Route path="/teams/{id:Int}/edit" page={TeamEditTeamPage} name="editTeam" />
