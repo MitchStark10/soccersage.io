@@ -1,9 +1,15 @@
 type LayoutProps = {
-  children?: React.ReactNode
-}
+    children?: React.ReactNode;
+};
 
 const Layout = ({ children }: LayoutProps) => {
-  return <>{children}</>
-}
+    return (
+        <>
+            <header> TODO: Header</header>
+            <main>{children}</main>
+            <footer>TODO: Footer</footer>
+        </>
+    );
+};
 
-export default Layout
+export default Layout;
