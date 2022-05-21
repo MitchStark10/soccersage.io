@@ -20,7 +20,7 @@ export const createUser: MutationResolvers['createUser'] = ({
 }) => {
     if (status !== 'active' && status !== 'inactive') {
         throw new Error(
-            'Invalid status. Only "active" or "inactive" are allowed.',
+            'Invalid status. Only "active" or "inactive" are allowed.'
         );
     }
     // TODO: Actually hash password
