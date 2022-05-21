@@ -18,11 +18,6 @@ import Layout from './layouts/Layout/Layout';
 const Routes = () => {
     return (
         <Router>
-            <Layout>
-                {/* TODO: Build home page */}
-                {/* <Route path="/" page={HomePage} name="home" /> */}
-                <Route path="/login" page={LoginPage} name="login" />
-            </Layout>
             <Set wrap={UsersLayout}>
                 <Route path="/users/new" page={UserNewUserPage} name="newUser" />
                 <Route path="/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
@@ -47,7 +42,13 @@ const Routes = () => {
                 <Route path="/games/{id:Int}" page={GameGamePage} name="game" />
                 <Route path="/games" page={GameGamesPage} name="games" />
             </Set>
-            <Route notfound page={NotFoundPage} />
+            <Set wrap={Layout}>
+                {/* TODO: Build home page */}
+                {/* <Route path="/" page={HomePage} name="home" /> */}
+                <Route path="/sign-up" page={SignUpPage} name="signUp" />
+                <Route path="/login" page={LoginPage} name="login" />
+                <Route notfound page={NotFoundPage} />
+            </Set>
         </Router>
     );
 };

@@ -22,7 +22,7 @@ export const Input: React.VFC<Props> = ({ id, label, className, ...rest }) => {
                     className
                 )}
                 {...rest}
-                placeholder="John"
+                placeholder={label}
                 required
             ></input>
         </div>
