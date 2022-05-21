@@ -1,0 +1,45 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = "native"
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  username  String @unique
+  status String
+  sessionCookie String
+  Prediction Prediction[]
+}
+
+model Team {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  Prediction Prediction[]
+  homeTeamGames Game[] @relation(name: "homeTeam")
+  awayTeamGames Game[] @relation(name: "awayTeam")
+}
+
+model Prediction {
+  id    Int     @id @default(autoincrement())
+  userId Int
+  teamId Int
+  prediction String
+  User User @relation(fields: [userId], references: [id])
+  Team Team @relation(fields: [teamId], references: [id])
+}
+
+model Game {
+  id    Int     @id @default(autoincrement())
+  homeTeamId Int
+  awayTeamId Int
+  homeTeamScore Int
+  awayTeamScore Int
+  homeTeam Team @relation(name: "homeTeam", references: [id], fields: [homeTeamId])
+  awayTeam Team @relation(name: "awayTeam", references: [id], fields: [awayTeamId])
+}
