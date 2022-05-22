@@ -4,6 +4,7 @@ import {
     comparePasswordToHash,
     encryptPassword,
 } from 'src/lib/encryption-utils';
+import { logger } from 'src/lib/logger';
 import {
     MutationResolvers,
     QueryResolvers,
@@ -21,17 +22,12 @@ export const user: QueryResolvers['user'] = ({ id }) => {
 };
 
 export const createUser: MutationResolvers['createUser'] = async ({
-    input: { password, status, ...rest },
+    input: { password, ...rest },
 }) => {
-    if (status !== 'active' && status !== 'inactive') {
-        throw new Error(
-            'Invalid status. Only "active" or "inactive" are allowed.'
-        );
-    }
-
+    logger.debug('here!');
     const hashedPassword = await encryptPassword(password);
     return db.user.create({
-        data: { hashedPassword, status, ...rest },
+        data: { hashedPassword, status: 'active', ...rest },
     });
 };
 
@@ -59,13 +55,17 @@ export const login: MutationResolvers['login'] = async ({
     });
 
     if (!user) {
+        logger.debug('Unable to find user with email: ' + email);
         throw new AuthenticationError('Incorrect username or password.');
     }
+
+    console.log('comparing', { password, hashedPass: user.hashedPassword });
 
     if (await comparePasswordToHash(password, user.hashedPassword)) {
         return user;
     }
 
+    logger.debug('Passwords did not match');
     throw new AuthenticationError('Incorrect username or password.');
 };
 

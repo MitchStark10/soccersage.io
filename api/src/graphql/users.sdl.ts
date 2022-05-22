@@ -5,8 +5,8 @@ export const schema = gql`
         username: String!
         hashedPassword: String!
         status: String!
-        sessionCookie: String!
-        Prediction: [Prediction]!
+        sessionCookie: String
+        Prediction: [Prediction]
     }
 
     type Query {
@@ -15,11 +15,9 @@ export const schema = gql`
     }
 
     input CreateUserInput {
-        email: String!
         username: String!
+        email: String!
         password: String!
-        status: String!
-        sessionCookie: String!
     }
 
     input UpdateUserInput {
@@ -33,6 +31,6 @@ export const schema = gql`
         createUser(input: CreateUserInput!): User! @requireAuth
         updateUser(id: Int!, input: UpdateUserInput!): User! @requireAuth
         deleteUser(id: Int!): User! @requireAuth
-        login(email: String!, password: String!): User!
+        login(email: String!, password: String!): User! @skipAuth
     }
 `;
