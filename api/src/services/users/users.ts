@@ -1,4 +1,7 @@
-import { AuthenticationError } from '@redwoodjs/graphql-server';
+import {
+    AuthenticationError,
+    RedwoodGraphQLError,
+} from '@redwoodjs/graphql-server';
 import { db } from 'src/lib/db';
 import {
     comparePasswordToHash,
@@ -15,10 +18,20 @@ export const users: QueryResolvers['users'] = () => {
     return db.user.findMany();
 };
 
-export const user: QueryResolvers['user'] = ({ id }) => {
-    return db.user.findUnique({
-        where: { id },
-    });
+export const user: QueryResolvers['user'] = ({ id, sessionCookie }) => {
+    if (id) {
+        return db.user.findUnique({
+            where: { id },
+        });
+    } else if (sessionCookie) {
+        return db.user.findUnique({
+            where: { sessionCookie },
+        });
+    }
+
+    throw new RedwoodGraphQLError(
+        'You must provide either an id or a sessionCookie'
+    );
 };
 
 export const createUser: MutationResolvers['createUser'] = async ({

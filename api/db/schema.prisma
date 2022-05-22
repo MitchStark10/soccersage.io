@@ -14,7 +14,7 @@ model User {
   username  String @unique
   hashedPassword String
   status String
-  sessionCookie String?
+  sessionCookie String? @unique
   Prediction Prediction[]
 }
 

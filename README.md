@@ -20,16 +20,18 @@ cd my-redwood-project
 yarn redwood dev
 ```
 
-Your browser should automatically open to http://localhost:8910 where you'll see the Welcome Page, which links out to a ton of great resources.
+Your browser should automatically open to <http://localhost:8910> where you'll see the Welcome Page, which links out to a ton of great resources.
 
 > **The Redwood CLI**
 >
 > Congratulations on running your first Redwood CLI command!
 > From dev to deploy, the CLI is with you the whole way.
 > And there's quite a few commands at your disposal:
+>
 > ```
 > yarn redwood --help
 > ```
+>
 > For all the details, see the [CLI reference](https://redwoodjs.com/docs/cli-commands).
 
 ## Prisma and the database
@@ -65,7 +67,7 @@ Now let's generate everything we need to perform all the CRUD (Create, Retrieve,
 yarn redwood g scaffold post
 ```
 
-Navigate to http://localhost:8910/posts/new, fill in the title and body, and click "Save":
+Navigate to <http://localhost:8910/posts/new>, fill in the title and body, and click "Save":
 
 Did we just create a post in the database? Yup! With `yarn rw g scaffold <model>`, Redwood created all the pages, components, and services necessary to perform all CRUD actions on our posts table.
 
