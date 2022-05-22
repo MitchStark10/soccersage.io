@@ -69,6 +69,10 @@ export const login: MutationResolvers['login'] = async ({
     throw new AuthenticationError('Incorrect username or password.');
 };
 
+export const signOut: MutationResolvers['signOut'] = ({ email }) => {
+    return db.user.update({ data: { sessionCookie: '' }, where: { email } });
+};
+
 export const User: UserResolvers = {
     Prediction: (_obj, { root }) =>
         db.user.findUnique({ where: { id: root.id } }).Prediction(),

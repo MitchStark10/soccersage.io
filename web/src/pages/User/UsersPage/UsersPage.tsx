@@ -1,7 +1,7 @@
-import UsersCell from 'src/components/User/UsersCell'
+import UsersCell from 'src/components/User/UsersCell';
 
 const UsersPage = () => {
-  return <UsersCell />
-}
+    return <UsersCell />;
+};
 
-export default UsersPage
+export default UsersPage;
