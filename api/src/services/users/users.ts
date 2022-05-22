@@ -1,3 +1,4 @@
+import { AuthenticationError } from '@redwoodjs/graphql-server';
 import { db } from 'src/lib/db';
 import {
     comparePasswordToHash,
@@ -51,19 +52,21 @@ export const login: MutationResolvers['login'] = async ({
     email,
     password,
 }) => {
+    console.log('Received!');
+
     const user = await db.user.findUnique({
         where: { email },
     });
 
     if (!user) {
-        throw new Error('Incorrect username or password.');
+        throw new AuthenticationError('Incorrect username or password.');
     }
 
     if (await comparePasswordToHash(password, user.hashedPassword)) {
         return user;
     }
 
-    throw new Error('Incorrect username or password.');
+    throw new AuthenticationError('Incorrect username or password.');
 };
 
 export const User: UserResolvers = {

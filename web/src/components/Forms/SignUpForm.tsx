@@ -10,7 +10,9 @@ export const SignUpForm: React.VFC = () => {
             <Input id="confirm-password" label="Confirm Password" />
             <Button variant="primary">Sign-Up</Button>
             <p className="w-fit justify-self-center"> - Or - </p>
-            <Button variant="secondary">Login</Button>
+            <Button variant="secondary" as="a" to="/login">
+                Login
+            </Button>
         </Form>
     );
 };
