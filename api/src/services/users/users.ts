@@ -37,7 +37,6 @@ export const user: QueryResolvers['user'] = ({ id, sessionCookie }) => {
 export const createUser: MutationResolvers['createUser'] = async ({
     input: { password, ...rest },
 }) => {
-    logger.debug('here!');
     const hashedPassword = await encryptPassword(password);
     return db.user.create({
         data: { hashedPassword, status: 'active', ...rest },
