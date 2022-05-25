@@ -3553,8 +3553,8 @@ __metadata:
   linkType: hard
 
 "@pmmmwh/react-refresh-webpack-plugin@npm:^0.5.1":
-  version: 0.5.6
-  resolution: "@pmmmwh/react-refresh-webpack-plugin@npm:0.5.6"
+  version: 0.5.7
+  resolution: "@pmmmwh/react-refresh-webpack-plugin@npm:0.5.7"
   dependencies:
     ansi-html-community: ^0.0.8
     common-path-prefix: ^3.0.0
@@ -3587,7 +3587,7 @@ __metadata:
       optional: true
     webpack-plugin-serve:
       optional: true
-  checksum: 0788dc3beff55148a1b3c6a4653fa9d925d7ea1a9d224590a9d4ee1ae8a9424d788dd03dad9d269ce9376cc4aad2ee7f6893f1403e669cd07f6b837c8cc367b6
+  checksum: 11bc7e2223eda628ee90164b2dbdc8e3c7a83c4d43871c3ed217e3cae6f70df76e7e2270da9377c77ca7ef14e3886654e8497cce3792011f34dd07730fc59706
   languageName: node
   linkType: hard
 
@@ -6034,6 +6034,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/js-cookie@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "@types/js-cookie@npm:3.0.2"
+  checksum: 4d480f3fda4c2641ea3d1e0dd193245877804672c315b620a8066be056bd144dbe9aac3b5b6622e243418dcf3db6bf69e5f179a8898ce858c7d86dc1e0fbc730
+  languageName: node
+  linkType: hard
+
 "@types/js-levenshtein@npm:^1.1.1":
   version: 1.1.1
   resolution: "@types/js-levenshtein@npm:1.1.1"
@@ -8460,9 +8467,9 @@ __metadata:
   linkType: hard
 
 "bn.js@npm:^5.0.0, bn.js@npm:^5.1.1":
-  version: 5.2.0
-  resolution: "bn.js@npm:5.2.0"
-  checksum: 67e17b1934d9c7a73aed9b89222dc8c1c8e3aff46cca6609b8c2ab04fa22c6b8db42c7774b039d09fa63136d8866b777ab88af0d64d8ea3839a94e69193a6b13
+  version: 5.2.1
+  resolution: "bn.js@npm:5.2.1"
+  checksum: bed3d8bd34ec89dbcf9f20f88bd7d4a49c160fda3b561c7bb227501f974d3e435a48fb9b61bc3de304acab9215a3bda0803f7017ffb4d0016a0c3a740a283caa
   languageName: node
   linkType: hard
 
@@ -8954,9 +8961,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001109, caniuse-lite@npm:^1.0.30001332, caniuse-lite@npm:^1.0.30001335":
-  version: 1.0.30001341
-  resolution: "caniuse-lite@npm:1.0.30001341"
-  checksum: a72e281b4913263c185ab5972a040a77f4bfc2c45d0495557d13627a61f68efcb068515037ba0c9e7831a99a29f0110f036358c3d1522fc4f59282e4e03f1f0c
+  version: 1.0.30001342
+  resolution: "caniuse-lite@npm:1.0.30001342"
+  checksum: f54d676e2851673970a59120b809f2ec83852a3b626100765d650c669659e2f63a15b544404cc367b2b726edd368f3a2c7c2b5450f93223d69ad42647fb748b3
   languageName: node
   linkType: hard
 
@@ -9893,19 +9900,19 @@ __metadata:
   linkType: hard
 
 "core-js-compat@npm:^3.18.0, core-js-compat@npm:^3.19.1, core-js-compat@npm:^3.20.0, core-js-compat@npm:^3.21.0, core-js-compat@npm:^3.22.1, core-js-compat@npm:^3.8.1":
-  version: 3.22.5
-  resolution: "core-js-compat@npm:3.22.5"
+  version: 3.22.7
+  resolution: "core-js-compat@npm:3.22.7"
   dependencies:
     browserslist: ^4.20.3
     semver: 7.0.0
-  checksum: 0d34fc775d421388e4dd5a798677816d046ab4f7739407c3f9bdc00534899770c3ca4bac2be8fc50b36a62569d43625ca3ee148460e56e530d81e1120c77a218
+  checksum: 871ac6b45cf3cc33b569f302fcefad569fb72057d83e818cd2f49294f9b226b5c5f4ad63b4eee38a2d92f3becdf679fba9ae1c51d7ad0e690e1b17822ced1622
   languageName: node
   linkType: hard
 
 "core-js-pure@npm:^3.19.0, core-js-pure@npm:^3.20.2, core-js-pure@npm:^3.8.1, core-js-pure@npm:^3.8.2":
-  version: 3.22.5
-  resolution: "core-js-pure@npm:3.22.5"
-  checksum: f150531abf6e3ab8a490ea43b937db255fece05b0174310c994564ddd11ed5e200e106590eeeff546164d92baffe189e5f4fca4fc7c436319ca7f950cd1a539d
+  version: 3.22.7
+  resolution: "core-js-pure@npm:3.22.7"
+  checksum: 2574553ad3fe6f545c5c25f14fa0bec5a90cdaabd81fbc6c50dad23232f654d8c897557e988d8d56f67e9b52f44b7b8a62b78eb9df22e9f92ab596688a0eab65
   languageName: node
   linkType: hard
 
@@ -9917,9 +9924,9 @@ __metadata:
   linkType: hard
 
 "core-js@npm:^3.0.4, core-js@npm:^3.19.0, core-js@npm:^3.6.5, core-js@npm:^3.8.2":
-  version: 3.22.5
-  resolution: "core-js@npm:3.22.5"
-  checksum: edabca2183444c36e3fb66aabeab42a59468628af45a6926ec7b254723a0ef0ae22da683849f48a9a59d72d4ff04ead953ee8dff919d233e1773a3fded7fbd34
+  version: 3.22.7
+  resolution: "core-js@npm:3.22.7"
+  checksum: 0f9daff33656f4b9a1664c35f2ce151746e8a198ae9f32d81465a0a63b5b5f15e81cc0e43f073f2733f23d842d75b946d02c1ee05ba4e805c90417e1c7ee7d82
   languageName: node
   linkType: hard
 
@@ -10698,8 +10705,8 @@ __metadata:
   linkType: hard
 
 "del@npm:^6.0.0":
-  version: 6.1.0
-  resolution: "del@npm:6.1.0"
+  version: 6.1.1
+  resolution: "del@npm:6.1.1"
   dependencies:
     globby: ^11.0.1
     graceful-fs: ^4.2.4
@@ -10709,7 +10716,7 @@ __metadata:
     p-map: ^4.0.0
     rimraf: ^3.0.2
     slash: ^3.0.0
-  checksum: ce93c194f774ce2dcde8fa4dc44d29bf528f8e8fd27f4e70da8ddea6e56fc1a6dc0631c589399186a1f635f94d0f54e9549f48b90186674b3c602b14c4b82132
+  checksum: 8a095c5ccade42c867a60252914ae485ec90da243d735d1f63ec1e64c1cfbc2b8810ad69a29ab6326d159d4fddaa2f5bad067808c42072351ec458efff86708f
   languageName: node
   linkType: hard
 
@@ -13704,8 +13711,8 @@ __metadata:
   linkType: hard
 
 "graphql-config@npm:^4.1.0":
-  version: 4.3.0
-  resolution: "graphql-config@npm:4.3.0"
+  version: 4.3.1
+  resolution: "graphql-config@npm:4.3.1"
   dependencies:
     "@endemolshinegroup/cosmiconfig-typescript-loader": 3.0.2
     "@graphql-tools/graphql-file-loader": ^7.3.7
@@ -13720,7 +13727,7 @@ __metadata:
     string-env-interpolation: 1.0.1
   peerDependencies:
     graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: fcb2afb388c421db52dad5f58d17ee28f84d8fb08f41cf4d8c34256c22570adc8392f5362f2388e0650b7a0fad9bfa7fe9363ec40c2e97aab1787ea03a60219a
+  checksum: 052aa1d72969914aab8bed64863c81990679169566035fb166a3a57261629d7ed5c78e219a76a34c4cd6a883660ac7cabed13b9a0052a70609e06f8a7e6a1ada
   languageName: node
   linkType: hard
 
@@ -16132,6 +16139,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"js-cookie@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "js-cookie@npm:3.0.1"
+  checksum: a7dab91286c49610fb198bcc0d78fbafe9be869cf3cea6f7eaea515abdfdc9d347982fe22316e34666b479a0701119482d46faa3a350a3a3404eb954405edf72
+  languageName: node
+  linkType: hard
+
 "js-levenshtein@npm:^1.1.6":
   version: 1.1.6
   resolution: "js-levenshtein@npm:1.1.6"
@@ -18010,9 +18024,9 @@ __metadata:
   linkType: hard
 
 "node-releases@npm:^2.0.3":
-  version: 2.0.4
-  resolution: "node-releases@npm:2.0.4"
-  checksum: d18a9d3a5cd3366dfd6a90bd91406a83209b51e1622894ab68c56f0ed0c03275f3cf68c114ef326bed53556fed586977fb22522c56756ac731022bc57286d473
+  version: 2.0.5
+  resolution: "node-releases@npm:2.0.5"
+  checksum: 3e098e80d9699b18f67089d2617532e7b26d1f385c7b3397e3789018f8fefc7da6478cd057b80df39ed4e307380332c1225f48bf14d16c54c3376afb673ff2f5
   languageName: node
   linkType: hard
 
@@ -18150,11 +18164,11 @@ __metadata:
   linkType: hard
 
 "nth-check@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "nth-check@npm:2.0.1"
+  version: 2.1.1
+  resolution: "nth-check@npm:2.1.1"
   dependencies:
     boolbase: ^1.0.0
-  checksum: ff003b22f1119b2f3a67820b4f11c7e512a612ae4a1cf2591461904e6c443c391477b14910b4778db844ab19b95567b6d01d3337f691156c0f40649c43ca2229
+  checksum: 5fee7ff309727763689cfad844d979aedd2204a817fbaaf0e1603794a7c20db28548d7b024692f953557df6ce4a0ee4ae46cd8ebd9b36cfb300b9226b567c479
   languageName: node
   linkType: hard
 
@@ -18224,9 +18238,9 @@ __metadata:
   linkType: hard
 
 "object-inspect@npm:^1.12.0, object-inspect@npm:^1.9.0":
-  version: 1.12.0
-  resolution: "object-inspect@npm:1.12.0"
-  checksum: 5ea7837f39f8da87b7cf25e81d14d21c45aae87ecbf0a5997a4d1950eacff363b85d39eab9ef6677ea36e862c708a4fe880ca2ffae1492acacdcbc963f2ee239
+  version: 1.12.1
+  resolution: "object-inspect@npm:1.12.1"
+  checksum: 5cb4ab6c400c825278be8c8a6954933e62649dafbbbf91ce3638c2bd87e59b87102760c0dba041a69a69442513e5f359a0b1823c753893deaed2617494887d54
   languageName: node
   linkType: hard
 
@@ -21118,8 +21132,10 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@redwoodjs/core": 1.4.2
+    "@types/js-cookie": ^3.0.2
     bcrypt: ^5.0.1
     classnames: ^2.3.1
+    js-cookie: ^3.0.1
     typeface-roboto: ^1.1.13
     typescript: ^4.6.4
   languageName: unknown
@@ -23403,7 +23419,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.6.4, typescript@npm:^4.6.4":
+"typescript@npm:4.6.4":
   version: 4.6.4
   resolution: "typescript@npm:4.6.4"
   bin:
@@ -23413,13 +23429,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.6.4#~builtin<compat/typescript>, typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>":
+"typescript@npm:^4.6.4":
+  version: 4.7.2
+  resolution: "typescript@npm:4.7.2"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: c458df58a52f1cb1c954109dbc3477abfeb632644bc6552a9ac2152bce86e377afe11bf661466926bc4dcdc945f1e053d492c347ae377f1cba7051226b930ea3
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@4.6.4#~builtin<compat/typescript>":
   version: 4.6.4
   resolution: "typescript@patch:typescript@npm%3A4.6.4#~builtin<compat/typescript>::version=4.6.4&hash=bda367"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 0e3fa814d454942a689daf4c00f82328d323e7ecd4077e3265d45375e64642611631f4c882a71be87774468ba03793e9b8ff4bccfac3018194a9e36d8f72c251
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>":
+  version: 4.7.2
+  resolution: "typescript@patch:typescript@npm%3A4.7.2#~builtin<compat/typescript>::version=4.7.2&hash=bda367"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 2ea9ff6fe037a2724508703e0e4b31edf1dbd8de6f05930480526f7db268a6efc2e1346c3545c065bfdb425393157e91ef6ace909266a49a19f90dfe9e81f844
   languageName: node
   linkType: hard
 
@@ -23480,9 +23516,9 @@ __metadata:
   linkType: hard
 
 "undici@npm:^5.0.0, undici@npm:^5.1.0":
-  version: 5.2.0
-  resolution: "undici@npm:5.2.0"
-  checksum: 7944c974a7e5ae53befaf6413edd1bbdd4a16636b44a7d0c6bf3220d4170c52db272172e8713150e0b61f3f6d4f4130977b607d32a2c8078e122d36bb5f18543
+  version: 5.3.0
+  resolution: "undici@npm:5.3.0"
+  checksum: 9ca912e4eeb3b4aca8da9862240d61c0ff51ecc54ccec3adba78e724f76e43f6617b2d5e567c05cca4faa986b06e29e214c7c7a43fa88852286e745b06cb9096
   languageName: node
   linkType: hard
 

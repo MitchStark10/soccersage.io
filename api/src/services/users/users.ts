@@ -6,6 +6,7 @@ import { db } from 'src/lib/db';
 import {
     comparePasswordToHash,
     encryptPassword,
+    generateKey,
 } from 'src/lib/encryption-utils';
 import { logger } from 'src/lib/logger';
 import {
@@ -38,9 +39,14 @@ export const createUser: MutationResolvers['createUser'] = async ({
     input: { password, ...rest },
 }) => {
     const hashedPassword = await encryptPassword(password);
-    return db.user.create({
-        data: { hashedPassword, status: 'active', ...rest },
+    const sessionCookie = generateKey();
+    const graphqlResult = await db.user.create({
+        data: { hashedPassword, status: 'active', sessionCookie, ...rest },
     });
+
+    // TODO: set the cookie
+
+    return graphqlResult;
 };
 
 export const updateUser: MutationResolvers['updateUser'] = ({ id, input }) => {
@@ -74,6 +80,14 @@ export const login: MutationResolvers['login'] = async ({
     console.log('comparing', { password, hashedPass: user.hashedPassword });
 
     if (await comparePasswordToHash(password, user.hashedPassword)) {
+        // The user's email and password matched, so generate the new session cookie and return the user info
+        const sessionCookie = generateKey();
+
+        await db.user.update({
+            data: { sessionCookie },
+            where: { id: user.id },
+        });
+
         return user;
     }
 

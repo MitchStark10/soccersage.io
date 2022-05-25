@@ -13,6 +13,7 @@ import PredictionsLayout from 'src/layouts/PredictionsLayout';
 import TeamsLayout from 'src/layouts/TeamsLayout';
 import UsersLayout from 'src/layouts/UsersLayout';
 import Layout from './layouts/Layout/Layout';
+import SignUpPage from './pages/SignupPage/SignUpPage';
 
 // TODO: Add authentication for the scaffolding pages
 const Routes = () => {
