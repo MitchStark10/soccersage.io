@@ -20,12 +20,13 @@ const auth0 = new Auth0Client({
     // https://auth0.com/docs/libraries/auth0-spa-js#change-storage-options
     cacheLocation: 'localstorage',
     audience: process.env.AUTH0_AUDIENCE,
+    scope: 'read:current_user update:current_user_metadata',
 
     // @MARK: useRefreshTokens is required for automatically extending sessions
     // beyond that set in the initial JWT expiration.
     //
     // @MARK: https://auth0.com/docs/tokens/refresh-tokens
-    // useRefreshTokens: true,
+    useRefreshTokens: true,
 });
 
 const App = () => (
