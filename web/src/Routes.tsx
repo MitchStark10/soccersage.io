@@ -20,28 +20,28 @@ const Routes = () => {
     return (
         <Router>
             <Set wrap={UsersLayout}>
-                <Route path="/users/new" page={UserNewUserPage} name="newUser" />
-                <Route path="/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
-                <Route path="/users/{id:Int}" page={UserUserPage} name="user" />
-                <Route path="/users" page={UserUsersPage} name="users" />
+                <Route path="/admin/users/new" page={UserNewUserPage} name="newUser" />
+                <Route path="/admin/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
+                <Route path="/admin/users/{id:Int}" page={UserUserPage} name="user" />
+                <Route path="/admin/users" page={UserUsersPage} name="users" />
             </Set>
             <Set wrap={PredictionsLayout}>
-                <Route path="/predictions/new" page={PredictionNewPredictionPage} name="newPrediction" />
-                <Route path="/predictions/{id:Int}/edit" page={PredictionEditPredictionPage} name="editPrediction" />
-                <Route path="/predictions/{id:Int}" page={PredictionPredictionPage} name="prediction" />
-                <Route path="/predictions" page={PredictionPredictionsPage} name="predictions" />
+                <Route path="/admin/predictions/new" page={PredictionNewPredictionPage} name="newPrediction" />
+                <Route path="/admin/predictions/{id:Int}/edit" page={PredictionEditPredictionPage} name="editPrediction" />
+                <Route path="/admin/predictions/{id:Int}" page={PredictionPredictionPage} name="prediction" />
+                <Route path="/admin/predictions" page={PredictionPredictionsPage} name="predictions" />
             </Set>
             <Set wrap={TeamsLayout}>
-                <Route path="/teams/new" page={TeamNewTeamPage} name="newTeam" />
-                <Route path="/teams/{id:Int}/edit" page={TeamEditTeamPage} name="editTeam" />
-                <Route path="/teams/{id:Int}" page={TeamTeamPage} name="team" />
-                <Route path="/teams" page={TeamTeamsPage} name="teams" />
+                <Route path="/admin/teams/new" page={TeamNewTeamPage} name="newTeam" />
+                <Route path="/admin/teams/{id:Int}/edit" page={TeamEditTeamPage} name="editTeam" />
+                <Route path="/admin/teams/{id:Int}" page={TeamTeamPage} name="team" />
+                <Route path="/admin/teams" page={TeamTeamsPage} name="teams" />
             </Set>
             <Set wrap={GamesLayout}>
-                <Route path="/games/new" page={GameNewGamePage} name="newGame" />
-                <Route path="/games/{id:Int}/edit" page={GameEditGamePage} name="editGame" />
-                <Route path="/games/{id:Int}" page={GameGamePage} name="game" />
-                <Route path="/games" page={GameGamesPage} name="games" />
+                <Route path="/admin/games/new" page={GameNewGamePage} name="newGame" />
+                <Route path="/admin/games/{id:Int}/edit" page={GameEditGamePage} name="editGame" />
+                <Route path="/admin/games/{id:Int}" page={GameGamePage} name="game" />
+                <Route path="/admin/games" page={GameGamesPage} name="games" />
             </Set>
             <Set wrap={Layout}>
                 {/* TODO: Build home page */}
