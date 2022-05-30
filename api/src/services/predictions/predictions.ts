@@ -41,9 +41,8 @@ export const deletePrediction: MutationResolvers['deletePrediction'] = ({
     });
 };
 
+// TODO: Consider adding a custom resolver for user info
 export const Prediction: PredictionResolvers = {
-    User: (_obj, { root }) =>
-        db.prediction.findUnique({ where: { id: root.id } }).User(),
     Team: (_obj, { root }) =>
         db.prediction.findUnique({ where: { id: root.id } }).Team(),
 };

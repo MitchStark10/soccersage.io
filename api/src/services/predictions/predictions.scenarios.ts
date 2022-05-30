@@ -5,28 +5,14 @@ export const standard = defineScenario<Prisma.PredictionCreateArgs>({
         one: {
             data: {
                 prediction: 'String',
-                User: {
-                    create: {
-                        email: 'String9914321',
-                        username: 'String8823843',
-                        hashedPassword: 'String12141',
-                        status: 'String',
-                    },
-                },
+                userId: 'SomeID',
                 Team: { create: { name: 'String2302740' } },
             },
         },
         two: {
             data: {
                 prediction: 'String',
-                User: {
-                    create: {
-                        email: 'String1006167',
-                        username: 'String1114189',
-                        hashedPassword: 'String121412',
-                        status: 'String',
-                    },
-                },
+                userId: 'SomeID',
                 Team: { create: { name: 'String8347163' } },
             },
         },

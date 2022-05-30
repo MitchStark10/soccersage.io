@@ -8,15 +8,6 @@ generator client {
   binaryTargets = "native"
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  username  String @unique
-  hashedPassword String
-  status String
-  Prediction Prediction[]
-}
-
 model Team {
   id    Int     @id @default(autoincrement())
   name  String  @unique
@@ -27,11 +18,10 @@ model Team {
 
 model Prediction {
   id    Int     @id @default(autoincrement())
-  userId Int
-  teamId Int
+  userId String
+  teamId Int?
   prediction String
-  User User @relation(fields: [userId], references: [id])
-  Team Team @relation(fields: [teamId], references: [id])
+  Team Team? @relation(fields: [teamId], references: [id])
 }
 
 model Game {
