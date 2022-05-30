@@ -8,7 +8,6 @@ export const standard = defineScenario<Prisma.UserCreateArgs>({
                 username: 'String5624435',
                 hashedPassword: 'SomeHashedPass',
                 status: 'String',
-                sessionCookie: 'String',
             },
         },
         two: {
@@ -17,7 +16,6 @@ export const standard = defineScenario<Prisma.UserCreateArgs>({
                 username: 'String3096977',
                 hashedPassword: 'SomeHashedPass',
                 status: 'String',
-                sessionCookie: 'String',
             },
         },
     },

@@ -11,6 +11,7 @@ export const LoginForm: React.VFC = () => {
         await logIn({
             appState: { targetUrl: 'http://localhost:8910/login' },
         });
+        console.log('processing login');
     };
 
     if (loading) {

@@ -31,8 +31,7 @@ describe('users', () => {
 
         expect(result.email).toEqual('String9381760');
         expect(result.username).toEqual('String3137869');
-        expect(result.status).toEqual('String');
-        expect(result.sessionCookie).toEqual('String');
+        expect(result.status).toEqual('active');
     });
 
     scenario('updates a user', async (scenario: StandardScenario) => {
