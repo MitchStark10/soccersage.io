@@ -10,7 +10,7 @@
 import { Route, Router, Set } from '@redwoodjs/router';
 import GamesLayout from 'src/layouts/GamesLayout';
 import PredictionsLayout from 'src/layouts/PredictionsLayout';
-import TeamsLayout from 'src/layouts/TeamsLayout';;
+import TeamsLayout from 'src/layouts/TeamsLayout';
 import Layout from './layouts/Layout/Layout';
 import SignUpPage from './pages/SignupPage/SignUpPage';
 
@@ -39,6 +39,7 @@ const Routes = () => {
             <Set wrap={Layout}>
                 {/* TODO: Build home page */}
                 <Route path="/" page={HomePage} name="home" />
+                <Route path="/predictions" page={PredictionsPage} name="predictions" />
                 <Route path="/sign-up" page={SignUpPage} name="signUp" />
                 <Route path="/login" page={LoginPage} name="login" />
                 <Route path="/sign-out" page={SignOutPage} name="signOut" />
