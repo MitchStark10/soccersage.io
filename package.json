@@ -1,35 +1,35 @@
 {
-  "private": true,
-  "workspaces": {
-    "packages": [
-      "api",
-      "web",
-      "packages/*"
-    ]
-  },
-  "scripts": {
-	  "prepare": "husky install"
-  },
-  "devDependencies": {
-    "@redwoodjs/core": "1.4.2",
-    "classnames": "^2.3.1",
-    "husky": "^8.0.1",
-    "typescript": "^4.6.4"
-  },
-  "eslintConfig": {
-    "extends": "@redwoodjs/eslint-config",
-    "root": true
-  },
-  "engines": {
-    "node": ">=14.19 <=16.x",
-    "yarn": ">=1.15"
-  },
-  "prisma": {
-    "seed": "yarn rw exec seed"
-  },
-  "packageManager": "yarn@3.2.0",
-  "dependencies": {
-    "bcrypt": "^5.0.1",
-    "typeface-roboto": "^1.1.13"
-  }
+    "private": true,
+    "workspaces": {
+        "packages": [
+            "api",
+            "web",
+            "packages/*"
+        ]
+    },
+    "scripts": {
+        "prepare": "husky install"
+    },
+    "devDependencies": {
+        "@redwoodjs/core": "1.4.2",
+        "classnames": "^2.3.1",
+        "husky": "^8.0.1",
+        "typescript": "^4.6.4"
+    },
+    "eslintConfig": {
+        "extends": "@redwoodjs/eslint-config",
+        "root": true
+    },
+    "engines": {
+        "node": ">=14.19 <=16.x",
+        "yarn": ">=1.15"
+    },
+    "prisma": {
+        "seed": "yarn rw exec seed"
+    },
+    "packageManager": "yarn@3.2.0",
+    "dependencies": {
+        "bcrypt": "^5.0.1",
+        "typeface-roboto": "^1.1.13"
+    }
 }
