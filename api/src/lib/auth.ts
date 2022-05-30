@@ -5,7 +5,6 @@ import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server';
  * Authentication provider's JWT together with an optional list of roles.
  */
 export type RedwoodUser = Record<string, unknown> & {
-    id: string;
     roles?: string[];
 };
 
