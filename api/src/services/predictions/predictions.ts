@@ -1,9 +1,8 @@
-import { RedwoodGraphQLError } from '@redwoodjs/graphql-server';
 import { db } from 'src/lib/db';
 import type {
-    QueryResolvers,
     MutationResolvers,
     PredictionResolvers,
+    QueryResolvers
 } from 'types/graphql';
 
 export const predictions: QueryResolvers['predictions'] = async (
@@ -14,9 +13,9 @@ export const predictions: QueryResolvers['predictions'] = async (
     console.log('testing', context.currentUser);
 
     return db.prediction.findMany({
-        where: {
-            userId: context.currentUser?.id as string,
-        },
+        // where: {
+        //     userId: context.currentUser?.id as string,
+        // },
     });
 };
 

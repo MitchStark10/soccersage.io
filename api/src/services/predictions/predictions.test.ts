@@ -1,9 +1,9 @@
 import {
-    predictions,
-    prediction,
     createPrediction,
-    updatePrediction,
     deletePrediction,
+    prediction,
+    predictions,
+    updatePrediction
 } from './predictions';
 import type { StandardScenario } from './predictions.scenarios';
 
@@ -15,7 +15,15 @@ import type { StandardScenario } from './predictions.scenarios';
 
 describe('predictions', () => {
     scenario('returns all predictions', async (scenario: StandardScenario) => {
-        const result = await predictions();
+        const result = await predictions(null, {
+            root: null,
+            info: null,
+            context: {
+                event: null,
+                requestContext: null,
+                currentUser: { id: 1 },
+            },
+        });
 
         expect(result.length).toEqual(Object.keys(scenario.prediction).length);
     });

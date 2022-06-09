@@ -1,10 +1,16 @@
-import { MetaTags, useQuery } from '@redwoodjs/web';
+import { MetaTags } from '@redwoodjs/web';
 import { FIND_PREDICTIONS_QUERY } from 'src/components/Prediction/PredictionsCell';
+import { useAuthenticatedQuery } from 'src/hooks/use-authenticated-query';
 
 const PredictionsPage = () => {
-    const { data, loading } = useQuery(FIND_PREDICTIONS_QUERY);
+    const { data, loading, error } = useAuthenticatedQuery(
+        FIND_PREDICTIONS_QUERY
+    );
 
-    if (loading) {
+    if (error) {
+        // TODO: Define the error text component
+        return <div>Error: {error.message}</div>;
+    } else if (loading) {
         // TODO: Define loading component
         return <div>Loading...</div>;
     }
