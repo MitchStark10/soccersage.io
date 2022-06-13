@@ -5,14 +5,14 @@ export const standard = defineScenario<Prisma.PredictionCreateArgs>({
         one: {
             data: {
                 prediction: 'String',
-                userId: 'SomeID',
+                userId: '123',
                 Team: { create: { name: 'String2302740' } },
             },
         },
         two: {
             data: {
                 prediction: 'String',
-                userId: 'SomeID',
+                userId: '123',
                 Team: { create: { name: 'String8347163' } },
             },
         },

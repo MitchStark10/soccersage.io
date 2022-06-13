@@ -3,7 +3,7 @@ import {
     deletePrediction,
     prediction,
     predictions,
-    updatePrediction
+    updatePrediction,
 } from './predictions';
 import type { StandardScenario } from './predictions.scenarios';
 
@@ -21,7 +21,7 @@ describe('predictions', () => {
             context: {
                 event: null,
                 requestContext: null,
-                currentUser: { id: 1 },
+                currentUser: { sub: '123' },
             },
         });
 

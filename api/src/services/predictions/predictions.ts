@@ -1,21 +1,21 @@
+import { getFirstUserFromContext } from 'src/lib/auth';
 import { db } from 'src/lib/db';
 import type {
     MutationResolvers,
     PredictionResolvers,
-    QueryResolvers
+    QueryResolvers,
 } from 'types/graphql';
 
 export const predictions: QueryResolvers['predictions'] = async (
     _temp,
     { context }
 ) => {
-    // TODO: Figure this piece out
-    console.log('testing', context.currentUser);
+    const currentUserId = getFirstUserFromContext(context);
 
     return db.prediction.findMany({
-        // where: {
-        //     userId: context.currentUser?.id as string,
-        // },
+        where: {
+            userId: currentUserId.sub,
+        },
     });
 };
 

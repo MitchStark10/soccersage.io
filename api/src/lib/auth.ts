@@ -1,4 +1,9 @@
-import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server';
+import {
+    AuthenticationError,
+    ForbiddenError,
+    RedwoodGraphQLError,
+} from '@redwoodjs/graphql-server';
+import { RedwoodGraphQLContext } from '@redwoodjs/graphql-server/dist/functions/types';
 
 /**
  * Represents the user attributes returned by the decoding the
@@ -6,6 +11,7 @@ import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server';
  */
 export type RedwoodUser = Record<string, unknown> & {
     roles?: string[];
+    sub?: string;
 };
 
 /**
@@ -130,4 +136,18 @@ export const requireAuth = ({ roles }: { roles: AllowedRoles }) => {
     if (roles && !hasRole(roles)) {
         throw new ForbiddenError("You don't have access to do that.");
     }
+};
+
+export const getFirstUserFromContext = (
+    context: RedwoodGraphQLContext
+): Record<string, unknown> => {
+    if (!Array.isArray(context.currentUser)) {
+        return context.currentUser;
+    } else if (typeof context.currentUser[0] === 'object') {
+        return context.currentUser[0];
+    }
+
+    throw new RedwoodGraphQLError(
+        'Unable to get first user from context: ' + JSON.stringify(context)
+    );
 };
