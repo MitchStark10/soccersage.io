@@ -1,22 +1,12 @@
-import { getFirstUserFromContext } from 'src/lib/auth';
 import { db } from 'src/lib/db';
 import type {
+    QueryResolvers,
     MutationResolvers,
     PredictionResolvers,
-    QueryResolvers,
 } from 'types/graphql';
 
-export const predictions: QueryResolvers['predictions'] = async (
-    _temp,
-    { context }
-) => {
-    const currentUserId = getFirstUserFromContext(context);
-
-    return db.prediction.findMany({
-        where: {
-            userId: currentUserId.sub,
-        },
-    });
+export const predictions: QueryResolvers['predictions'] = () => {
+    return db.prediction.findMany();
 };
 
 export const prediction: QueryResolvers['prediction'] = ({ id }) => {
@@ -51,7 +41,6 @@ export const deletePrediction: MutationResolvers['deletePrediction'] = ({
     });
 };
 
-// TODO: Consider adding a custom resolver for user info
 export const Prediction: PredictionResolvers = {
     Team: (_obj, { root }) =>
         db.prediction.findUnique({ where: { id: root.id } }).Team(),

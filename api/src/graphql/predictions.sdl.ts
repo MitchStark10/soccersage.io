@@ -4,7 +4,7 @@ export const schema = gql`
         userId: String!
         teamId: Int
         prediction: String!
-        Team: Team!
+        Team: Team
     }
 
     type Query {

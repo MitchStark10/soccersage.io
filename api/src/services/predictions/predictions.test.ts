@@ -1,9 +1,9 @@
 import {
-    createPrediction,
-    deletePrediction,
-    prediction,
     predictions,
+    prediction,
+    createPrediction,
     updatePrediction,
+    deletePrediction,
 } from './predictions';
 import type { StandardScenario } from './predictions.scenarios';
 
@@ -15,15 +15,7 @@ import type { StandardScenario } from './predictions.scenarios';
 
 describe('predictions', () => {
     scenario('returns all predictions', async (scenario: StandardScenario) => {
-        const result = await predictions(null, {
-            root: null,
-            info: null,
-            context: {
-                event: null,
-                requestContext: null,
-                currentUser: { sub: '123' },
-            },
-        });
+        const result = await predictions();
 
         expect(result.length).toEqual(Object.keys(scenario.prediction).length);
     });
@@ -37,17 +29,12 @@ describe('predictions', () => {
         }
     );
 
-    scenario('creates a prediction', async (scenario: StandardScenario) => {
+    scenario('creates a prediction', async () => {
         const result = await createPrediction({
-            input: {
-                userId: scenario.prediction.two.userId,
-                teamId: scenario.prediction.two.teamId,
-                prediction: 'String',
-            },
+            input: { userId: 'String', prediction: 'String' },
         });
 
-        expect(result.userId).toEqual(scenario.prediction.two.userId);
-        expect(result.teamId).toEqual(scenario.prediction.two.teamId);
+        expect(result.userId).toEqual('String');
         expect(result.prediction).toEqual('String');
     });
 
@@ -55,10 +42,10 @@ describe('predictions', () => {
         const original = await prediction({ id: scenario.prediction.one.id });
         const result = await updatePrediction({
             id: original.id,
-            input: { prediction: 'String2' },
+            input: { userId: 'String2' },
         });
 
-        expect(result.prediction).toEqual('String2');
+        expect(result.userId).toEqual('String2');
     });
 
     scenario('deletes a prediction', async (scenario: StandardScenario) => {

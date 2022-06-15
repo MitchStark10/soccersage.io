@@ -3,8 +3,8 @@ import {
   FormError,
   FieldError,
   Label,
-  NumberField,
   TextField,
+  NumberField,
   Submit,
 } from '@redwoodjs/forms'
 
@@ -44,7 +44,7 @@ const PredictionForm = (props) => {
           User id
         </Label>
         
-          <NumberField
+          <TextField
             name="userId"
             defaultValue={props.prediction?.userId}
             className="rw-input"
@@ -68,7 +68,6 @@ const PredictionForm = (props) => {
             defaultValue={props.prediction?.teamId}
             className="rw-input"
             errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
           />
         
 

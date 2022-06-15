@@ -1,24 +1,24 @@
-import type { Prisma } from '@prisma/client'
+import type { Prisma } from '@prisma/client';
 
 export const standard = defineScenario<Prisma.GameCreateArgs>({
-  game: {
-    one: {
-      data: {
-        homeTeamScore: 7826054,
-        awayTeamScore: 3210727,
-        homeTeam: { create: { name: 'String5094676' } },
-        awayTeam: { create: { name: 'String165727' } },
-      },
+    game: {
+        one: {
+            data: {
+                homeTeamScore: 5278373,
+                awayTeamScore: 9262607,
+                homeTeam: { create: { name: 'String3223999' } },
+                awayTeam: { create: { name: 'String5108965' } },
+            },
+        },
+        two: {
+            data: {
+                homeTeamScore: 2210328,
+                awayTeamScore: 4786303,
+                homeTeam: { create: { name: 'String2218724' } },
+                awayTeam: { create: { name: 'String3400904' } },
+            },
+        },
     },
-    two: {
-      data: {
-        homeTeamScore: 7353503,
-        awayTeamScore: 4218032,
-        homeTeam: { create: { name: 'String1271698' } },
-        awayTeam: { create: { name: 'String6921335' } },
-      },
-    },
-  },
-})
+});
 
-export type StandardScenario = typeof standard
+export type StandardScenario = typeof standard;

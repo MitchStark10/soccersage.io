@@ -1,6 +1,8 @@
 import { db } from 'src/lib/db';
 import type {
-    MutationResolvers, QueryResolvers, TeamResolvers
+    QueryResolvers,
+    MutationResolvers,
+    TeamResolvers,
 } from 'types/graphql';
 
 export const teams: QueryResolvers['teams'] = () => {

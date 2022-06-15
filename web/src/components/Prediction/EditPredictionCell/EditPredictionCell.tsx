@@ -46,7 +46,7 @@ export const Success = ({ prediction }: CellSuccessProps<EditPredictionById>) =>
   })
 
   const onSave = (input, id) => {
-    const castInput = Object.assign(input, { userId: parseInt(input.userId), teamId: parseInt(input.teamId), })
+    const castInput = Object.assign(input, { teamId: parseInt(input.teamId), })
     updatePrediction({ variables: { id, input: castInput } })
   }
 

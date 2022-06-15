@@ -41,6 +41,7 @@ export const getCurrentUser = async (
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     { event, context }
 ): Promise<RedwoodUser> => {
+    console.log('getting current user');
     if (!decoded) {
         return null;
     }
@@ -78,6 +79,7 @@ type AllowedRoles = string | string[] | undefined;
  * or when no roles are provided to check against. Otherwise returns false.
  */
 export const hasRole = (roles: AllowedRoles): boolean => {
+    console.log('checking for role');
     if (!isAuthenticated()) {
         return false;
     }
@@ -129,6 +131,7 @@ export const hasRole = (roles: AllowedRoles): boolean => {
  * @see https://github.com/redwoodjs/redwood/tree/main/packages/auth for examples
  */
 export const requireAuth = ({ roles }: { roles: AllowedRoles }) => {
+    console.log('in requireAuth');
     if (!isAuthenticated()) {
         throw new AuthenticationError("You don't have permission to do that.");
     }
@@ -141,6 +144,7 @@ export const requireAuth = ({ roles }: { roles: AllowedRoles }) => {
 export const getFirstUserFromContext = (
     context: RedwoodGraphQLContext
 ): Record<string, unknown> => {
+    console.log('getting user from context');
     if (!Array.isArray(context.currentUser)) {
         return context.currentUser;
     } else if (typeof context.currentUser[0] === 'object') {

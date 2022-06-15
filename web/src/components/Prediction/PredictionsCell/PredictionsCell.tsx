@@ -1,9 +1,9 @@
-import { Link, routes } from '@redwoodjs/router';
-import type { CellFailureProps, CellSuccessProps } from '@redwoodjs/web';
-import Predictions from 'src/components/Prediction/Predictions';
 import type { FindPredictions } from 'types/graphql';
+import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
 
+import { Link, routes } from '@redwoodjs/router';
 
+import Predictions from 'src/components/Prediction/Predictions';
 
 export const FIND_PREDICTIONS_QUERY = gql`
     query FindPredictions {
