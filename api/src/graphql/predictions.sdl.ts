@@ -10,6 +10,7 @@ export const schema = gql`
 
     type Query {
         predictions: [Prediction!]! @requireAuth
+        myPredictions: [Prediction!]! @requireAuth
         prediction(id: Int!): Prediction @requireAuth
     }
 

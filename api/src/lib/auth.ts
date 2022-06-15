@@ -141,14 +141,18 @@ export const requireAuth = ({ roles }: { roles: AllowedRoles }) => {
     }
 };
 
+interface UserDetails {
+    sub: string;
+}
+
 export const getFirstUserFromContext = (
     context: RedwoodGraphQLContext
-): Record<string, unknown> => {
+): UserDetails => {
     console.log('getting user from context');
     if (!Array.isArray(context.currentUser)) {
-        return context.currentUser;
+        return context.currentUser as unknown as UserDetails;
     } else if (typeof context.currentUser[0] === 'object') {
-        return context.currentUser[0];
+        return context.currentUser[0] as unknown as UserDetails;
     }
 
     throw new RedwoodGraphQLError(

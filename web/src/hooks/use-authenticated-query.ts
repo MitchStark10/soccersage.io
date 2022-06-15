@@ -18,7 +18,7 @@ export const useAuthenticatedQuery = (query: DocumentNode) => {
         if (response.error) {
             console.log('Recevied error', response);
             const containsAuthError = response.error.graphQLErrors.find(
-                (error) => error.extensions.code === 'UNAUTHENTICATED'
+                (error) => error.extensions?.code === 'UNAUTHENTICATED'
             );
 
             if (containsAuthError) {

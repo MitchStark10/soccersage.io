@@ -1,11 +1,21 @@
 import { MetaTags } from '@redwoodjs/web';
-import { QUERY } from 'src/components/Prediction/PredictionsCell';
 import { useAuthenticatedQuery } from 'src/hooks/use-authenticated-query';
 
+const MY_PREDICTIONS_QUERY = gql`
+    query FindMyPredictions {
+        myPredictions {
+            id
+            userId
+            gameId
+            teamId
+            prediction
+        }
+    }
+`;
+
 const PredictionsPage = () => {
-    const { data, loading, error } = useAuthenticatedQuery(
-        QUERY
-    );
+    const { data, loading, error } =
+        useAuthenticatedQuery(MY_PREDICTIONS_QUERY);
 
     if (error) {
         // TODO: Define the error text component

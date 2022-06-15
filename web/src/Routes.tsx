@@ -1,7 +1,7 @@
-import { Route, Router, Set } from '@redwoodjs/router'
-import PredictionsLayout from 'src/layouts/PredictionsLayout'
-import TeamsLayout from 'src/layouts/TeamsLayout';;
-import GamesLayout from 'src/layouts/GamesLayout';;
+import { Route, Router, Set } from '@redwoodjs/router';
+import PredictionsLayout from 'src/layouts/PredictionsLayout';
+import TeamsLayout from 'src/layouts/TeamsLayout';
+import GamesLayout from 'src/layouts/GamesLayout';
 import Layout from './layouts/Layout/Layout';
 import SignUpPage from './pages/SignupPage/SignUpPage';
 
@@ -10,16 +10,16 @@ const Routes = () => {
     return (
         <Router>
             <Set wrap={PredictionsLayout}>
-                <Route path="/predictions/new" page={PredictionNewPredictionPage} name="newPrediction" />
-                <Route path="/predictions/{id:Int}/edit" page={PredictionEditPredictionPage} name="editPrediction" />
-                <Route path="/predictions/{id:Int}" page={PredictionPredictionPage} name="prediction" />
-                <Route path="/predictions" page={PredictionPredictionsPage} name="predictions" />
+                <Route path="/admin/predictions/new" page={PredictionNewPredictionPage} name="newPrediction" />
+                <Route path="/admin/predictions/{id:Int}/edit" page={PredictionEditPredictionPage} name="editPrediction" />
+                <Route path="/admin/predictions/{id:Int}" page={PredictionPredictionPage} name="prediction" />
+                <Route path="/admin/predictions" page={PredictionPredictionsPage} name="predictions" />
             </Set>
             <Set wrap={TeamsLayout}>
-                <Route path="/teams/new" page={TeamNewTeamPage} name="newTeam" />
-                <Route path="/teams/{id:Int}/edit" page={TeamEditTeamPage} name="editTeam" />
-                <Route path="/teams/{id:Int}" page={TeamTeamPage} name="team" />
-                <Route path="/teams" page={TeamTeamsPage} name="teams" />
+                <Route path="/admin/teams/new" page={TeamNewTeamPage} name="newTeam" />
+                <Route path="/admin/teams/{id:Int}/edit" page={TeamEditTeamPage} name="editTeam" />
+                <Route path="/admin/teams/{id:Int}" page={TeamTeamPage} name="team" />
+                <Route path="/admin/teams" page={TeamTeamsPage} name="teams" />
             </Set>
             <Set wrap={GamesLayout}>
                 <Route path="/admin/games/new" page={GameNewGamePage} name="newGame" />
