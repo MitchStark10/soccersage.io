@@ -31,10 +31,11 @@ describe('predictions', () => {
 
     scenario('creates a prediction', async () => {
         const result = await createPrediction({
-            input: { userId: 'String', prediction: 'String' },
+            input: { userId: 'String', gameId: 3022139, prediction: 'String' },
         });
 
         expect(result.userId).toEqual('String');
+        expect(result.gameId).toEqual(3022139);
         expect(result.prediction).toEqual('String');
     });
 

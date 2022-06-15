@@ -4,7 +4,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { Link, routes } from '@redwoodjs/router'
 
-import { FIND_PREDICTIONS_QUERY } from 'src/components/Prediction/PredictionsCell'
+import { QUERY } from 'src/components/Prediction/PredictionsCell'
 
 const DELETE_PREDICTION_MUTATION = gql`
   mutation DeletePredictionMutation($id: Int!) {
@@ -64,7 +64,7 @@ const PredictionsList = ({ predictions }) => {
     // This refetches the query on the list page. Read more about other ways to
     // update the cache over here:
     // https://www.apollographql.com/docs/react/data/mutations/#making-all-other-cache-updates
-    refetchQueries: [{ query: FIND_PREDICTIONS_QUERY }],
+    refetchQueries: [{ query: QUERY }],
     awaitRefetchQueries: true,
   })
 
@@ -81,6 +81,7 @@ const PredictionsList = ({ predictions }) => {
           <tr>
             <th>Id</th>
             <th>User id</th>
+            <th>Game id</th>
             <th>Team id</th>
             <th>Prediction</th>
             <th>&nbsp;</th>
@@ -91,6 +92,7 @@ const PredictionsList = ({ predictions }) => {
             <tr key={prediction.id}>
               <td>{truncate(prediction.id)}</td>
               <td>{truncate(prediction.userId)}</td>
+              <td>{truncate(prediction.gameId)}</td>
               <td>{truncate(prediction.teamId)}</td>
               <td>{truncate(prediction.prediction)}</td>
               <td>

@@ -23,7 +23,7 @@ const NewPrediction = () => {
   })
 
   const onSave = (input) => {
-    const castInput = Object.assign(input, { teamId: parseInt(input.teamId), })
+    const castInput = Object.assign(input, { gameId: parseInt(input.gameId), teamId: parseInt(input.teamId), })
     createPrediction({ variables: { input: castInput } })
   }
 

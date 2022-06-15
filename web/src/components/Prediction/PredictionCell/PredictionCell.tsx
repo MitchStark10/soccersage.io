@@ -8,6 +8,7 @@ export const QUERY = gql`
     prediction: prediction(id: $id) {
       id
       userId
+      gameId
       teamId
       prediction
     }

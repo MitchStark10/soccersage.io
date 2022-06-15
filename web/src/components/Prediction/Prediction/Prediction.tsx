@@ -77,6 +77,9 @@ const Prediction = ({ prediction }) => {
               <th>User id</th>
               <td>{prediction.userId}</td>
             </tr><tr>
+              <th>Game id</th>
+              <td>{prediction.gameId}</td>
+            </tr><tr>
               <th>Team id</th>
               <td>{prediction.teamId}</td>
             </tr><tr>

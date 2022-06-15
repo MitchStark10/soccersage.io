@@ -23,6 +23,9 @@ const PredictionForm = (props) => {
     
     
   
+    
+    
+  
     props.onSave(data, props?.prediction?.id)
   }
 
@@ -54,6 +57,25 @@ const PredictionForm = (props) => {
         
 
         <FieldError name="userId" className="rw-field-error" />
+
+        <Label
+          name="gameId"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Game id
+        </Label>
+        
+          <NumberField
+            name="gameId"
+            defaultValue={props.prediction?.gameId}
+            className="rw-input"
+            errorClassName="rw-input rw-input-error"
+            validation={{ required: true }}
+          />
+        
+
+        <FieldError name="gameId" className="rw-field-error" />
 
         <Label
           name="teamId"

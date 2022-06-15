@@ -1,10 +1,10 @@
 import { MetaTags } from '@redwoodjs/web';
-import { FIND_PREDICTIONS_QUERY } from 'src/components/Prediction/PredictionsCell';
+import { QUERY } from 'src/components/Prediction/PredictionsCell';
 import { useAuthenticatedQuery } from 'src/hooks/use-authenticated-query';
 
 const PredictionsPage = () => {
     const { data, loading, error } = useAuthenticatedQuery(
-        FIND_PREDICTIONS_QUERY
+        QUERY
     );
 
     if (error) {

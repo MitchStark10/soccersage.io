@@ -12,6 +12,7 @@ export const QUERY = gql`
     prediction: prediction(id: $id) {
       id
       userId
+      gameId
       teamId
       prediction
     }
@@ -22,6 +23,7 @@ const UPDATE_PREDICTION_MUTATION = gql`
     updatePrediction(id: $id, input: $input) {
       id
       userId
+      gameId
       teamId
       prediction
     }
@@ -46,7 +48,7 @@ export const Success = ({ prediction }: CellSuccessProps<EditPredictionById>) =>
   })
 
   const onSave = (input, id) => {
-    const castInput = Object.assign(input, { teamId: parseInt(input.teamId), })
+    const castInput = Object.assign(input, { gameId: parseInt(input.gameId), teamId: parseInt(input.teamId), })
     updatePrediction({ variables: { id, input: castInput } })
   }
 

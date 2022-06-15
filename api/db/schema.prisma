@@ -19,6 +19,7 @@ model Team {
 model Prediction {
   id    Int     @id @default(autoincrement())
   userId String
+  gameId Int
   teamId Int?
   prediction String
   Team Team? @relation(fields: [teamId], references: [id])
@@ -28,8 +29,8 @@ model Game {
   id    Int     @id @default(autoincrement())
   homeTeamId Int
   awayTeamId Int
-  homeTeamScore Int
-  awayTeamScore Int
+  homeTeamScore Int?
+  awayTeamScore Int?
   homeTeam Team @relation(name: "homeTeam", references: [id], fields: [homeTeamId])
   awayTeam Team @relation(name: "awayTeam", references: [id], fields: [awayTeamId])
 }

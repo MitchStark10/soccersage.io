@@ -2,6 +2,7 @@ export const schema = gql`
     type Prediction {
         id: Int!
         userId: String!
+        gameId: Int!
         teamId: Int
         prediction: String!
         Team: Team
@@ -14,12 +15,14 @@ export const schema = gql`
 
     input CreatePredictionInput {
         userId: String!
+        gameId: Int!
         teamId: Int
         prediction: String!
     }
 
     input UpdatePredictionInput {
         userId: String
+        gameId: Int
         teamId: Int
         prediction: String
     }
