@@ -5,7 +5,8 @@ export const schema = gql`
         gameId: Int!
         teamId: Int
         prediction: String!
-        Team: Team
+        team: Team
+        game: Game!
     }
 
     type Query {

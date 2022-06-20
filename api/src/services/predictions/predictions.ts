@@ -53,6 +53,8 @@ export const deletePrediction: MutationResolvers['deletePrediction'] = ({
 };
 
 export const Prediction: PredictionResolvers = {
-    Team: (_obj, { root }) =>
-        db.prediction.findUnique({ where: { id: root.id } }).Team(),
+    team: (_obj, { root }) =>
+        db.prediction.findUnique({ where: { id: root.id } }).team(),
+    game: (_obj, { root }) =>
+        db.prediction.findUnique({ where: { id: root.id } }).game(),
 };

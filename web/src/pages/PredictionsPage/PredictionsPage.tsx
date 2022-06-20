@@ -1,4 +1,5 @@
 import { MetaTags } from '@redwoodjs/web';
+import { PredictionCard } from 'src/components/Prediction/PredictionCard';
 import { useAuthenticatedQuery } from 'src/hooks/use-authenticated-query';
 
 const MY_PREDICTIONS_QUERY = gql`
@@ -9,6 +10,17 @@ const MY_PREDICTIONS_QUERY = gql`
             gameId
             teamId
             prediction
+            game {
+                homeTeam {
+                    name
+                }
+                awayTeam {
+                    name
+                }
+            }
+            team {
+                name
+            }
         }
     }
 `;
@@ -28,8 +40,10 @@ const PredictionsPage = () => {
     return (
         <>
             <MetaTags title="Predictions" description="Predictions page" />
-            <h1>PredictionsPage</h1>
-            {JSON.stringify(data)}
+            <h1>Predictions</h1>
+            {data.myPredictions.map((prediction) => (
+                <PredictionCard key={prediction.id} prediction={prediction} />
+            ))}
         </>
     );
 };

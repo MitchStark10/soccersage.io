@@ -22,7 +22,8 @@ model Prediction {
   gameId Int
   teamId Int?
   prediction String
-  Team Team? @relation(fields: [teamId], references: [id])
+  game Game @relation(fields: [gameId], references: [id])
+  team Team? @relation(fields: [teamId], references: [id])
 }
 
 model Game {
@@ -31,6 +32,14 @@ model Game {
   awayTeamId Int
   homeTeamScore Int?
   awayTeamScore Int?
+  predictions Prediction[]
   homeTeam Team @relation(name: "homeTeam", references: [id], fields: [homeTeamId])
   awayTeam Team @relation(name: "awayTeam", references: [id], fields: [awayTeamId])
+}
+
+model RW_DataMigration {
+  version    String   @id
+  name       String
+  startedAt  DateTime
+  finishedAt DateTime
 }

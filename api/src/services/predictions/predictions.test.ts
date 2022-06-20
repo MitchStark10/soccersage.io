@@ -1,3 +1,5 @@
+import { createGame } from '../games/games';
+import { createTeam } from '../teams/teams';
 import {
     predictions,
     prediction,
@@ -30,12 +32,31 @@ describe('predictions', () => {
     );
 
     scenario('creates a prediction', async () => {
+        const homeTeam = await createTeam({
+            input: {
+                name: 'Home Team',
+            },
+        });
+
+        const awayTeam = await createTeam({
+            input: {
+                name: 'Away Team',
+            },
+        });
+        const game = await createGame({
+            input: {
+                homeTeamId: homeTeam.id,
+                awayTeamId: awayTeam.id,
+                homeTeamScore: 1,
+                awayTeamScore: 2,
+            },
+        });
         const result = await createPrediction({
-            input: { userId: 'String', gameId: 3022139, prediction: 'String' },
+            input: { userId: 'String', prediction: 'String', gameId: game.id },
         });
 
         expect(result.userId).toEqual('String');
-        expect(result.gameId).toEqual(3022139);
+        expect(result.gameId).toEqual(game.id);
         expect(result.prediction).toEqual('String');
     });
 
