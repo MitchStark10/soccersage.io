@@ -4,7 +4,14 @@ export const standard = defineScenario<Prisma.PredictionCreateArgs>({
     prediction: {
         one: {
             data: {
-                userId: 'String',
+                user: {
+                    create: {
+                        email: 'test1',
+                        hashedPassword: 'test',
+                        salt: 'test',
+                        role: 'test',
+                    },
+                },
                 prediction: 'String',
                 game: {
                     create: {
@@ -18,7 +25,14 @@ export const standard = defineScenario<Prisma.PredictionCreateArgs>({
         },
         two: {
             data: {
-                userId: 'String',
+                user: {
+                    create: {
+                        email: 'test2',
+                        hashedPassword: 'test',
+                        salt: 'test',
+                        role: 'test',
+                    },
+                },
                 prediction: 'String',
                 game: {
                     create: {

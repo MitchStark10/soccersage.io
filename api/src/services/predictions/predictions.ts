@@ -1,8 +1,9 @@
+import { getFirstUserFromContext } from 'src/lib/auth';
 import { db } from 'src/lib/db';
 import type {
-    QueryResolvers,
     MutationResolvers,
     PredictionResolvers,
+    QueryResolvers,
 } from 'types/graphql';
 
 export const predictions: QueryResolvers['predictions'] = () => {
@@ -13,10 +14,9 @@ export const myPredictions: QueryResolvers['myPredictions'] = (
     _temp,
     { context }
 ) => {
-    console.log('context', context);
-    // const userId = context.currentUser[0]?.id;
+    const user = getFirstUserFromContext(context);
     return db.prediction.findMany({
-        where: { userId: 1 },
+        where: { userId: user.id },
     });
 };
 

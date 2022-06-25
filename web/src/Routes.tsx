@@ -1,4 +1,5 @@
 import { Route, Router, Set } from '@redwoodjs/router';
+import UsersLayout from 'src/layouts/UsersLayout';
 import PredictionsLayout from 'src/layouts/PredictionsLayout';
 import TeamsLayout from 'src/layouts/TeamsLayout';
 import GamesLayout from 'src/layouts/GamesLayout';
@@ -9,6 +10,12 @@ import SignUpPage from './pages/SignupPage/SignUpPage';
 const Routes = () => {
     return (
         <Router>
+            <Set wrap={UsersLayout}>
+                <Route path="/admin/users/new" page={UserNewUserPage} name="newUser" />
+                <Route path="/admin/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
+                <Route path="/admin/users/{id:Int}" page={UserUserPage} name="user" />
+                <Route path="/admin/users" page={UserUsersPage} name="users" />
+            </Set>
             <Set wrap={PredictionsLayout}>
                 <Route path="/admin/predictions/new" page={PredictionNewPredictionPage} name="newPrediction" />
                 <Route path="/admin/predictions/{id:Int}/edit" page={PredictionEditPredictionPage} name="editPrediction" />

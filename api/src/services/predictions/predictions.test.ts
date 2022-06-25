@@ -1,5 +1,6 @@
 import { createGame } from '../games/games';
 import { createTeam } from '../teams/teams';
+import { createUser } from '../users/users';
 import {
     predictions,
     prediction,
@@ -51,11 +52,21 @@ describe('predictions', () => {
                 awayTeamScore: 2,
             },
         });
-        const result = await createPrediction({
-            input: { userId: 'String', prediction: 'String', gameId: game.id },
+
+        const user = await createUser({
+            input: {
+                email: 'someemail1',
+                hashedPassword: 'somehashedpass',
+                salt: 'somesalt',
+                role: 'somerole',
+            },
         });
 
-        expect(result.userId).toEqual('String');
+        const result = await createPrediction({
+            input: { userId: user.id, prediction: 'String', gameId: game.id },
+        });
+
+        expect(result.userId).toEqual(user.id);
         expect(result.gameId).toEqual(game.id);
         expect(result.prediction).toEqual('String');
     });
@@ -64,10 +75,10 @@ describe('predictions', () => {
         const original = await prediction({ id: scenario.prediction.one.id });
         const result = await updatePrediction({
             id: original.id,
-            input: { userId: 'String2' },
+            input: { prediction: 'tie' },
         });
 
-        expect(result.userId).toEqual('String2');
+        expect(result.prediction).toEqual('tie');
     });
 
     scenario('deletes a prediction', async (scenario: StandardScenario) => {
