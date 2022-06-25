@@ -6,7 +6,7 @@ import { NavLinks } from './NavLinks';
 export const Header = () => {
     const { isAuthenticated, currentUser } = useAuth();
     return (
-        <header className="w-full h-20 bg-blue-700 flex justify-between items-center gap-2 px-5">
+        <header className="w-full h-20 bg-primary text-white flex justify-between items-center gap-2 px-5">
             <NavLinks />
             {isAuthenticated ? (
                 <p>
