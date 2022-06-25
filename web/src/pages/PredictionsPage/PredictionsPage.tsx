@@ -1,9 +1,11 @@
 import { MetaTags } from '@redwoodjs/web';
+import { Loading } from 'src/components/Core/Loading/Loading';
+import { ErrorText } from 'src/components/Core/Text/ErrorText';
 import { H1 } from 'src/components/Core/Text/H1';
 import { PredictionCard } from 'src/components/Prediction/PredictionCard';
 import { useAuthenticatedQuery } from 'src/hooks/use-authenticated-query';
 
-const MY_PREDICTIONS_QUERY = gql`
+export const MY_PREDICTIONS_QUERY = gql`
     query FindMyPredictions {
         myPredictions {
             id
@@ -31,11 +33,9 @@ const PredictionsPage = () => {
         useAuthenticatedQuery(MY_PREDICTIONS_QUERY);
 
     if (error) {
-        // TODO: Define the error text component
-        return <div>Error: {error.message}</div>;
+        return <ErrorText>Error: {error.message}</ErrorText>;
     } else if (loading) {
-        // TODO: Define loading component
-        return <div>Loading...</div>;
+        return <Loading />;
     }
 
     return (

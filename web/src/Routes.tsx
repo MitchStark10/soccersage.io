@@ -34,6 +34,7 @@ const Routes = () => {
                 <Route path="/sign-up" page={SignUpPage} name="signUp" />
                 <Route path="/login" page={LoginPage} name="login" />
                 <Route path="/sign-out" page={SignOutPage} name="signOut" />
+                <Route path="/games" page={GamesPage} name="games" />
                 <Route notfound page={NotFoundPage} />
             </Set>
         </Router>
