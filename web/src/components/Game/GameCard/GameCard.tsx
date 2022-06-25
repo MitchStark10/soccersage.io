@@ -44,7 +44,7 @@ export const GameCard: React.VFC<Props> = ({
         newPrediction: 'tie' | 'win',
         teamId: number | null
     ) => {
-        if (!currentUser?.sub) {
+        if (!currentUser?.id) {
             navigate(routes.login());
             return;
         }
@@ -63,7 +63,7 @@ export const GameCard: React.VFC<Props> = ({
             await createPrediction({
                 variables: {
                     input: {
-                        userId: currentUser?.sub,
+                        userId: currentUser.id,
                         gameId: game.id,
                         prediction: newPrediction,
                         teamId,

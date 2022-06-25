@@ -6,12 +6,7 @@ interface Props {
 
 export const ErrorText: React.FC<Props> = ({ children, className }) => {
     return (
-        <p
-            className={cn(
-                'mt-2 text-sm text-red-600 dark:text-red-500',
-                className
-            )}
-        >
+        <p className={cn('mt-2 text-sm text-error-red', className)}>
             {children}
         </p>
     );

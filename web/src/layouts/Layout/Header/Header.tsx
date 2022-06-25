@@ -1,6 +1,7 @@
 import { useAuth } from '@redwoodjs/auth';
 import { routes } from '@redwoodjs/router';
-import { Button } from 'src/components/Core/Form/Button';
+import { Text } from 'src/components/Core/Text/Text';
+import { HeaderLink } from './HeaderLink';
 import { NavLinks } from './NavLinks';
 
 export const Header = () => {
@@ -9,14 +10,9 @@ export const Header = () => {
         <header className="w-full h-20 bg-primary text-white flex justify-between items-center gap-2 px-5">
             <NavLinks />
             {isAuthenticated ? (
-                <p>
-                    TODO: Figure out user email{' '}
-                    {JSON.stringify(currentUser.sub)}
-                </p>
+                <Text>{currentUser.email}</Text>
             ) : (
-                <Button variant="primary" as="a" to={routes.login()}>
-                    Login
-                </Button>
+                <HeaderLink to={routes.login()}>Login</HeaderLink>
             )}
         </header>
     );
