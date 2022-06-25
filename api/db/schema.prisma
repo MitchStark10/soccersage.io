@@ -1,45 +1,58 @@
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+    provider = "sqlite"
+    url      = env("DATABASE_URL")
 }
 
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = "native"
+    provider      = "prisma-client-js"
+    binaryTargets = "native"
 }
 
 model Team {
-  id    Int     @id @default(autoincrement())
-  name  String  @unique
-  Prediction Prediction[]
-  homeTeamGames Game[] @relation(name: "homeTeam")
-  awayTeamGames Game[] @relation(name: "awayTeam")
+    id            Int          @id @default(autoincrement())
+    name          String       @unique
+    Prediction    Prediction[]
+    homeTeamGames Game[]       @relation(name: "homeTeam")
+    awayTeamGames Game[]       @relation(name: "awayTeam")
 }
 
 model Prediction {
-  id    Int     @id @default(autoincrement())
-  userId String
-  gameId Int
-  teamId Int?
-  prediction String
-  game Game @relation(fields: [gameId], references: [id])
-  team Team? @relation(fields: [teamId], references: [id])
+    id         Int    @id @default(autoincrement())
+    userId     Int
+    gameId     Int
+    teamId     Int?
+    prediction String
+    game       Game   @relation(fields: [gameId], references: [id])
+    user       User   @relation(fields: [userId], references: [id])
+    team       Team?  @relation(fields: [teamId], references: [id])
 }
 
 model Game {
-  id    Int     @id @default(autoincrement())
-  homeTeamId Int
-  awayTeamId Int
-  homeTeamScore Int?
-  awayTeamScore Int?
-  predictions Prediction[]
-  homeTeam Team @relation(name: "homeTeam", references: [id], fields: [homeTeamId])
-  awayTeam Team @relation(name: "awayTeam", references: [id], fields: [awayTeamId])
+    id            Int          @id @default(autoincrement())
+    homeTeamId    Int
+    awayTeamId    Int
+    homeTeamScore Int?
+    awayTeamScore Int?
+    predictions   Prediction[]
+    homeTeam      Team         @relation(name: "homeTeam", references: [id], fields: [homeTeamId])
+    awayTeam      Team         @relation(name: "awayTeam", references: [id], fields: [awayTeamId])
+}
+
+model User {
+    id                  Int          @id @default(autoincrement())
+    name                String?
+    email               String       @unique
+    hashedPassword      String
+    salt                String
+    resetToken          String?
+    resetTokenExpiresAt DateTime?
+    role                String
+    Prediction          Prediction[]
 }
 
 model RW_DataMigration {
-  version    String   @id
-  name       String
-  startedAt  DateTime
-  finishedAt DateTime
+    version    String   @id
+    name       String
+    startedAt  DateTime
+    finishedAt DateTime
 }

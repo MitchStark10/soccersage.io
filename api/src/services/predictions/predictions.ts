@@ -1,4 +1,3 @@
-import { getFirstUserFromContext } from 'src/lib/auth';
 import { db } from 'src/lib/db';
 import type {
     QueryResolvers,
@@ -14,9 +13,9 @@ export const myPredictions: QueryResolvers['myPredictions'] = (
     _temp,
     { context }
 ) => {
-    const user = getFirstUserFromContext(context);
+    const userId = context.currentUser[0]?.id;
     return db.prediction.findMany({
-        where: { userId: user.sub },
+        where: { userId: userId },
     });
 };
 

@@ -1,58 +1,28 @@
-import {
-    AuthenticationError,
-    ForbiddenError,
-    RedwoodGraphQLError,
-} from '@redwoodjs/graphql-server';
-import { RedwoodGraphQLContext } from '@redwoodjs/graphql-server/dist/functions/types';
+import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server';
+import { db } from './db';
 
 /**
- * Represents the user attributes returned by the decoding the
- * Authentication provider's JWT together with an optional list of roles.
- */
-export type RedwoodUser = Record<string, unknown> & {
-    roles?: string[];
-    sub?: string;
-};
-
-/**
- * getCurrentUser returns the user information together with
- * an optional collection of roles used by requireAuth() to check
- * if the user is authenticated or has role-based access
+ * The session object sent in as the first argument to getCurrentUser() will
+ * have a single key `id` containing the unique ID of the logged in user
+ * (whatever field you set as `authFields.id` in your auth function config).
+ * You'll need to update the call to `db` below if you use a different model
+ * name or unique field name, for example:
  *
- * @param decoded - The decoded access token containing user info and JWT claims like `sub`. Note could be null.
- * @param { token, SupportedAuthTypes type } - The access token itself as well as the auth provider type
- * @param { APIGatewayEvent event, Context context } - An object which contains information from the invoker
- * such as headers and cookies, and the context information about the invocation such as IP Address
+ *   return await db.profile.findUnique({ where: { email: session.id } })
+ *                   ───┬───                       ──┬──
+ *      model accessor ─┘      unique id field name ─┘
  *
  * !! BEWARE !! Anything returned from this function will be available to the
  * client--it becomes the content of `currentUser` on the web side (as well as
  * `context.currentUser` on the api side). You should carefully add additional
- * fields to the return object only once you've decided they are safe to be seen
- * if someone were to open the Web Inspector in their browser.
- *
- * @see https://github.com/redwoodjs/redwood/tree/main/packages/auth for examples
- *
- * @returns RedwoodUser
+ * fields to the `select` object below once you've decided they are safe to be
+ * seen if someone were to open the Web Inspector in their browser.
  */
-export const getCurrentUser = async (
-    decoded,
-    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-    { token, type },
-    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-    { event, context }
-): Promise<RedwoodUser> => {
-    console.log('getting current user');
-    if (!decoded) {
-        return null;
-    }
-
-    const roles = decoded[process.env.AUTH0_AUDIENCE + '/roles'];
-
-    if (roles) {
-        return { ...decoded, roles };
-    }
-
-    return { ...decoded };
+export const getCurrentUser = async (session) => {
+    return await db.user.findUnique({
+        where: { id: session.id },
+        select: { id: true, role: true },
+    });
 };
 
 /**
@@ -79,37 +49,20 @@ type AllowedRoles = string | string[] | undefined;
  * or when no roles are provided to check against. Otherwise returns false.
  */
 export const hasRole = (roles: AllowedRoles): boolean => {
-    console.log('checking for role');
     if (!isAuthenticated()) {
         return false;
     }
 
-    const currentUserRoles = context.currentUser?.roles;
+    const currentUserRole = context.currentUser?.role;
 
     if (typeof roles === 'string') {
-        if (typeof currentUserRoles === 'string') {
-            // roles to check is a string, currentUser.roles is a string
-            return currentUserRoles === roles;
-        } else if (Array.isArray(currentUserRoles)) {
-            // roles to check is a string, currentUser.roles is an array
-            return currentUserRoles?.some(
-                (allowedRole) => roles === allowedRole
-            );
-        }
+        return currentUserRole === roles;
     }
 
     if (Array.isArray(roles)) {
-        if (Array.isArray(currentUserRoles)) {
-            // roles to check is an array, currentUser.roles is an array
-            return currentUserRoles?.some((allowedRole) =>
-                roles.includes(allowedRole)
-            );
-        } else if (typeof currentUserRoles === 'string') {
-            // roles to check is an array, currentUser.roles is a string
-            return roles.some(
-                (allowedRole) => currentUserRoles === allowedRole
-            );
-        }
+        return roles.some(
+            (allowedRole) => context.currentUser?.role === allowedRole
+        );
     }
 
     // roles not found
@@ -131,7 +84,6 @@ export const hasRole = (roles: AllowedRoles): boolean => {
  * @see https://github.com/redwoodjs/redwood/tree/main/packages/auth for examples
  */
 export const requireAuth = ({ roles }: { roles: AllowedRoles }) => {
-    console.log('in requireAuth');
     if (!isAuthenticated()) {
         throw new AuthenticationError("You don't have permission to do that.");
     }
@@ -139,23 +91,4 @@ export const requireAuth = ({ roles }: { roles: AllowedRoles }) => {
     if (roles && !hasRole(roles)) {
         throw new ForbiddenError("You don't have access to do that.");
     }
-};
-
-interface UserDetails {
-    sub: string;
-}
-
-export const getFirstUserFromContext = (
-    context: RedwoodGraphQLContext
-): UserDetails => {
-    console.log('getting user from context');
-    if (!Array.isArray(context.currentUser)) {
-        return context.currentUser as unknown as UserDetails;
-    } else if (typeof context.currentUser[0] === 'object') {
-        return context.currentUser[0] as unknown as UserDetails;
-    }
-
-    throw new RedwoodGraphQLError(
-        'Unable to get first user from context: ' + JSON.stringify(context)
-    );
 };

@@ -5,13 +5,11 @@ import { Form } from './Form';
 export const LoginForm: React.VFC = () => {
     // const [email, onEmailChange] = useInputText('');
     // const [password, onPasswordChange] = useInputText('');
-    const { logIn, loading, isAuthenticated } = useAuth();
+    const { loading, isAuthenticated } = useAuth();
 
     const handleSubmit = async () => {
-        await logIn({
-            appState: { targetUrl: 'http://localhost:8910/login' },
-        });
-        console.log('processing login');
+        // await signUp({ })
+        console.log('todo');
     };
 
     if (loading) {

@@ -6,7 +6,7 @@ import { Link, routes } from '@redwoodjs/router';
 import Games from 'src/components/Game/Games';
 
 export const QUERY = gql`
-    query FindGames {
+    query FindGamesCell {
         games {
             id
             homeTeamId
