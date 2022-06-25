@@ -1,4 +1,6 @@
 import { CardContainer } from 'src/components/Core/Card/CardContainer';
+import { H6 } from 'src/components/Core/Text/H6';
+import { Text } from 'src/components/Core/Text/Text';
 import { Prediction } from 'types/graphql';
 
 interface Props {
@@ -9,11 +11,14 @@ export const PredictionCard: React.VFC<Props> = ({ prediction }) => {
     const predictedTie = prediction.prediction === 'Tie';
     return (
         <CardContainer>
-            {prediction.game.homeTeam.name} vs {prediction.game.awayTeam.name}
+            <H6>
+                {prediction.game.homeTeam.name} vs{' '}
+                {prediction.game.awayTeam.name}
+            </H6>
             {predictedTie ? (
-                <p>Prediction: Tie</p>
+                <Text>Prediction: Tie</Text>
             ) : (
-                <p>Prediction Winner: {prediction.team.name}</p>
+                <Text>Prediction Winner: {prediction.team.name}</Text>
             )}
         </CardContainer>
     );
