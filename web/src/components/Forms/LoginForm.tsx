@@ -1,15 +1,28 @@
 import { useAuth } from '@redwoodjs/auth';
+import { useState } from 'react';
+import { useInputText } from 'src/hooks/use-input-text';
 import { Button } from '../Core/Form/Button';
+import { Input } from '../Core/Form/Input';
+import { ErrorText } from '../Core/Text/ErrorText';
 import { Form } from './Form';
 
 export const LoginForm: React.VFC = () => {
-    // const [email, onEmailChange] = useInputText('');
-    // const [password, onPasswordChange] = useInputText('');
-    const { loading, isAuthenticated } = useAuth();
+    const [username, onUsernameChange] = useInputText('');
+    const [email, onEmailChange] = useInputText('');
+    const [password, onPasswordChange] = useInputText('');
+    const [error, setError] = useState('');
+    const { signUp, loading, isAuthenticated } = useAuth();
 
     const handleSubmit = async () => {
-        // await signUp({ })
-        console.log('todo');
+        console.log('sign up options', {
+            username,
+            email,
+            password,
+        });
+        const response = await signUp({ username, email, password });
+        if (response.error) {
+            setError(response.error);
+        }
     };
 
     if (loading) {
@@ -20,7 +33,13 @@ export const LoginForm: React.VFC = () => {
 
     return (
         <Form onSubmit={handleSubmit}>
-            {/* <Input
+            <Input
+                id="username"
+                label="Username"
+                value={username}
+                onChange={onUsernameChange}
+            />
+            <Input
                 id="email"
                 label="Email"
                 value={email}
@@ -32,8 +51,8 @@ export const LoginForm: React.VFC = () => {
                 type="password"
                 value={password}
                 onChange={onPasswordChange}
-            /> */}
-            {/* <ErrorText>{error?.message}</ErrorText> */}
+            />
+            <ErrorText>{error}</ErrorText>
             <Button variant="primary" type="submit" disabled={loading}>
                 Login
             </Button>

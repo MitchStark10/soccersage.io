@@ -13,9 +13,10 @@ export const myPredictions: QueryResolvers['myPredictions'] = (
     _temp,
     { context }
 ) => {
-    const userId = context.currentUser[0]?.id;
+    console.log('context', context);
+    // const userId = context.currentUser[0]?.id;
     return db.prediction.findMany({
-        where: { userId: userId },
+        where: { userId: 1 },
     });
 };
 
