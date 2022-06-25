@@ -6,29 +6,22 @@ import GamesLayout from 'src/layouts/GamesLayout';
 import Layout from './layouts/Layout/Layout';
 import SignUpPage from './pages/SignupPage/SignUpPage';
 
-// TODO: Add authentication for the scaffolding pages
 const Routes = () => {
     return (
         <Router>
-            <Set wrap={UsersLayout}>
+            <Set wrap={UsersLayout} prviate roles={'admin'} unauthenticated="home">
                 <Route path="/admin/users/new" page={UserNewUserPage} name="newUser" />
                 <Route path="/admin/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
                 <Route path="/admin/users/{id:Int}" page={UserUserPage} name="user" />
                 <Route path="/admin/users" page={UserUsersPage} name="users" />
-            </Set>
-            <Set wrap={PredictionsLayout}>
                 <Route path="/admin/predictions/new" page={PredictionNewPredictionPage} name="newPrediction" />
                 <Route path="/admin/predictions/{id:Int}/edit" page={PredictionEditPredictionPage} name="editPrediction" />
                 <Route path="/admin/predictions/{id:Int}" page={PredictionPredictionPage} name="prediction" />
                 <Route path="/admin/predictions" page={PredictionPredictionsPage} name="predictions" />
-            </Set>
-            <Set wrap={TeamsLayout}>
                 <Route path="/admin/teams/new" page={TeamNewTeamPage} name="newTeam" />
                 <Route path="/admin/teams/{id:Int}/edit" page={TeamEditTeamPage} name="editTeam" />
                 <Route path="/admin/teams/{id:Int}" page={TeamTeamPage} name="team" />
                 <Route path="/admin/teams" page={TeamTeamsPage} name="teams" />
-            </Set>
-            <Set wrap={GamesLayout}>
                 <Route path="/admin/games/new" page={GameNewGamePage} name="newGame" />
                 <Route path="/admin/games/{id:Int}/edit" page={GameEditGamePage} name="editGame" />
                 <Route path="/admin/games/{id:Int}" page={GameGamePage} name="game" />

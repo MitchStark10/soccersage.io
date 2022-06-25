@@ -7,6 +7,8 @@ import { RedwoodGraphQLContext } from '@redwoodjs/graphql-server/dist/functions/
 import { InferredCurrentUser } from '../../../.redwood/types/includes/all-currentUser';
 import { db } from './db';
 
+const ADMIN_EMAILS = ['mitchstark10@gmail.com'];
+
 /**
  * The session object sent in as the first argument to getCurrentUser() will
  * have a single key `id` containing the unique ID of the logged in user
@@ -55,8 +57,16 @@ type AllowedRoles = string | string[] | undefined;
  * or when no roles are provided to check against. Otherwise returns false.
  */
 export const hasRole = (roles: AllowedRoles): boolean => {
+    console.log('in hasRole', roles);
+
     if (!isAuthenticated()) {
         return false;
+    }
+
+    // Admin emails always return true
+    const currentUserEmail = context.currentUser.email;
+    if (ADMIN_EMAILS.includes(currentUserEmail.toLowerCase())) {
+        return true;
     }
 
     const currentUserRole = context.currentUser?.role;
@@ -71,7 +81,7 @@ export const hasRole = (roles: AllowedRoles): boolean => {
         );
     }
 
-    // roles not found
+    //roles not found
     return false;
 };
 
