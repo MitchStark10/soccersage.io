@@ -1,4 +1,5 @@
 import { MetaTags } from '@redwoodjs/web';
+import { H1 } from 'src/components/Core/Text/H1';
 import { PredictionCard } from 'src/components/Prediction/PredictionCard';
 import { useAuthenticatedQuery } from 'src/hooks/use-authenticated-query';
 
@@ -39,8 +40,11 @@ const PredictionsPage = () => {
 
     return (
         <>
-            <MetaTags title="Predictions" description="Predictions page" />
-            <h1>Predictions</h1>
+            <MetaTags
+                title="Predictions"
+                description="View all of your recent predictions"
+            />
+            <H1 className="m-4 text-center">Predictions</H1>
             {data.myPredictions.map((prediction) => (
                 <PredictionCard key={prediction.id} prediction={prediction} />
             ))}

@@ -3,8 +3,8 @@ export const schema = gql`
         id: Int!
         homeTeamId: Int!
         awayTeamId: Int!
-        homeTeamScore: Int!
-        awayTeamScore: Int!
+        homeTeamScore: Int
+        awayTeamScore: Int
         homeTeam: Team!
         awayTeam: Team!
     }
@@ -17,8 +17,8 @@ export const schema = gql`
     input CreateGameInput {
         homeTeamId: Int!
         awayTeamId: Int!
-        homeTeamScore: Int!
-        awayTeamScore: Int!
+        homeTeamScore: Int
+        awayTeamScore: Int
     }
 
     input UpdateGameInput {
