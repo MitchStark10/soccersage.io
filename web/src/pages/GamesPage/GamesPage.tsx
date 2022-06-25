@@ -6,6 +6,8 @@ import { H1 } from 'src/components/Core/Text/H1';
 import { Game, Prediction } from 'types/graphql';
 import { GameCard } from 'src/components/Game/GameCard/GameCard';
 import { MY_PREDICTIONS_QUERY } from '../PredictionsPage/PredictionsPage';
+import { CardGrid } from 'src/components/Core/Card/CardGrid';
+import { useAuth } from '@redwoodjs/auth';
 
 const UPCOMING_GAMES_QUERY = gql`
     query FindGames {
@@ -26,6 +28,8 @@ const UPCOMING_GAMES_QUERY = gql`
 `;
 
 const GamesPage = () => {
+    const { isAuthenticated } = useAuth();
+
     const {
         data: gameData,
         loading: gameLoading,
@@ -34,27 +38,30 @@ const GamesPage = () => {
 
     const {
         data: predictionsData,
-        loading: predictionsLoading,
         error: predictionsError,
+        refetch: predictionsRefetch,
     } = useQuery<{ myPredictions: Prediction[] }>(MY_PREDICTIONS_QUERY);
 
     const error = gameError || predictionsError;
-    const loading = gameLoading || predictionsLoading;
+    console.log('checking', {
+        gameLoading,
+        predictionsData,
+        isAuthenticated,
+    });
+    const loading = gameLoading || (!predictionsData && isAuthenticated);
 
     if (error) {
-        return <ErrorText>Error: {error}</ErrorText>;
+        return <ErrorText>Error: {error.message}</ErrorText>;
     } else if (loading) {
         return <Loading />;
     }
 
     const games = gameData.games;
-    const predictionsMapByGameId = predictionsData.myPredictions.reduce(
-        (acc, prediction) => {
+    const predictionsMapByGameId =
+        predictionsData?.myPredictions.reduce((acc, prediction) => {
             acc[prediction.gameId] = prediction;
             return acc;
-        },
-        {}
-    );
+        }, {}) || {};
 
     return (
         <>
@@ -63,17 +70,18 @@ const GamesPage = () => {
             {games.length === 0 ? (
                 <Text>There are no upcoming games.</Text>
             ) : (
-                <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                <CardGrid>
                     {games.map((game, index) => {
                         return (
                             <GameCard
                                 key={index}
                                 game={game}
                                 prediction={predictionsMapByGameId[game.id]}
+                                refetchPredictions={predictionsRefetch}
                             />
                         );
                     })}
-                </div>
+                </CardGrid>
             )}
         </>
     );

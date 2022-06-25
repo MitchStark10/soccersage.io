@@ -24,9 +24,9 @@ export const Button: React.FC<ButtonProps> = (props) => {
     const compiledClassname = cn(
         ' focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 ',
         {
-            'text-white bg-primary hover:bg-secondary focus:primary':
+            'text-white bg-primary hover:bg-secondary focus:ring-gray':
                 props.variant === 'primary',
-            ' text-gray-900 bg-white border-gray hover:bg-gray-100 hover:text-blue-700  focus:ring-gray-200 border':
+            ' text-black bg-white border-gray hover:border-primary hover:text-primary focus:ring-gray border':
                 props.variant === 'secondary',
             'opacity-75': props.as !== 'a' && props.disabled,
         },
@@ -42,5 +42,11 @@ export const Button: React.FC<ButtonProps> = (props) => {
         );
     }
 
-    return <button className={compiledClassname} {...props} />;
+    return (
+        <button
+            className={compiledClassname}
+            type={props.type || 'button'}
+            {...props}
+        />
+    );
 };

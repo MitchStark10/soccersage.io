@@ -7,7 +7,7 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
     return (
-        <div className="h-screen relative">
+        <div className="h-screen relative overflow-y-scroll">
             <Header />
             <main className="px-5">{children}</main>
             <Footer />

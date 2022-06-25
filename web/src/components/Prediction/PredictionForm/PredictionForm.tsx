@@ -1,130 +1,110 @@
 import {
-  Form,
-  FormError,
-  FieldError,
-  Label,
-  TextField,
-  NumberField,
-  Submit,
-} from '@redwoodjs/forms'
-
-
+    Form,
+    FormError,
+    FieldError,
+    Label,
+    TextField,
+    NumberField,
+    Submit,
+} from '@redwoodjs/forms';
 
 const PredictionForm = (props) => {
-  const onSubmit = (data) => {
+    const onSubmit = (data) => {
+        props.onSave(data, props?.prediction?.id);
+    };
 
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    props.onSave(data, props?.prediction?.id)
-  }
+    return (
+        <div className="rw-form-wrapper">
+            <Form onSubmit={onSubmit} error={props.error}>
+                <FormError
+                    error={props.error}
+                    wrapperClassName="rw-form-error-wrapper"
+                    titleClassName="rw-form-error-title"
+                    listClassName="rw-form-error-list"
+                />
 
-  return (
-    <div className="rw-form-wrapper">
-      <Form onSubmit={onSubmit} error={props.error}>
-        <FormError
-          error={props.error}
-          wrapperClassName="rw-form-error-wrapper"
-          titleClassName="rw-form-error-title"
-          listClassName="rw-form-error-list"
-        />
-      
-        <Label
-          name="userId"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          User id
-        </Label>
-        
-          <TextField
-            name="userId"
-            defaultValue={props.prediction?.userId}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+                <Label
+                    name="userId"
+                    className="rw-label"
+                    errorClassName="rw-label rw-label-error"
+                >
+                    User id
+                </Label>
 
-        <FieldError name="userId" className="rw-field-error" />
+                <TextField
+                    name="userId"
+                    defaultValue={props.prediction?.userId}
+                    className="rw-input"
+                    errorClassName="rw-input rw-input-error"
+                    validation={{ required: true }}
+                />
 
-        <Label
-          name="gameId"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Game id
-        </Label>
-        
-          <NumberField
-            name="gameId"
-            defaultValue={props.prediction?.gameId}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+                <FieldError name="userId" className="rw-field-error" />
 
-        <FieldError name="gameId" className="rw-field-error" />
+                <Label
+                    name="gameId"
+                    className="rw-label"
+                    errorClassName="rw-label rw-label-error"
+                >
+                    Game id
+                </Label>
 
-        <Label
-          name="teamId"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Team id
-        </Label>
-        
-          <NumberField
-            name="teamId"
-            defaultValue={props.prediction?.teamId}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-          />
-        
+                <NumberField
+                    name="gameId"
+                    defaultValue={props.prediction?.gameId}
+                    className="rw-input"
+                    errorClassName="rw-input rw-input-error"
+                    validation={{ required: true }}
+                />
 
-        <FieldError name="teamId" className="rw-field-error" />
+                <FieldError name="gameId" className="rw-field-error" />
 
-        <Label
-          name="prediction"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          Prediction
-        </Label>
-        
-          <TextField
-            name="prediction"
-            defaultValue={props.prediction?.prediction}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+                <Label
+                    name="teamId"
+                    className="rw-label"
+                    errorClassName="rw-label rw-label-error"
+                >
+                    Team id
+                </Label>
 
-        <FieldError name="prediction" className="rw-field-error" />
+                <NumberField
+                    name="teamId"
+                    defaultValue={props.prediction?.teamId}
+                    className="rw-input"
+                    errorClassName="rw-input rw-input-error"
+                />
 
-        <div className="rw-button-group">
-          <Submit
-            disabled={props.loading}
-            className="rw-button rw-button-blue"
-          >
-            Save
-          </Submit>
+                <FieldError name="teamId" className="rw-field-error" />
+
+                <Label
+                    name="prediction"
+                    className="rw-label"
+                    errorClassName="rw-label rw-label-error"
+                >
+                    Prediction
+                </Label>
+
+                <TextField
+                    name="prediction"
+                    defaultValue={props.prediction?.prediction}
+                    className="rw-input"
+                    errorClassName="rw-input rw-input-error"
+                    validation={{ required: true }}
+                />
+
+                <FieldError name="prediction" className="rw-field-error" />
+
+                <div className="rw-button-group">
+                    <Submit
+                        disabled={props.loading}
+                        className="rw-button rw-button-blue"
+                    >
+                        Save
+                    </Submit>
+                </div>
+            </Form>
         </div>
-      </Form>
-    </div>
-  )
-}
+    );
+};
 
-export default PredictionForm
+export default PredictionForm;

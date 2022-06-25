@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const PredictionCard: React.VFC<Props> = ({ prediction }) => {
-    const predictedTie = prediction.prediction === 'Tie';
+    const predictedTie = prediction.prediction.toUpperCase() === 'TIE';
     return (
         <CardContainer>
             <H6>

@@ -10,8 +10,8 @@ export const schema = gql`
     }
 
     type Query {
-        games: [Game!]! @requireAuth
-        game(id: Int!): Game @requireAuth
+        games: [Game!]! @skipAuth
+        game(id: Int!): Game @skipAuth
     }
 
     input CreateGameInput {
