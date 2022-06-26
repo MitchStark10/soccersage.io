@@ -17,9 +17,14 @@ export const MY_PREDICTIONS_QUERY = gql`
             teamId
             prediction
             game {
+                isCompleted
+                homeTeamId
+                homeTeamScore
                 homeTeam {
                     name
                 }
+                awayTeamId
+                awayTeamScore
                 awayTeam {
                     name
                 }

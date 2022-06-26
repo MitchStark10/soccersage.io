@@ -9,6 +9,10 @@ export const games: QueryResolvers['games'] = () => {
     return db.game.findMany();
 };
 
+export const upcomingGames: QueryResolvers['upcomingGames'] = () => {
+    return db.game.findMany({ where: { isCompleted: false } });
+};
+
 export const game: QueryResolvers['game'] = ({ id }) => {
     return db.game.findUnique({
         where: { id },
@@ -35,6 +39,8 @@ export const deleteGame: MutationResolvers['deleteGame'] = ({ id }) => {
 };
 
 export const Game: GameResolvers = {
+    predictions: (_obj, { root }) =>
+        db.game.findUnique({ where: { id: root.id } }).predictions(),
     homeTeam: (_obj, { root }) =>
         db.game.findUnique({ where: { id: root.id } }).homeTeam(),
     awayTeam: (_obj, { root }) =>

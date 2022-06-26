@@ -11,7 +11,7 @@ import { useAuth } from '@redwoodjs/auth';
 
 const UPCOMING_GAMES_QUERY = gql`
     query FindGames {
-        games {
+        upcomingGames {
             id
             homeTeamId
             homeTeam {
@@ -34,7 +34,7 @@ const GamesPage = () => {
         data: gameData,
         loading: gameLoading,
         error: gameError,
-    } = useQuery<{ games: Game[] }>(UPCOMING_GAMES_QUERY);
+    } = useQuery<{ upcomingGames: Game[] }>(UPCOMING_GAMES_QUERY);
 
     const {
         data: predictionsData,
@@ -51,7 +51,7 @@ const GamesPage = () => {
         return <Loading />;
     }
 
-    const games = gameData.games;
+    const games = gameData.upcomingGames;
     const predictionsMapByGameId =
         predictionsData?.myPredictions.reduce((acc, prediction) => {
             acc[prediction.gameId] = prediction;

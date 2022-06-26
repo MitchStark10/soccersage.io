@@ -5,14 +5,16 @@ export const schema = gql`
         awayTeamId: Int!
         homeTeamScore: Int
         awayTeamScore: Int
+        isCompleted: Boolean!
+        predictions: [Prediction]!
         homeTeam: Team!
         awayTeam: Team!
-        isCompleted: Boolean!
     }
 
     type Query {
         games: [Game!]! @skipAuth
-        game(id: Int!): Game @skipAuth
+        upcomingGames: [Game!]! @skipAuth
+        game(id: Int!): Game @requireAuth
     }
 
     input CreateGameInput {

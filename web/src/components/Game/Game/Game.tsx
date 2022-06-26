@@ -85,6 +85,9 @@ const Game = ({ game }) => {
             </tr><tr>
               <th>Away team score</th>
               <td>{game.awayTeamScore}</td>
+            </tr><tr>
+              <th>Is completed</th>
+              <td>{checkboxInputTag(game.isCompleted)}</td>
             </tr>
           </tbody>
         </table>

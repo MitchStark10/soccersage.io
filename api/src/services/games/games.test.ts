@@ -25,25 +25,21 @@ describe('games', () => {
             input: {
                 homeTeamId: scenario.game.two.homeTeamId,
                 awayTeamId: scenario.game.two.awayTeamId,
-                homeTeamScore: 872562,
-                awayTeamScore: 3838958,
             },
         });
 
         expect(result.homeTeamId).toEqual(scenario.game.two.homeTeamId);
         expect(result.awayTeamId).toEqual(scenario.game.two.awayTeamId);
-        expect(result.homeTeamScore).toEqual(872562);
-        expect(result.awayTeamScore).toEqual(3838958);
     });
 
     scenario('updates a game', async (scenario: StandardScenario) => {
         const original = await game({ id: scenario.game.one.id });
         const result = await updateGame({
             id: original.id,
-            input: { homeTeamScore: 2310409 },
+            input: { homeTeamId: scenario.game.two.homeTeamId },
         });
 
-        expect(result.homeTeamScore).toEqual(2310409);
+        expect(result.homeTeamId).toEqual(scenario.game.two.homeTeamId);
     });
 
     scenario('deletes a game', async (scenario: StandardScenario) => {
