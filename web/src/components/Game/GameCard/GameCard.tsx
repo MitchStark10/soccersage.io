@@ -80,7 +80,7 @@ export const GameCard: React.VFC<Props> = ({
             <H6>
                 {game.homeTeam.name} vs {game.awayTeam.name}
             </H6>
-            <div className="grid flex-col justify-between items-center mt-4">
+            <div className="grid gap-y-2 flex-col justify-between items-center mt-4">
                 <Button
                     variant={
                         prediction?.teamId === game.homeTeamId

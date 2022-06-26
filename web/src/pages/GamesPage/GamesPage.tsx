@@ -43,11 +43,6 @@ const GamesPage = () => {
     } = useQuery<{ myPredictions: Prediction[] }>(MY_PREDICTIONS_QUERY);
 
     const error = gameError || predictionsError;
-    console.log('checking', {
-        gameLoading,
-        predictionsData,
-        isAuthenticated,
-    });
     const loading = gameLoading || (!predictionsData && isAuthenticated);
 
     if (error) {

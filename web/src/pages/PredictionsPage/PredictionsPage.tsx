@@ -6,6 +6,7 @@ import { H1 } from 'src/components/Core/Text/H1';
 import { Text } from 'src/components/Core/Text/Text';
 import { PredictionCard } from 'src/components/Prediction/PredictionCard';
 import { useAuthenticatedQuery } from 'src/hooks/use-authenticated-query';
+import { Prediction } from 'types/graphql';
 
 export const MY_PREDICTIONS_QUERY = gql`
     query FindMyPredictions {
@@ -40,6 +41,14 @@ const PredictionsPage = () => {
         return <Loading />;
     }
 
+    const pendingPredictions = data.myPredictions.filter(
+        (prediction: Prediction) => !prediction.game.isCompleted
+    );
+
+    const completedPredictions = data.myPredictions.filter(
+        (prediction: Prediction) => prediction.game.isCompleted
+    );
+
     return (
         <>
             <MetaTags
@@ -49,16 +58,34 @@ const PredictionsPage = () => {
             <H1 className="m-4 text-center">Predictions</H1>
             {data.myPredictions.length === 0 ? (
                 <Text>You haven&apos;t made any predictions yet.</Text>
-            ) : (
-                <CardGrid>
-                    {data.myPredictions.map((prediction) => (
-                        <PredictionCard
-                            key={prediction.id}
-                            prediction={prediction}
-                        />
-                    ))}
-                </CardGrid>
-            )}
+            ) : null}
+
+            {pendingPredictions.length > 0 ? (
+                <>
+                    <H1>Pending Results</H1>
+                    <CardGrid>
+                        {pendingPredictions.map((prediction) => (
+                            <PredictionCard
+                                key={prediction.id}
+                                prediction={prediction}
+                            />
+                        ))}
+                    </CardGrid>
+                </>
+            ) : null}
+            {completedPredictions.length > 0 ? (
+                <>
+                    <H1>Completed</H1>
+                    <CardGrid>
+                        {completedPredictions.map((prediction) => (
+                            <PredictionCard
+                                key={prediction.id}
+                                prediction={prediction}
+                            />
+                        ))}
+                    </CardGrid>
+                </>
+            ) : null}
         </>
     );
 };

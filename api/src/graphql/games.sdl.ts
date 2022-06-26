@@ -7,6 +7,7 @@ export const schema = gql`
         awayTeamScore: Int
         homeTeam: Team!
         awayTeam: Team!
+        isCompleted: Boolean!
     }
 
     type Query {
@@ -19,6 +20,7 @@ export const schema = gql`
         awayTeamId: Int!
         homeTeamScore: Int
         awayTeamScore: Int
+        isCompleted: Boolean
     }
 
     input UpdateGameInput {
@@ -26,6 +28,7 @@ export const schema = gql`
         awayTeamId: Int
         homeTeamScore: Int
         awayTeamScore: Int
+        isCompleted: Boolean
     }
 
     type Mutation {
