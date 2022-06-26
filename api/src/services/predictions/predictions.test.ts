@@ -58,7 +58,7 @@ describe('predictions', () => {
                 email: 'someemail1',
                 hashedPassword: 'somehashedpass',
                 salt: 'somesalt',
-                role: 'somerole',
+                roles: 'somerole',
             },
         });
 

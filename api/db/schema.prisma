@@ -45,7 +45,7 @@ model User {
     salt                String
     resetToken          String?
     resetTokenExpiresAt DateTime?
-    role                String
+    roles               String
     Prediction          Prediction[]
 }
 

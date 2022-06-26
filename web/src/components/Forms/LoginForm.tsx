@@ -13,7 +13,10 @@ export const LoginForm: React.VFC = () => {
     const { logIn, loading, isAuthenticated } = useAuth();
 
     const handleSubmit = async () => {
-        const response = await logIn({ username: email, password });
+        const response = await logIn({
+            username: email.toLowerCase(),
+            password,
+        });
         if (response.error) {
             setError(response.error);
         }

@@ -1,15 +1,22 @@
 import { Route, Router, Set } from '@redwoodjs/router';
-import UsersLayout from 'src/layouts/UsersLayout';
-import PredictionsLayout from 'src/layouts/PredictionsLayout';
-import TeamsLayout from 'src/layouts/TeamsLayout';
-import GamesLayout from 'src/layouts/GamesLayout';
+import { AdminLayout } from './layouts/Layout/AdminLayout';
 import Layout from './layouts/Layout/Layout';
 import SignUpPage from './pages/SignupPage/SignUpPage';
 
 const Routes = () => {
     return (
         <Router>
-            <Set wrap={UsersLayout} prviate roles={'admin'} unauthenticated="home">
+            <Set wrap={Layout}>
+                {/* TODO: Build home page */}
+                <Route path="/" page={HomePage} name="home" />
+                <Route path="/predictions" page={PredictionsPage} name="predictions" />
+                <Route path="/sign-up" page={SignUpPage} name="signUp" />
+                <Route path="/login" page={LoginPage} name="login" />
+                <Route path="/sign-out" page={SignOutPage} name="signOut" />
+                <Route path="/games" page={GamesPage} name="games" />
+                <Route notfound page={NotFoundPage} />
+            </Set>
+            <Set wrap={AdminLayout}>
                 <Route path="/admin/users/new" page={UserNewUserPage} name="newUser" />
                 <Route path="/admin/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
                 <Route path="/admin/users/{id:Int}" page={UserUserPage} name="user" />
@@ -26,16 +33,6 @@ const Routes = () => {
                 <Route path="/admin/games/{id:Int}/edit" page={GameEditGamePage} name="editGame" />
                 <Route path="/admin/games/{id:Int}" page={GameGamePage} name="game" />
                 <Route path="/admin/games" page={GameGamesPage} name="games" />
-            </Set>
-            <Set wrap={Layout}>
-                {/* TODO: Build home page */}
-                <Route path="/" page={HomePage} name="home" />
-                <Route path="/predictions" page={PredictionsPage} name="predictions" />
-                <Route path="/sign-up" page={SignUpPage} name="signUp" />
-                <Route path="/login" page={LoginPage} name="login" />
-                <Route path="/sign-out" page={SignOutPage} name="signOut" />
-                <Route path="/games" page={GamesPage} name="games" />
-                <Route notfound page={NotFoundPage} />
             </Set>
         </Router>
     );

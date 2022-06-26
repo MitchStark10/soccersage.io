@@ -27,10 +27,16 @@ const ADMIN_EMAILS = ['mitchstark10@gmail.com'];
  * seen if someone were to open the Web Inspector in their browser.
  */
 export const getCurrentUser = async (session) => {
-    return await db.user.findUnique({
+    const user = await db.user.findUnique({
         where: { id: session.id },
-        select: { id: true, role: true, email: true },
+        select: { id: true, roles: true, email: true },
     });
+
+    if (ADMIN_EMAILS.includes(user.email.toLowerCase())) {
+        user.roles = 'admin';
+    }
+
+    return user;
 };
 
 /**
@@ -69,7 +75,7 @@ export const hasRole = (roles: AllowedRoles): boolean => {
         return true;
     }
 
-    const currentUserRole = context.currentUser?.role;
+    const currentUserRole = context.currentUser?.roles;
 
     if (typeof roles === 'string') {
         return currentUserRole === roles;
@@ -77,7 +83,7 @@ export const hasRole = (roles: AllowedRoles): boolean => {
 
     if (Array.isArray(roles)) {
         return roles.some(
-            (allowedRole) => context.currentUser?.role === allowedRole
+            (allowedRole) => context.currentUser?.roles === allowedRole
         );
     }
 
@@ -112,7 +118,6 @@ export const requireAuth = ({ roles }: { roles: AllowedRoles }) => {
 export const getFirstUserFromContext = (
     context: RedwoodGraphQLContext
 ): InferredCurrentUser => {
-    console.log('getting user from context');
     if (!Array.isArray(context.currentUser)) {
         return context.currentUser as unknown as InferredCurrentUser;
     } else if (typeof context.currentUser[0] === 'object') {

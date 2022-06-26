@@ -21,8 +21,9 @@ type ButtonAsExternal = BaseProps &
 type ButtonProps = ButtonAsButton | ButtonAsExternal;
 
 export const Button: React.FC<ButtonProps> = (props) => {
+    const { className, ...rest } = props;
     const compiledClassname = cn(
-        ' focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 ',
+        ' focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center',
         {
             'text-white bg-primary hover:bg-secondary focus:ring-gray':
                 props.variant === 'primary',
@@ -30,13 +31,13 @@ export const Button: React.FC<ButtonProps> = (props) => {
                 props.variant === 'secondary',
             'opacity-75': props.as !== 'a' && props.disabled,
         },
-        props.className
+        className
     );
 
-    if (props.as === 'a') {
-        const { children, ...rest } = props;
+    if (rest.as === 'a') {
+        const { children, ...linkRest } = rest;
         return (
-            <Link className={compiledClassname} {...rest}>
+            <Link className={compiledClassname} {...linkRest}>
                 {children}
             </Link>
         );
@@ -45,8 +46,8 @@ export const Button: React.FC<ButtonProps> = (props) => {
     return (
         <button
             className={compiledClassname}
-            type={props.type || 'button'}
-            {...props}
+            type={rest.type || 'button'}
+            {...rest}
         />
     );
 };
