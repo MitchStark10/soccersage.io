@@ -33,6 +33,7 @@ model Game {
     awayTeamId    Int
     homeTeamScore Int?
     awayTeamScore Int?
+    isCompleted   Boolean      @default(false)
     predictions   Prediction[]
     homeTeam      Team         @relation(name: "homeTeam", references: [id], fields: [homeTeamId])
     awayTeam      Team         @relation(name: "awayTeam", references: [id], fields: [awayTeamId])

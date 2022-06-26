@@ -15,6 +15,7 @@ export const myPredictions: QueryResolvers['myPredictions'] = (
     { context }
 ) => {
     const user = getFirstUserFromContext(context);
+    console.log('user id', user.id);
     return db.prediction.findMany({
         where: { userId: user.id },
     });
