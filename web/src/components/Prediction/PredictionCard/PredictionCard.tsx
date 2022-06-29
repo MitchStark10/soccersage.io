@@ -25,10 +25,6 @@ const getPredictionStatus = (prediction: Prediction) => {
 
     const winningTeamId = getWinningTeamId(prediction.game);
 
-    console.log('testing', {
-        winningTeamId,
-        predictionTeamId: prediction.teamId,
-    });
     return winningTeamId === prediction.teamId ? 'correct' : 'incorrect';
 };
 

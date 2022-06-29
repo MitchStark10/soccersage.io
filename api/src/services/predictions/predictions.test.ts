@@ -1,4 +1,5 @@
 import { createGame } from '../games/games';
+import { createSeason } from '../seasons/seasons';
 import { createTeam } from '../teams/teams';
 import { createUser } from '../users/users';
 import {
@@ -62,8 +63,21 @@ describe('predictions', () => {
             },
         });
 
+        const season = await createSeason({
+            input: {
+                name: 'test season',
+                startDate: new Date('2022-06-01').toISOString(),
+                endDate: new Date('2022-06-30').toISOString(),
+            },
+        });
+
         const result = await createPrediction({
-            input: { userId: user.id, prediction: 'String', gameId: game.id },
+            input: {
+                userId: user.id,
+                prediction: 'String',
+                gameId: game.id,
+                seasonId: season.id,
+            },
         });
 
         expect(result.userId).toEqual(user.id);

@@ -18,6 +18,7 @@ export const schema = gql`
     input CreatePredictionInput {
         userId: Int!
         gameId: Int!
+        seasonId: Int!
         teamId: Int
         prediction: String!
     }

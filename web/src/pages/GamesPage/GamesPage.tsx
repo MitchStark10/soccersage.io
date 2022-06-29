@@ -10,7 +10,7 @@ import { CardGrid } from 'src/components/Core/Card/CardGrid';
 import { useAuth } from '@redwoodjs/auth';
 
 const UPCOMING_GAMES_QUERY = gql`
-    query FindGames {
+    query FindUpcomingGames {
         upcomingGames {
             id
             homeTeamId

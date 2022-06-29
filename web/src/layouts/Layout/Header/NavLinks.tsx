@@ -7,7 +7,7 @@ export const NavLinks: React.VFC = () => {
             <HeaderLink to={routes.home()}>TODO: Add Logo</HeaderLink>
             <HeaderLink to={routes.games()}>Games</HeaderLink>
             <HeaderLink to={routes.predictions()}>Predictions</HeaderLink>
-            <HeaderLink to={routes.home()}>Standings</HeaderLink>
+            <HeaderLink to={routes.standings()}>Standings</HeaderLink>
         </div>
     );
 };

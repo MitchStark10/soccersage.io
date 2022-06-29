@@ -22,6 +22,8 @@ model Prediction {
     gameId     Int
     teamId     Int?
     prediction String
+    seasonId   Int
+    season     Season @relation(fields: [seasonId], references: [id])
     game       Game   @relation(fields: [gameId], references: [id])
     user       User   @relation(fields: [userId], references: [id])
     team       Team?  @relation(fields: [teamId], references: [id])
@@ -37,6 +39,14 @@ model Game {
     predictions   Prediction[]
     homeTeam      Team         @relation(name: "homeTeam", references: [id], fields: [homeTeamId])
     awayTeam      Team         @relation(name: "awayTeam", references: [id], fields: [awayTeamId])
+}
+
+model Season {
+    id         Int          @id @default(autoincrement())
+    name       String       @unique
+    startDate  DateTime
+    endDate    DateTime
+    Prediction Prediction[]
 }
 
 model User {

@@ -1,5 +1,4 @@
 import { Route, Router, Set } from '@redwoodjs/router';
-import GamesLayout from 'src/layouts/GamesLayout';
 import { AdminLayout } from './layouts/Layout/AdminLayout';
 import Layout from './layouts/Layout/Layout';
 import SignUpPage from './pages/SignupPage/SignUpPage';
@@ -24,6 +23,10 @@ const Routes = () => {
                 <Route path="/admin/games/{id:Int}/edit" page={GameEditGamePage} name="editGame" />
                 <Route path="/admin/games/{id:Int}" page={GameGamePage} name="game" />
                 <Route path="/admin/games" page={GameGamesPage} name="games" />
+                <Route path="/admin/seasons/new" page={SeasonNewSeasonPage} name="newSeason" />
+                <Route path="/admin/seasons/{id:Int}/edit" page={SeasonEditSeasonPage} name="editSeason" />
+                <Route path="/admin/seasons/{id:Int}" page={SeasonSeasonPage} name="season" />
+                <Route path="/admin/seasons" page={SeasonSeasonsPage} name="seasons" />
             </Set>
             <Set wrap={Layout}>
                 {/* TODO: Build home page */}
@@ -33,6 +36,7 @@ const Routes = () => {
                 <Route path="/login" page={LoginPage} name="login" />
                 <Route path="/sign-out" page={SignOutPage} name="signOut" />
                 <Route path="/games" page={GamesPage} name="games" />
+                <Route path="/standings" page={StandingsPage} name="standings" />
                 <Route notfound page={NotFoundPage} />
             </Set>
         </Router>
