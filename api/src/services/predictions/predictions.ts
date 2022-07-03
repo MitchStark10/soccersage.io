@@ -8,7 +8,6 @@ import type {
     QueryResolvers,
 } from 'types/graphql';
 
-// TODO: Rename these for better accruacy
 type PartialGame = Omit<Game, 'homeTeam' | 'awayTeam' | 'predictions'>;
 type PartialPrediction = Omit<PredictionType, 'game'> & { game: PartialGame };
 
@@ -35,9 +34,9 @@ const getPredictionStatus = (
     return winningTeamId === prediction.teamId ? 'correct' : 'incorrect';
 };
 
-export const standings: QueryResolvers['standings'] = async () => {
+export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
     const predictions = await db.prediction.findMany({
-        where: { seasonId: 1 },
+        where: { seasonId },
         include: {
             game: true,
         },
@@ -55,6 +54,7 @@ export const standings: QueryResolvers['standings'] = async () => {
         return acc;
     }, {});
 
+    // TODO: Define the exact scoring algorithm that we would like to use
     const userIdRankings = Object.entries(userPredictionMap).map(
         ([userId, predictions]) => {
             const score = predictions.reduce<number>((acc, prediction) => {
