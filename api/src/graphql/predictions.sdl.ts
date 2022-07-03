@@ -1,7 +1,7 @@
 export const schema = gql`
     type Prediction {
         id: Int!
-        userId: String!
+        userId: Int!
         gameId: Int!
         teamId: Int
         prediction: String!
@@ -9,10 +9,20 @@ export const schema = gql`
         game: Game!
     }
 
+    type StandingsData {
+        userId: String!
+        score: Int!
+    }
+
+    type StandingsResult {
+        userIdRankings: [StandingsData!]!
+    }
+
     type Query {
         predictions: [Prediction!]! @requireAuth
         myPredictions: [Prediction!]! @requireAuth
         prediction(id: Int!): Prediction @requireAuth
+        standings: StandingsResult @requireAuth
     }
 
     input CreatePredictionInput {
