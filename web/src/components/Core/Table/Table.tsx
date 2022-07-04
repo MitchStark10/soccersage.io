@@ -1,10 +1,22 @@
+import classNames from 'classnames';
+
 interface Props {
     columnLabels: string[];
     tableData: string[][];
+    className?: string;
 }
-export const Table: React.VFC<Props> = ({ columnLabels, tableData }) => {
+export const Table: React.VFC<Props> = ({
+    columnLabels,
+    tableData,
+    className,
+}) => {
     return (
-        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div
+            className={classNames(
+                'relative overflow-x-auto shadow-md sm:rounded-lg',
+                className
+            )}
+        >
             <table className="w-full text-sm text-left">
                 <thead className="text-xs text-gray-700 uppercase bg-light-gray">
                     <tr>
