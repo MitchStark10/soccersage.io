@@ -7,7 +7,7 @@ export const schema = gql`
         resetToken: String
         resetTokenExpiresAt: DateTime
         roles: String!
-        Prediction: [Prediction]!
+        predictions: [Prediction]!
     }
 
     type Query {

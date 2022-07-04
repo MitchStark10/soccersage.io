@@ -7,6 +7,7 @@ export const schema = gql`
         prediction: String!
         team: Team
         game: Game!
+        user: User
     }
 
     type StandingsData {

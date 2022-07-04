@@ -6,13 +6,19 @@ import type {
     Prediction as PredictionType,
     PredictionResolvers,
     QueryResolvers,
+    User,
 } from 'types/graphql';
 
 type PartialGame = Omit<
     Game,
     'homeTeam' | 'awayTeam' | 'predictions' | 'season'
 >;
-type PartialPrediction = Omit<PredictionType, 'game'> & { game: PartialGame };
+type PartialUser = Omit<User, 'predictions' | 'resetTokenExpiresAt'>;
+
+type PartialPrediction = Omit<PredictionType, 'game' | 'user'> & {
+    game: PartialGame;
+    user: PartialUser;
+};
 
 //TODO: Re-use these functions from the PredictionCard
 const getWinningTeamId = (game: PartialGame) => {
@@ -42,6 +48,7 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
         where: { seasonId },
         include: {
             game: true,
+            user: true,
         },
     });
 
@@ -60,6 +67,7 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
     // TODO: Define the exact scoring algorithm that we would like to use
     const userIdRankings = Object.entries(userPredictionMap).map(
         ([userId, predictions]) => {
+            const email = predictions[0].user.email;
             const score = predictions.reduce<number>((acc, prediction) => {
                 const predictionStatus = getPredictionStatus(prediction);
                 switch (predictionStatus) {
@@ -71,6 +79,7 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
             }, 0);
 
             return {
+                email,
                 userId,
                 score,
             };

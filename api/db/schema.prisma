@@ -60,7 +60,7 @@ model User {
     resetToken          String?
     resetTokenExpiresAt DateTime?
     roles               String
-    Prediction          Prediction[]
+    predictions         Prediction[]
 }
 
 model RW_DataMigration {
