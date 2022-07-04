@@ -5,8 +5,8 @@ interface Props {
 export const Table: React.VFC<Props> = ({ columnLabels, tableData }) => {
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table className="w-full text-sm text-left text-gray-500 ">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700">
+            <table className="w-full text-sm text-left">
+                <thead className="text-xs text-gray-700 uppercase bg-light-gray">
                     <tr>
                         {columnLabels.map((label, index) => (
                             <th key={index} scope="col" className="px-6 py-3">
@@ -17,7 +17,7 @@ export const Table: React.VFC<Props> = ({ columnLabels, tableData }) => {
                 </thead>
                 <tbody>
                     {tableData.map((rowText, index) => (
-                        <tr key={index} className="bg-white border-b">
+                        <tr key={index} className="bg-white">
                             {rowText.map((cellText, cellIndex) => (
                                 <th
                                     key={cellIndex}

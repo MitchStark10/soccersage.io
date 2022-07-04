@@ -15,6 +15,7 @@ export const QUERY = gql`
             awayTeamId
             homeTeamScore
             awayTeamScore
+            seasonId
             isCompleted
         }
     }
@@ -27,6 +28,7 @@ const UPDATE_GAME_MUTATION = gql`
             awayTeamId
             homeTeamScore
             awayTeamScore
+            seasonId
             isCompleted
         }
     }

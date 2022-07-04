@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { Loading } from 'src/components/Core/Loading/Loading';
+import { ErrorText } from 'src/components/Core/Text/ErrorText';
 import { H1 } from 'src/components/Core/Text/H1';
 import { StandingsTable } from './StandingsTable';
 
@@ -8,6 +9,7 @@ const STANDINGS_QUERY = gql`
         standings(seasonId: $seasonId) {
             userIdRankings {
                 userId
+                email
                 score
             }
         }
@@ -15,15 +17,15 @@ const STANDINGS_QUERY = gql`
 `;
 
 const StandingsPage = () => {
-    const { data, loading } = useQuery(STANDINGS_QUERY, {
+    const { data, loading, error } = useQuery(STANDINGS_QUERY, {
         variables: { seasonId: 1 },
     });
 
     if (loading) {
         return <Loading />;
+    } else if (error) {
+        return <ErrorText>{error.message}</ErrorText>;
     }
-
-    console.log('data', data);
 
     return (
         <>
