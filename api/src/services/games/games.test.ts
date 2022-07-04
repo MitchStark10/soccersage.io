@@ -1,4 +1,4 @@
-import { games, game, createGame, updateGame, deleteGame } from './games';
+import { createGame, deleteGame, game, games, updateGame } from './games';
 import type { StandardScenario } from './games.scenarios';
 
 // Generated boilerplate tests do not account for all circumstances
@@ -25,6 +25,7 @@ describe('games', () => {
             input: {
                 homeTeamId: scenario.game.two.homeTeamId,
                 awayTeamId: scenario.game.two.awayTeamId,
+                seasonId: scenario.game.two.seasonId,
             },
         });
 

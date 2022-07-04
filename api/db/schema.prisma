@@ -35,8 +35,10 @@ model Game {
     awayTeamId    Int
     homeTeamScore Int?
     awayTeamScore Int?
+    seasonId      Int
     isCompleted   Boolean      @default(false)
     predictions   Prediction[]
+    season        Season       @relation(fields: [seasonId], references: [id])
     homeTeam      Team?        @relation(name: "homeTeam", references: [id], fields: [homeTeamId])
     awayTeam      Team?        @relation(name: "awayTeam", references: [id], fields: [awayTeamId])
 }
@@ -47,6 +49,7 @@ model Season {
     startDate  DateTime
     endDate    DateTime
     Prediction Prediction[]
+    Game       Game[]
 }
 
 model User {

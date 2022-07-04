@@ -23,6 +23,7 @@ const UPCOMING_GAMES_QUERY = gql`
                 name
             }
             awayTeamScore
+            seasonId
         }
     }
 `;

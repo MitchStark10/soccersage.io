@@ -19,6 +19,13 @@ export const standard = defineScenario<Prisma.PredictionCreateArgs>({
                         awayTeamScore: 9262607,
                         homeTeam: { create: { name: 'String3223999' } },
                         awayTeam: { create: { name: 'String5108965' } },
+                        season: {
+                            create: {
+                                name: 'String5108965',
+                                startDate: new Date(),
+                                endDate: new Date(),
+                            },
+                        },
                     },
                 },
                 season: {
@@ -47,6 +54,13 @@ export const standard = defineScenario<Prisma.PredictionCreateArgs>({
                         awayTeamScore: 4786303,
                         homeTeam: { create: { name: 'String2218724' } },
                         awayTeam: { create: { name: 'String3400904' } },
+                        season: {
+                            create: {
+                                name: 'String3400904',
+                                startDate: new Date(),
+                                endDate: new Date(),
+                            },
+                        },
                     },
                 },
                 season: {

@@ -1,13 +1,9 @@
-import { createGame } from '../games/games';
-import { createSeason } from '../seasons/seasons';
-import { createTeam } from '../teams/teams';
-import { createUser } from '../users/users';
 import {
-    predictions,
-    prediction,
     createPrediction,
-    updatePrediction,
     deletePrediction,
+    prediction,
+    predictions,
+    updatePrediction,
 } from './predictions';
 import type { StandardScenario } from './predictions.scenarios';
 
@@ -33,55 +29,18 @@ describe('predictions', () => {
         }
     );
 
-    scenario('creates a prediction', async () => {
-        const homeTeam = await createTeam({
-            input: {
-                name: 'Home Team',
-            },
-        });
-
-        const awayTeam = await createTeam({
-            input: {
-                name: 'Away Team',
-            },
-        });
-        const game = await createGame({
-            input: {
-                homeTeamId: homeTeam.id,
-                awayTeamId: awayTeam.id,
-                homeTeamScore: 1,
-                awayTeamScore: 2,
-            },
-        });
-
-        const user = await createUser({
-            input: {
-                email: 'someemail1',
-                hashedPassword: 'somehashedpass',
-                salt: 'somesalt',
-                roles: 'somerole',
-            },
-        });
-
-        const season = await createSeason({
-            input: {
-                name: 'test season',
-                startDate: new Date('2022-06-01').toISOString(),
-                endDate: new Date('2022-06-30').toISOString(),
-            },
-        });
-
+    scenario('creates a prediction', async (scenario: StandardScenario) => {
         const result = await createPrediction({
             input: {
-                userId: user.id,
+                userId: scenario.prediction.one.userId,
                 prediction: 'String',
-                gameId: game.id,
-                seasonId: season.id,
+                gameId: scenario.prediction.one.gameId,
+                seasonId: scenario.prediction.one.seasonId,
             },
         });
 
-        expect(result.userId).toEqual(user.id);
-        expect(result.gameId).toEqual(game.id);
+        expect(result.userId).toEqual(scenario.prediction.one.userId);
+        expect(result.gameId).toEqual(scenario.prediction.one.gameId);
         expect(result.prediction).toEqual('String');
     });
 

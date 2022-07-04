@@ -66,6 +66,7 @@ export const GameCard: React.VFC<Props> = ({
                         userId: currentUser.id,
                         gameId: game.id,
                         prediction: newPrediction,
+                        seasonId: game.seasonId,
                         teamId,
                     },
                 },

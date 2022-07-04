@@ -17,6 +17,7 @@ export const MY_PREDICTIONS_QUERY = gql`
             teamId
             prediction
             game {
+                seasonId
                 isCompleted
                 homeTeamId
                 homeTeamScore

@@ -8,7 +8,10 @@ import type {
     QueryResolvers,
 } from 'types/graphql';
 
-type PartialGame = Omit<Game, 'homeTeam' | 'awayTeam' | 'predictions'>;
+type PartialGame = Omit<
+    Game,
+    'homeTeam' | 'awayTeam' | 'predictions' | 'season'
+>;
 type PartialPrediction = Omit<PredictionType, 'game'> & { game: PartialGame };
 
 //TODO: Re-use these functions from the PredictionCard

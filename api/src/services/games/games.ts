@@ -45,4 +45,6 @@ export const Game: GameResolvers = {
         db.game.findUnique({ where: { id: root.id } }).homeTeam(),
     awayTeam: (_obj, { root }) =>
         db.game.findUnique({ where: { id: root.id } }).awayTeam(),
+    season: (_obj, { root }) =>
+        db.game.findUnique({ where: { id: root.id } }).season(),
 };

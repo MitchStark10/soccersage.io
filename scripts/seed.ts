@@ -1,3 +1,5 @@
+import { db } from 'api/src/lib/db';
+
 export default async () => {
     try {
         console.log(
@@ -5,6 +7,7 @@ export default async () => {
         );
 
         // await db.prediction.deleteMany();
+        await db.game.deleteMany();
         // await db.user.deleteMany();
     } catch (error) {
         console.warn('Please define your seed data.');

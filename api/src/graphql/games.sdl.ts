@@ -3,12 +3,14 @@ export const schema = gql`
         id: Int!
         homeTeamId: Int!
         awayTeamId: Int!
+        seasonId: Int!
         homeTeamScore: Int
         awayTeamScore: Int
         isCompleted: Boolean!
         predictions: [Prediction]!
         homeTeam: Team!
         awayTeam: Team!
+        season: Season!
     }
 
     type Query {
@@ -20,6 +22,7 @@ export const schema = gql`
     input CreateGameInput {
         homeTeamId: Int!
         awayTeamId: Int!
+        seasonId: Int!
         homeTeamScore: Int
         awayTeamScore: Int
         isCompleted: Boolean
@@ -30,6 +33,7 @@ export const schema = gql`
         awayTeamId: Int
         homeTeamScore: Int
         awayTeamScore: Int
+        seasonId: Int
         isCompleted: Boolean
     }
 
