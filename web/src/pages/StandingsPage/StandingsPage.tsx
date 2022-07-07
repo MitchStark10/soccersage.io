@@ -9,6 +9,7 @@ const STANDINGS_QUERY = gql`
         standings(seasonId: $seasonId) {
             userIdRankings {
                 userId
+                username
                 email
                 score
             }

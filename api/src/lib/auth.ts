@@ -7,7 +7,7 @@ import { RedwoodGraphQLContext } from '@redwoodjs/graphql-server/dist/functions/
 import { InferredCurrentUser } from '../../../.redwood/types/includes/all-currentUser';
 import { db } from './db';
 
-const ADMIN_EMAILS = ['mitchstark10@gmail.com'];
+const ADMIN_EMAILS = ['mitchstark10@gmail.com', 'mitchell.stark@icloud.com'];
 
 /**
  * The session object sent in as the first argument to getCurrentUser() will
@@ -29,7 +29,7 @@ const ADMIN_EMAILS = ['mitchstark10@gmail.com'];
 export const getCurrentUser = async (session) => {
     const user = await db.user.findUnique({
         where: { id: session.id },
-        select: { id: true, roles: true, email: true },
+        select: { id: true, roles: true, email: true, username: true },
     });
 
     if (ADMIN_EMAILS.includes(user.email.toLowerCase())) {

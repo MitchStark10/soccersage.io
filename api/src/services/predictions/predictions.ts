@@ -67,7 +67,7 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
     // TODO: Define the exact scoring algorithm that we would like to use
     const userIdRankings = Object.entries(userPredictionMap).map(
         ([userId, predictions]) => {
-            const email = predictions[0].user.email;
+            const { email, username } = predictions[0].user;
             const score = predictions.reduce<number>((acc, prediction) => {
                 const predictionStatus = getPredictionStatus(prediction);
                 switch (predictionStatus) {
@@ -80,6 +80,7 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
 
             return {
                 email,
+                username,
                 userId,
                 score,
             };

@@ -5,22 +5,24 @@ interface StandingInfo {
     userId: string;
     score: number;
     email: string;
+    username: string;
 }
 
 interface Props {
     standingsData: StandingInfo[];
 }
+
 export const StandingsTable: React.VFC<Props> = ({ standingsData }) => {
     const { currentUser } = useAuth();
 
-    const tableData = standingsData.map(({ email, score }, index) => [
+    const tableData = standingsData.map(({ username, score }, index) => [
         (index + 1).toString(),
-        email,
+        username,
         score.toString(),
     ]);
 
     const currentUserStandingsData = tableData.find(
-        ([, email]) => email === currentUser.email
+        ([, username]) => username === currentUser.username
     );
 
     const tableDataToShow = tableData.slice(0, 10);

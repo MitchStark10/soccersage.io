@@ -12,6 +12,7 @@ export const schema = gql`
 
     type StandingsData {
         userId: String!
+        username: String!
         email: String!
         score: Int!
     }

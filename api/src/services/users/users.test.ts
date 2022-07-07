@@ -23,6 +23,7 @@ describe('users', () => {
     scenario('creates a user', async () => {
         const result = await createUser({
             input: {
+                username: 'test3',
                 email: 'String6569654',
                 hashedPassword: 'String',
                 salt: 'String',
@@ -30,6 +31,7 @@ describe('users', () => {
             },
         });
 
+        expect(result.username).toEqual('test3');
         expect(result.email).toEqual('String6569654');
         expect(result.hashedPassword).toEqual('String');
         expect(result.salt).toEqual('String');

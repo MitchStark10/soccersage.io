@@ -8,6 +8,7 @@ import { ErrorText } from '../Core/Text/ErrorText';
 import { Form } from './Form';
 
 export const SignUpForm: React.VFC = () => {
+    const [username, onUsernameChange] = useInputText('');
     const [email, onEmailChange] = useInputText('');
     const [password, onPasswordChange] = useInputText('');
     const [confirmedPassword, onConfirmedPasswordChange] = useInputText('');
@@ -20,7 +21,7 @@ export const SignUpForm: React.VFC = () => {
             return;
         }
 
-        const signUpResponse = await signUp({ username: email, password });
+        const signUpResponse = await signUp({ username, email, password });
 
         if (signUpResponse.error) {
             setCustomError(signUpResponse.error);
@@ -31,6 +32,14 @@ export const SignUpForm: React.VFC = () => {
 
     return (
         <Form onSubmit={handleSubmit}>
+            <Input
+                id="username"
+                label="Username"
+                type="text"
+                value={username}
+                onChange={onUsernameChange}
+                required
+            />
             <Input
                 id="email"
                 label="Email"
