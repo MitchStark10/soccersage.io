@@ -1,0 +1,320 @@
+{
+    "metadata": { "tags": [] },
+    "sys": {
+        "space": {
+            "sys": { "type": "Link", "linkType": "Space", "id": "i44fsfef1etp" }
+        },
+        "id": "5sMti97Evh0bXwJJCaClpN",
+        "type": "Entry",
+        "createdAt": "2022-07-10T16:10:50.132Z",
+        "updatedAt": "2022-07-13T01:26:33.750Z",
+        "environment": {
+            "sys": { "id": "master", "type": "Link", "linkType": "Environment" }
+        },
+        "revision": 2,
+        "contentType": {
+            "sys": {
+                "type": "Link",
+                "linkType": "ContentType",
+                "id": "homePage"
+            }
+        },
+        "locale": "en-US"
+    },
+    "fields": {
+        "mainContent": {
+            "nodeType": "document",
+            "data": {},
+            "content": [
+                {
+                    "nodeType": "heading-1",
+                    "data": {},
+                    "content": [
+                        {
+                            "nodeType": "text",
+                            "value": "Welcome!",
+                            "marks": [],
+                            "data": {}
+                        }
+                    ]
+                },
+                {
+                    "nodeType": "paragraph",
+                    "data": {},
+                    "content": [
+                        {
+                            "nodeType": "text",
+                            "value": "This is the preview build of MLS predictor. The goal of this site is to provide a unique way for MLS fans to gather, compete, and engage in the best soccer league in North America!",
+                            "marks": [],
+                            "data": {}
+                        }
+                    ]
+                },
+                {
+                    "nodeType": "paragraph",
+                    "data": {},
+                    "content": [
+                        {
+                            "nodeType": "text",
+                            "value": "TODO: Add some images",
+                            "marks": [],
+                            "data": {}
+                        }
+                    ]
+                },
+                {
+                    "nodeType": "heading-2",
+                    "data": {},
+                    "content": [
+                        {
+                            "nodeType": "text",
+                            "value": "How to Play",
+                            "marks": [{ "type": "underline" }],
+                            "data": {}
+                        }
+                    ]
+                },
+                {
+                    "nodeType": "ordered-list",
+                    "data": {},
+                    "content": [
+                        {
+                            "nodeType": "list-item",
+                            "data": {},
+                            "content": [
+                                {
+                                    "nodeType": "paragraph",
+                                    "data": {},
+                                    "content": [
+                                        {
+                                            "nodeType": "text",
+                                            "value": "Each season will last for exactly one month. The season will begin on the 1st of that month and go to the final day (i.e May 1 - May 31).",
+                                            "marks": [],
+                                            "data": {}
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "nodeType": "list-item",
+                            "data": {},
+                            "content": [
+                                {
+                                    "nodeType": "paragraph",
+                                    "data": {},
+                                    "content": [
+                                        {
+                                            "nodeType": "text",
+                                            "value": "During the course of each season, you will have the opportunity to predict games. These predictions can only occur prior to a game beginning.",
+                                            "marks": [],
+                                            "data": {}
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "nodeType": "list-item",
+                            "data": {},
+                            "content": [
+                                {
+                                    "nodeType": "paragraph",
+                                    "data": {},
+                                    "content": [
+                                        {
+                                            "nodeType": "text",
+                                            "value": "Scoring is as follows:",
+                                            "marks": [],
+                                            "data": {}
+                                        }
+                                    ]
+                                },
+                                {
+                                    "nodeType": "ordered-list",
+                                    "data": {},
+                                    "content": [
+                                        {
+                                            "nodeType": "list-item",
+                                            "data": {},
+                                            "content": [
+                                                {
+                                                    "nodeType": "paragraph",
+                                                    "data": {},
+                                                    "content": [
+                                                        {
+                                                            "nodeType": "text",
+                                                            "value": "Correct prediction: +2 points",
+                                                            "marks": [],
+                                                            "data": {}
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "nodeType": "list-item",
+                                            "data": {},
+                                            "content": [
+                                                {
+                                                    "nodeType": "paragraph",
+                                                    "data": {},
+                                                    "content": [
+                                                        {
+                                                            "nodeType": "text",
+                                                            "value": "Predicted a winning team, but that team did not win: 0 points",
+                                                            "marks": [],
+                                                            "data": {}
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "nodeType": "list-item",
+                                            "data": {},
+                                            "content": [
+                                                {
+                                                    "nodeType": "paragraph",
+                                                    "data": {},
+                                                    "content": [
+                                                        {
+                                                            "nodeType": "text",
+                                                            "value": "Predicted a tie, but either team won: -1 points",
+                                                            "marks": [],
+                                                            "data": {}
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "nodeType": "list-item",
+                            "data": {},
+                            "content": [
+                                {
+                                    "nodeType": "paragraph",
+                                    "data": {},
+                                    "content": [
+                                        {
+                                            "nodeType": "text",
+                                            "value": "Note that you are penalized for incorrectly picking ties. We want you to get off that fence!",
+                                            "marks": [],
+                                            "data": {}
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "nodeType": "list-item",
+                            "data": {},
+                            "content": [
+                                {
+                                    "nodeType": "paragraph",
+                                    "data": {},
+                                    "content": [
+                                        {
+                                            "nodeType": "text",
+                                            "value": "At the end of each season, we will add up the points of each user to determine the winner of that season. The winning user will earn $25 and will be contacted directly to receive the prize money.",
+                                            "marks": [],
+                                            "data": {}
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nodeType": "heading-2",
+                    "data": {},
+                    "content": [
+                        {
+                            "nodeType": "text",
+                            "value": "Requirements to Play",
+                            "marks": [{ "type": "underline" }],
+                            "data": {}
+                        }
+                    ]
+                },
+                {
+                    "nodeType": "ordered-list",
+                    "data": {},
+                    "content": [
+                        {
+                            "nodeType": "list-item",
+                            "data": {},
+                            "content": [
+                                {
+                                    "nodeType": "paragraph",
+                                    "data": {},
+                                    "content": [
+                                        {
+                                            "nodeType": "text",
+                                            "value": "Sign up for an account. We need to have an account so that we can calculate the score associated with all of your predictions.",
+                                            "marks": [],
+                                            "data": {}
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "nodeType": "list-item",
+                            "data": {},
+                            "content": [
+                                {
+                                    "nodeType": "paragraph",
+                                    "data": {},
+                                    "content": [
+                                        {
+                                            "nodeType": "text",
+                                            "value": "Your account needs to have a valid email address. If you win in a given season, we will email you to determine the best way to send you the prize money.",
+                                            "marks": [],
+                                            "data": {}
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "nodeType": "list-item",
+                            "data": {},
+                            "content": [
+                                {
+                                    "nodeType": "paragraph",
+                                    "data": {},
+                                    "content": [
+                                        {
+                                            "nodeType": "text",
+                                            "value": "You must make a minimum of 10 picks during a season to be eligible to win.",
+                                            "marks": [],
+                                            "data": {}
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "nodeType": "paragraph",
+                    "data": {},
+                    "content": [
+                        {
+                            "nodeType": "text",
+                            "value": "",
+                            "marks": [],
+                            "data": {}
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
