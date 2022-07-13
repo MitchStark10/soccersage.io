@@ -42,6 +42,22 @@ interface Heading2Node {
 const isHeading2Node = (node: Node): node is Heading2Node =>
     node.nodeType === 'heading-2';
 
+interface OrderedListNode {
+    nodeType: 'ordered-list';
+    content: Node[];
+}
+
+const isOrderedListNode = (node: Node): node is OrderedListNode =>
+    node.nodeType === 'ordered-list';
+
+interface ListItemNode {
+    nodeType: 'list-item';
+    content: Node[];
+}
+
+const isListItemNode = (node: Node): node is ListItemNode =>
+    node.nodeType === 'list-item';
+
 interface UnknownNode {
     nodeType: 'unknown';
 }
@@ -52,6 +68,8 @@ type Node =
     | ParagraphNode
     | Heading1Node
     | Heading2Node
+    | OrderedListNode
+    | ListItemNode
     | UnknownNode;
 
 interface Props {
@@ -67,7 +85,8 @@ export const Contentful: FC<Props> = ({ node, influencedBy }) => {
         isDocumentNode(node) ||
         isParagraphNode(node) ||
         isHeading1Node(node) ||
-        isHeading2Node(node)
+        isHeading2Node(node) ||
+        isListItemNode(node)
     ) {
         return (
             <>
@@ -80,12 +99,26 @@ export const Contentful: FC<Props> = ({ node, influencedBy }) => {
                 ))}
             </>
         );
+    } else if (isOrderedListNode(node)) {
+        return (
+            <ol>
+                {node.content.map((content, index) => (
+                    <Contentful
+                        key={index}
+                        node={content}
+                        influencedBy={node.nodeType}
+                    />
+                ))}
+            </ol>
+        );
     } else if (isTextNode(node)) {
         switch (influencedBy) {
             case 'heading-1':
                 return <H1>{node.value}</H1>;
             case 'heading-2':
                 return <H2>{node.value}</H2>;
+            case 'list-item':
+                return <li>{node.value}</li>
             default:
                 return <Text>{node.value}</Text>;
         }
