@@ -7964,6 +7964,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^0.27.0":
+  version: 0.27.2
+  resolution: "axios@npm:0.27.2"
+  dependencies:
+    follow-redirects: ^1.14.9
+    form-data: ^4.0.0
+  checksum: 76d673d2a90629944b44d6f345f01e58e9174690f635115d5ffd4aca495d99bcd8f95c590d5ccb473513f5ebc1d1a6e8934580d0c57cdd0498c3a101313ef771
+  languageName: node
+  linkType: hard
+
 "axobject-query@npm:^2.2.0":
   version: 2.2.0
   resolution: "axobject-query@npm:2.2.0"
@@ -9891,6 +9901,41 @@ __metadata:
   version: 1.0.4
   resolution: "content-type@npm:1.0.4"
   checksum: 19e08f406f9ae3f80fb4607c75fbde1f22546647877e8047c9fa0b1c61e38f3ede853f51e915c95fd499c2e1c7478cb23c35cfb804d0e8e0495e8db88cfaed75
+  languageName: node
+  linkType: hard
+
+"contentful-resolve-response@npm:^1.3.0":
+  version: 1.3.8
+  resolution: "contentful-resolve-response@npm:1.3.8"
+  dependencies:
+    fast-copy: ^2.1.3
+  checksum: 900423a4e56b49fa5acd7e6e8c8039add925c4ba4a0f8daa702a95c68624ffa112ad51a36b529e62b536008fd25ab5fd3877aa629ca541520410839de0db39ad
+  languageName: node
+  linkType: hard
+
+"contentful-sdk-core@npm:^7.0.1":
+  version: 7.0.2
+  resolution: "contentful-sdk-core@npm:7.0.2"
+  dependencies:
+    fast-copy: ^2.1.3
+    lodash.isplainobject: ^4.0.6
+    lodash.isstring: ^4.0.1
+    p-throttle: ^4.1.1
+    qs: ^6.9.4
+  checksum: 14a59b7480623db96683b71de7a6aa5ee35a1ff3e493a86b80509459376607bb6014c810f45f650a9d3218cfa54ffadc87c4b3e803378357a8424bf801d868fb
+  languageName: node
+  linkType: hard
+
+"contentful@npm:^9.1.32":
+  version: 9.1.32
+  resolution: "contentful@npm:9.1.32"
+  dependencies:
+    axios: ^0.27.0
+    contentful-resolve-response: ^1.3.0
+    contentful-sdk-core: ^7.0.1
+    fast-copy: ^2.1.0
+    json-stringify-safe: ^5.0.1
+  checksum: 39dce78871d08921fb2169b525f4d3252d9471ed7048274bcb84d00ad57cbab82977ab386192b0d629e594fe1d019d7ef43c405e70405ffd00ac38cce09c1588
   languageName: node
   linkType: hard
 
@@ -12649,6 +12694,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-copy@npm:^2.1.0, fast-copy@npm:^2.1.3":
+  version: 2.1.3
+  resolution: "fast-copy@npm:2.1.3"
+  checksum: 4bbef451b53d3e555b96bef015c1e3a6a7dfe18d33fe2084c274f332ffa72006641a0d1a548702201002f19f93bc38eca34934dce7c8b1534a58afaa36c0b0e3
+  languageName: node
+  linkType: hard
+
 "fast-decode-uri-component@npm:^1.0.1":
   version: 1.0.1
   resolution: "fast-decode-uri-component@npm:1.0.1"
@@ -13137,6 +13189,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"follow-redirects@npm:^1.14.9":
+  version: 1.15.1
+  resolution: "follow-redirects@npm:1.15.1"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: ea21337fe38eac8d75f5af12c425cc40e0bb44dcc3091fd0bde1c828596251a7a9638b5720fee5a0a5c62524450cbe16c52aae1dce88c6aee68577e441842e7f
+  languageName: node
+  linkType: hard
+
 "for-in@npm:^1.0.2":
   version: 1.0.2
   resolution: "for-in@npm:1.0.2"
@@ -13215,6 +13277,17 @@ __metadata:
     combined-stream: ^1.0.8
     mime-types: ^2.1.12
   checksum: 1ccc3ae064a080a799923f754d49fcebdd90515a8924f0f54de557540b50e7f1fe48ba5f2bd0435a5664aa2d49729107e6aaf2155a9abf52339474c5638b4485
+  languageName: node
+  linkType: hard
+
+"form-data@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "form-data@npm:4.0.0"
+  dependencies:
+    asynckit: ^0.4.0
+    combined-stream: ^1.0.8
+    mime-types: ^2.1.12
+  checksum: cb6f3ac49180be03ff07ba3ff125f9eba2ff0b277fb33c7fc47569fc5e616882c5b1c69b9904c4c4187e97dd0419dd03b134174756f296dec62041e6527e2c6e
   languageName: node
   linkType: hard
 
@@ -16386,6 +16459,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"json-stringify-safe@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "json-stringify-safe@npm:5.0.1"
+  checksum: 7dbf35cd0411d1d648dceb6d59ce5857ec939e52e4afc37601aa3da611f0987d5cee5b38d58329ceddf3ed48bd7215229c8d52059ab01f2444a338bf24ed0f37
+  languageName: node
+  linkType: hard
+
 "json-to-pretty-yaml@npm:^1.2.2":
   version: 1.2.2
   resolution: "json-to-pretty-yaml@npm:1.2.2"
@@ -18765,6 +18845,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"p-throttle@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "p-throttle@npm:4.1.1"
+  checksum: c4bfdcd0318d704b446a7af59dd8e0e32e37ba3d9841dd8dfced1c09742bc2f7a95bc0fcf4072030c62abf4533a9a2ef2954e559462052c5f406ae03d195925a
+  languageName: node
+  linkType: hard
+
 "p-timeout@npm:^3.1.0":
   version: 3.2.0
   resolution: "p-timeout@npm:3.2.0"
@@ -20163,6 +20250,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"qs@npm:^6.9.4":
+  version: 6.11.0
+  resolution: "qs@npm:6.11.0"
+  dependencies:
+    side-channel: ^1.0.4
+  checksum: 4e4875e4d7c7c31c233d07a448e7e4650f456178b9dd3766b7cfa13158fdb24ecb8c4f059fa91e820dc6ab9f2d243721d071c9c0378892dcdad86e9e9a27c68f
+  languageName: node
+  linkType: hard
+
 "querystring-es3@npm:^0.2.0":
   version: 0.2.1
   resolution: "querystring-es3@npm:0.2.1"
@@ -21228,6 +21324,7 @@ __metadata:
     "@redwoodjs/core": 1.4.2
     bcrypt: ^5.0.1
     classnames: ^2.3.1
+    contentful: ^9.1.32
     husky: ^8.0.1
     ts-node: ^10.8.1
     typeface-roboto: ^1.1.13
