@@ -9,10 +9,6 @@ const HomePage = () => {
         <>
             <MetaTags title="Home" description="Home page" />
             <Contentful node={homePageContent?.fields.mainContent} />
-            <br />
-            <hr />
-            <h1>This will be removed prior to merge</h1>
-            {JSON.stringify(homePageContent)}
         </>
     );
 };

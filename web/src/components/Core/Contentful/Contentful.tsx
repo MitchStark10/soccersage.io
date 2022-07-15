@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { FC } from 'react';
 import { H1 } from '../Text/H1';
 import { H2 } from '../Text/H2';
@@ -19,8 +20,14 @@ interface ParagraphNode {
 const isParagraphNode = (node: Node): node is ParagraphNode =>
     node.nodeType === 'paragraph';
 
+interface UnderlineMark {
+    type: 'underline';
+}
+
+type Mark = UnderlineMark;
 interface TextNode {
     nodeType: 'text';
+    marks: Mark[];
     value: string;
 }
 
@@ -94,14 +101,16 @@ export const Contentful: FC<Props> = ({ node, influencedBy }) => {
                     <Contentful
                         key={index}
                         node={content}
-                        influencedBy={node.nodeType}
+                        influencedBy={
+                            isParagraphNode(node) ? influencedBy : node.nodeType
+                        }
                     />
                 ))}
             </>
         );
     } else if (isOrderedListNode(node)) {
         return (
-            <ol>
+            <ol className="list-decimal mx-5">
                 {node.content.map((content, index) => (
                     <Contentful
                         key={index}
@@ -112,16 +121,26 @@ export const Contentful: FC<Props> = ({ node, influencedBy }) => {
             </ol>
         );
     } else if (isTextNode(node)) {
-        switch (influencedBy) {
-            case 'heading-1':
-                return <H1>{node.value}</H1>;
-            case 'heading-2':
-                return <H2>{node.value}</H2>;
-            case 'list-item':
-                return <li>{node.value}</li>
-            default:
-                return <Text>{node.value}</Text>;
+        let className = '';
+        if (node.marks.map((mark) => mark.type).includes('underline')) {
+            className += 'underline';
         }
+
+        if (node)
+            switch (influencedBy) {
+                case 'heading-1':
+                    return <H1 className={className}>{node.value}</H1>;
+                case 'heading-2':
+                    return (
+                        <H2 className={classNames(className, 'text-left')}>
+                            {node.value}
+                        </H2>
+                    );
+                case 'list-item':
+                    return <li className={className}>{node.value}</li>;
+                default:
+                    return <Text className={className}>{node.value}</Text>;
+            }
     } else {
         console.warn('Unhandled node type', node.nodeType);
         return null;
