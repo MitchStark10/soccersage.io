@@ -29,7 +29,7 @@ const Routes = () => {
             </Set>
             <Set wrap={Layout}>
                 {/* TODO: Build home page */}
-                <Route path="/" page={HomePage} name="home" />
+                <Route path="/" page={HomePage} name="home" prerender />
                 <Route path="/predictions" page={PredictionsPage} name="predictions" />
                 <Route path="/sign-up" page={SignUpPage} name="signUp" />
                 <Route path="/login" page={LoginPage} name="login" />
