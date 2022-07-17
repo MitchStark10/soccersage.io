@@ -1,7 +1,6 @@
 import { Route, Router, Set } from '@redwoodjs/router';
 import { AdminLayout } from './layouts/Layout/AdminLayout';
 import Layout from './layouts/Layout/Layout';
-import SignUpPage from './pages/SignupPage/SignUpPage';
 
 const Routes = () => {
     return (
