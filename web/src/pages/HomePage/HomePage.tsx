@@ -1,14 +1,21 @@
+import builder, { BuilderComponent } from '@builder.io/react';
 import { MetaTags } from '@redwoodjs/web';
-import { Contentful } from 'src/components/Core/Contentful/Contentful';
-import { useContentful } from 'src/hooks/use-contentful';
-import { HOME_PAGE_ENTRY_ID } from 'src/web-constants';
+import { useEffect, useState } from 'react';
+
+// TODO: Replace this builder key
+builder.init('');
 
 const HomePage = () => {
-    const homePageContent = useContentful(HOME_PAGE_ENTRY_ID);
+    const [content, setContent] = useState(null);
+
+    useEffect(() => {
+        builder.get('home-page', { url: '/' }).toPromise().then(setContent);
+    }, []);
+
     return (
         <>
             <MetaTags title="Home" description="Home page" />
-            <Contentful node={homePageContent?.fields.mainContent} />
+            <BuilderComponent model="home-page" content={content} />
         </>
     );
 };

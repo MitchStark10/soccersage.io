@@ -30,8 +30,8 @@
     },
     "packageManager": "yarn@3.2.0",
     "dependencies": {
+        "@builder.io/react": "^2.0.1",
         "bcrypt": "^5.0.1",
-        "contentful": "^9.1.32",
         "tailwind-merge": "^1.4.0",
         "typeface-roboto": "^1.1.13"
     }
