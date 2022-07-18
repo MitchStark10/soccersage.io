@@ -21301,7 +21301,6 @@ __metadata:
     husky: ^8.0.1
     tailwind-merge: ^1.4.0
     ts-node: ^10.8.1
-    typeface-roboto: ^1.1.13
     typescript: ^4.6.4
   languageName: unknown
   linkType: soft
@@ -23628,13 +23627,6 @@ __metadata:
   version: 0.0.6
   resolution: "typedarray@npm:0.0.6"
   checksum: 6005cb31df50eef8b1f3c780eb71a17925f3038a100d82f9406ac2ad1de5eb59f8e6decbdc145b3a1f8e5836e17b0c0002fb698b9fe2516b8f9f9ff602d36412
-  languageName: node
-  linkType: hard
-
-"typeface-roboto@npm:^1.1.13":
-  version: 1.1.13
-  resolution: "typeface-roboto@npm:1.1.13"
-  checksum: 7a6caf5aa084d7e968311ab23415cb921f30bc6c89fe9886fb998b1095673cde2e5d77386a0249a3493f93ed58046c4685d4e718b08d129bc88fd46c798f37dd
   languageName: node
   linkType: hard
 

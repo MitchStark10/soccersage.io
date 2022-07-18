@@ -1,6 +1,7 @@
 import { Route, Router, Set } from '@redwoodjs/router';
 import { AdminLayout } from './layouts/Layout/AdminLayout';
 import Layout from './layouts/Layout/Layout';
+import SignUpPage from './pages/SignupPage/SignUpPage';
 
 const Routes = () => {
     return (
@@ -28,7 +29,6 @@ const Routes = () => {
                 <Route path="/admin/seasons" page={SeasonSeasonsPage} name="seasons" />
             </Set>
             <Set wrap={Layout}>
-                {/* TODO: Build home page */}
                 <Route path="/" page={HomePage} name="home" prerender />
                 <Route path="/predictions" page={PredictionsPage} name="predictions" />
                 <Route path="/sign-up" page={SignUpPage} name="signUp" />
