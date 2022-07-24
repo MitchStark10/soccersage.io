@@ -6,26 +6,26 @@ const Routes = () => {
     return (
         <Router>
             <Set wrap={AdminLayout}>
-                <Route path="/admin/users/new" page={UserNewUserPage} name="newUser" />
-                <Route path="/admin/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
-                <Route path="/admin/users/{id:Int}" page={UserUserPage} name="user" />
-                <Route path="/admin/users" page={UserUsersPage} name="users" />
-                <Route path="/admin/predictions/new" page={PredictionNewPredictionPage} name="newPrediction" />
-                <Route path="/admin/predictions/{id:Int}/edit" page={PredictionEditPredictionPage} name="editPrediction" />
-                <Route path="/admin/predictions/{id:Int}" page={PredictionPredictionPage} name="prediction" />
-                <Route path="/admin/predictions" page={PredictionPredictionsPage} name="predictions" />
-                <Route path="/admin/teams/new" page={TeamNewTeamPage} name="newTeam" />
-                <Route path="/admin/teams/{id:Int}/edit" page={TeamEditTeamPage} name="editTeam" />
-                <Route path="/admin/teams/{id:Int}" page={TeamTeamPage} name="team" />
-                <Route path="/admin/teams" page={TeamTeamsPage} name="teams" />
-                <Route path="/admin/games/new" page={GameNewGamePage} name="newGame" />
-                <Route path="/admin/games/{id:Int}/edit" page={GameEditGamePage} name="editGame" />
-                <Route path="/admin/games/{id:Int}" page={GameGamePage} name="game" />
-                <Route path="/admin/games" page={GameGamesPage} name="games" />
-                <Route path="/admin/seasons/new" page={SeasonNewSeasonPage} name="newSeason" />
-                <Route path="/admin/seasons/{id:Int}/edit" page={SeasonEditSeasonPage} name="editSeason" />
-                <Route path="/admin/seasons/{id:Int}" page={SeasonSeasonPage} name="season" />
-                <Route path="/admin/seasons" page={SeasonSeasonsPage} name="seasons" />
+                <Route path="/admin/users/new" page={UserNewUserPage} name="adminNewUser" />
+                <Route path="/admin/users/{id:Int}/edit" page={UserEditUserPage} name="adminEditUser" />
+                <Route path="/admin/users/{id:Int}" page={UserUserPage} name="adminUser" />
+                <Route path="/admin/users" page={UserUsersPage} name="adminUsers" />
+                <Route path="/admin/predictions/new" page={PredictionNewPredictionPage} name="adminNewPrediction" />
+                <Route path="/admin/predictions/{id:Int}/edit" page={PredictionEditPredictionPage} name="adminEditPrediction" />
+                <Route path="/admin/predictions/{id:Int}" page={PredictionPredictionPage} name="adminPrediction" />
+                <Route path="/admin/predictions" page={PredictionPredictionsPage} name="adminPredictions" />
+                <Route path="/admin/teams/new" page={TeamNewTeamPage} name="adminNewTeam" />
+                <Route path="/admin/teams/{id:Int}/edit" page={TeamEditTeamPage} name="adminEditTeam" />
+                <Route path="/admin/teams/{id:Int}" page={TeamTeamPage} name="adminTeam" />
+                <Route path="/admin/teams" page={TeamTeamsPage} name="adminTeams" />
+                <Route path="/admin/games/new" page={GameNewGamePage} name="adminNewGame" />
+                <Route path="/admin/games/{id:Int}/edit" page={GameEditGamePage} name="adminEditGame" />
+                <Route path="/admin/games/{id:Int}" page={GameGamePage} name="adminGame" />
+                <Route path="/admin/games" page={GameGamesPage} name="adminGames" />
+                <Route path="/admin/seasons/new" page={SeasonNewSeasonPage} name="adminNewSeason" />
+                <Route path="/admin/seasons/{id:Int}/edit" page={SeasonEditSeasonPage} name="adminEditSeason" />
+                <Route path="/admin/seasons/{id:Int}" page={SeasonSeasonPage} name="adminSeason" />
+                <Route path="/admin/seasons" page={SeasonSeasonsPage} name="adminSeasons" />
             </Set>
             <Set wrap={Layout}>
                 <Route path="/" page={HomePage} name="home" prerender />
