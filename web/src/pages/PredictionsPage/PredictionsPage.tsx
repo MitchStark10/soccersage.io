@@ -23,15 +23,18 @@ export const MY_PREDICTIONS_QUERY = gql`
                 homeTeamScore
                 homeTeam {
                     name
+                    logoUrl
                 }
                 awayTeamId
                 awayTeamScore
                 awayTeam {
                     name
+                    logoUrl
                 }
             }
             team {
                 name
+                logoUrl
             }
         }
     }

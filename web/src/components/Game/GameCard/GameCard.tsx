@@ -76,6 +76,8 @@ export const GameCard: React.VFC<Props> = ({
         refetchPredictions();
     };
 
+    console.log('game', game);
+
     return (
         <CardContainer className="w-full">
             <H6>
@@ -91,6 +93,12 @@ export const GameCard: React.VFC<Props> = ({
                     onClick={() => makePrediction('win', game.homeTeamId)}
                 >
                     {game.homeTeam.name}
+                    {game.homeTeam.logoUrl ? (
+                        <img
+                            src={game.homeTeam.logoUrl}
+                            alt={game.homeTeam.name}
+                        />
+                    ) : null}
                 </Button>
                 <Button
                     variant={

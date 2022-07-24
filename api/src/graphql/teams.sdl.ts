@@ -2,6 +2,7 @@ export const schema = gql`
     type Team {
         id: Int!
         name: String!
+        logoUrl: String
         Prediction: [Prediction]!
         homeTeamGames: [Game]!
         awayTeamGames: [Game]!
@@ -14,10 +15,12 @@ export const schema = gql`
 
     input CreateTeamInput {
         name: String!
+        logoUrl: String
     }
 
     input UpdateTeamInput {
         name: String
+        logoUrl: String
     }
 
     type Mutation {

@@ -16,11 +16,13 @@ const UPCOMING_GAMES_QUERY = gql`
             homeTeamId
             homeTeam {
                 name
+                logoUrl
             }
             homeTeamScore
             awayTeamId
             awayTeam {
                 name
+                logoUrl
             }
             awayTeamScore
             seasonId

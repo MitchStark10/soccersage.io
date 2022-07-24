@@ -40,6 +40,10 @@ export const PredictionCard: React.VFC<Props> = ({ prediction }) => {
             })}
         >
             <H6 className="my-0">
+                <img
+                    src={prediction.game.homeTeam.logoUrl}
+                    alt={prediction.game.homeTeam.name}
+                />
                 {prediction.game.homeTeam.name} vs{' '}
                 {prediction.game.awayTeam.name}
             </H6>
