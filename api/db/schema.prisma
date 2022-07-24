@@ -11,6 +11,7 @@ generator client {
 model Team {
     id            Int          @id @default(autoincrement())
     name          String       @unique
+    logoUrl       String?
     Prediction    Prediction[]
     homeTeamGames Game[]       @relation(name: "homeTeam")
     awayTeamGames Game[]       @relation(name: "awayTeam")
