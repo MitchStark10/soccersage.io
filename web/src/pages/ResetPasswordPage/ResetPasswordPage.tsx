@@ -1,10 +1,10 @@
-import { Form } from '@redwoodjs/forms';
 import { MetaTags } from '@redwoodjs/web';
 import { useState } from 'react';
 import { Button } from 'src/components/Core/Form/Button';
 import { Input } from 'src/components/Core/Form/Input';
 import { ErrorText } from 'src/components/Core/Text/ErrorText';
 import { H1 } from 'src/components/Core/Text/H1';
+import { Form } from 'src/components/Forms/Form';
 import { useInputText } from 'src/hooks/use-input-text';
 
 const ResetPasswordPage = () => {
