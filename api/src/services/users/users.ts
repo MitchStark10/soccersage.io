@@ -7,6 +7,7 @@ import type {
 
 import nodemailer from 'nodemailer';
 
+// TODO: Environment variables
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -56,11 +57,11 @@ export const sendResetPasswordEmail: MutationResolvers['sendResetPasswordEmail']
             return false;
         }
 
-        // TODO: Figure out these environment variables
+        // TODO: Figure out this environment variables
         // TODO: Figure out how this email should look
         const mailOptions = {
             from: process.env.EMAIL_USER,
-            to: process.env.BOOTSTRAP_EMAIL,
+            to: email,
             subject: 'Please Reset Your Passowrd',
             text: 'Reset your password here: TODO: Add Link',
         };
