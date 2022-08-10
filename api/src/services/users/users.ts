@@ -1,4 +1,5 @@
 import { db } from 'src/lib/db';
+import crypto from 'crypto';
 import type {
     QueryResolvers,
     MutationResolvers,
@@ -6,6 +7,8 @@ import type {
 } from 'types/graphql';
 
 import nodemailer from 'nodemailer';
+import { RedwoodGraphQLError } from '@redwoodjs/graphql-server';
+import { createDbAuthHandler } from 'src/functions/auth';
 
 // TODO: Environment variables
 const transporter = nodemailer.createTransport({
@@ -71,6 +74,38 @@ export const sendResetPasswordEmail: MutationResolvers['sendResetPasswordEmail']
 
         return true;
     };
+
+export const resetPassword: MutationResolvers['resetPassword'] = async (
+    { id, resetToken, password },
+    { context }
+) => {
+    const associatedUser = await db.user.findUnique({
+        where: { id },
+    });
+
+    if (associatedUser.resetToken !== resetToken) {
+        throw new RedwoodGraphQLError('Invalid id or reset token');
+    }
+
+    const authHandler = createDbAuthHandler(
+        context.event,
+        context.requestContext
+    );
+
+    const salt = crypto.randomBytes(16).toString('base64');
+    const [hashedPassword] = authHandler._hashPassword(password, salt);
+
+    return await db.user.update({
+        where: {
+            id,
+        },
+        data: {
+            hashedPassword,
+            salt,
+            resetToken: null,
+        },
+    });
+};
 
 export const User: UserResolvers = {
     predictions: (_obj, { root }) =>
