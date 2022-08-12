@@ -10,7 +10,6 @@ import nodemailer from 'nodemailer';
 import { RedwoodGraphQLError } from '@redwoodjs/graphql-server';
 import { createDbAuthHandler } from 'src/functions/auth';
 
-// TODO: Environment variables
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -60,7 +59,6 @@ export const sendResetPasswordEmail: MutationResolvers['sendResetPasswordEmail']
             return false;
         }
 
-        // TODO: Figure out this environment variables
         // TODO: Figure out how this email should look
         const mailOptions = {
             from: process.env.EMAIL_USER,
