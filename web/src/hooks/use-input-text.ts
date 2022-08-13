@@ -1,6 +1,5 @@
 import { ChangeEvent, useCallback, useState } from 'react';
 
-// TODO: Complete this hook
 export const useInputText = (
     startingValue: string
 ): [string, (e: ChangeEvent<HTMLInputElement>) => void] => {
