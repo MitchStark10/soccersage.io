@@ -16,7 +16,7 @@ const SeasonsLayout = ({ children }: SeasonLayoutProps) => {
                     </Link>
                 </h1>
                 <Link
-                    to={routes.newSeason()}
+                    to={routes.adminNewSeason()}
                     className="rw-button rw-button-green"
                 >
                     <div className="rw-button-icon">+</div> New Season

@@ -38,6 +38,7 @@ export const schema = gql`
 
     type SuccessInput {
         success: Boolean
+        message: String
     }
 
     type Mutation {

@@ -117,7 +117,7 @@ const signupOptions = {
         return db.user.create({
             data: {
                 username,
-                email,
+                email: email.toLowerCase(),
                 hashedPassword,
                 salt,
                 roles: 'user',

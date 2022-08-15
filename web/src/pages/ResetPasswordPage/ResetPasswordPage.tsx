@@ -11,22 +11,31 @@ const RESET_PASSWORD_MUTATION = gql`
     mutation ResetPassword($email: String!) {
         sendResetPasswordEmail(email: $email) {
             success
+            message
         }
     }
 `;
 
 const ResetPasswordPage = () => {
     const [email, onEmailChange] = useInputText('');
-    const [error] = useState('');
+    const [customError, setCustomError] = useState('');
 
-    const [sendResetPasswordEmail] = useMutation(RESET_PASSWORD_MUTATION, {
-        variables: {
-            email,
-        },
-    });
+    const [sendResetPasswordEmail, { data, error, loading }] = useMutation(
+        RESET_PASSWORD_MUTATION,
+        {
+            variables: {
+                email,
+            },
+        }
+    );
 
-    const onSubmit = () => {
-        sendResetPasswordEmail();
+    const onSubmit = async () => {
+        const result = await sendResetPasswordEmail();
+
+        if (!result.data?.success) {
+            setCustomError('An error occurred. Please try again later.');
+            alert(result.errors);
+        }
     };
 
     return (
@@ -40,8 +49,9 @@ const ResetPasswordPage = () => {
                     value={email}
                     onChange={onEmailChange}
                 />
-                <ErrorText>{error}</ErrorText>
-                <Button variant="primary" type="submit">
+                <ErrorText>{data?.message || error || customError}</ErrorText>
+                {data?.success ? <p>data?.message</p> : null}
+                <Button variant="primary" type="submit" disabled={loading}>
                     Login
                 </Button>
             </Form>

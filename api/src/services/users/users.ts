@@ -49,31 +49,52 @@ export const deleteUser: MutationResolvers['deleteUser'] = ({ id }) => {
 
 export const sendResetPasswordEmail: MutationResolvers['sendResetPasswordEmail'] =
     async ({ email }) => {
-        console.log('Received ID to email to reset: ' + email);
+        const lowerCaseEmail = email.toLowerCase();
+        console.log('Received ID to email to reset: ' + lowerCaseEmail);
 
         const associatedUser = await db.user.findUnique({
-            where: { email },
+            where: { email: lowerCaseEmail },
         });
 
         if (!associatedUser) {
+            console.log('Could not find associated user');
             return {
                 success: false,
+                message: 'Could not find user with email: ' + lowerCaseEmail,
             };
         }
 
+        console.log('Prepping mail options');
         // TODO: Figure out how this email should look
         const mailOptions = {
             from: process.env.EMAIL_USER,
-            to: email,
+            to: lowerCaseEmail,
             subject: 'Please Reset Your Passowrd',
             text: 'Reset your password here: TODO: Add Link',
         };
 
         // TODO: If an error occurs during the mail, what should happen?
-        await transporter.sendMail(mailOptions);
+        console.log('Sending reset password email');
+        try {
+            await transporter.sendMail(mailOptions);
+        } catch (error) {
+            const errorMessage =
+                'An unknown error occurred when sending reset password email: ' +
+                error;
+            console.error(errorMessage);
+            return {
+                success: false,
+                message: errorMessage,
+            };
+        }
+        console.log('Reset password email sent');
 
         return {
             success: true,
+            message:
+                'An email has been sent to: ' +
+                lowerCaseEmail +
+                '. Please check your inbox.',
         };
     };
 
