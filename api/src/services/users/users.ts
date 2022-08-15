@@ -56,7 +56,9 @@ export const sendResetPasswordEmail: MutationResolvers['sendResetPasswordEmail']
         });
 
         if (!associatedUser) {
-            return false;
+            return {
+                success: false,
+            };
         }
 
         // TODO: Figure out how this email should look
@@ -70,7 +72,9 @@ export const sendResetPasswordEmail: MutationResolvers['sendResetPasswordEmail']
         // TODO: If an error occurs during the mail, what should happen?
         await transporter.sendMail(mailOptions);
 
-        return true;
+        return {
+            success: true,
+        };
     };
 
 export const resetPassword: MutationResolvers['resetPassword'] = async (
