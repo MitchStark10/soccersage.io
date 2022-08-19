@@ -5,10 +5,11 @@ import type {
     MutationResolvers,
     UserResolvers,
 } from 'types/graphql';
-
 import nodemailer from 'nodemailer';
 import { RedwoodGraphQLError } from '@redwoodjs/graphql-server';
 import { createDbAuthHandler } from 'src/functions/auth';
+import { generateResetPasswordToken } from 'src/lib/generate-reset-password-token';
+import { addDays } from 'date-fns';
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -64,16 +65,26 @@ export const sendResetPasswordEmail: MutationResolvers['sendResetPasswordEmail']
             };
         }
 
+        const resetToken = generateResetPasswordToken(16);
+
+        await db.user.update({
+            where: { email: lowerCaseEmail },
+            data: { resetToken, resetTokenExpiresAt: addDays(new Date(), 1) },
+        });
+
         console.log('Prepping mail options');
-        // TODO: Figure out how this email should look
+        const resetPasswordLink = `${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`;
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: lowerCaseEmail,
             subject: 'Please Reset Your Passowrd',
-            text: 'Reset your password here: TODO: Add Link',
+            text: `You are receiveing this because you have requested to reseet your password at <domain name>.
+            Please click on the following link, or paste this into your browser to complete the process:
+            ${resetPasswordLink}.
+
+            If you did not request this, please respond to ${process.env.EMAIL_USER} and delete the email.}`,
         };
 
-        // TODO: If an error occurs during the mail, what should happen?
         console.log('Sending reset password email');
         try {
             await transporter.sendMail(mailOptions);

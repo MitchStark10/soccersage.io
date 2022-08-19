@@ -49,7 +49,7 @@ export const LoginForm: React.VFC = () => {
             </Button>
             <p className="w-fit justify-self-center"> - Or - </p>
             <Button variant="secondary" as="a" to="/sign-up">
-                Sign-Up
+                Sign Up
             </Button>
         </Form>
     );

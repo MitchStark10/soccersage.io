@@ -10580,6 +10580,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"date-fns@npm:^2.29.2":
+  version: 2.29.2
+  resolution: "date-fns@npm:2.29.2"
+  checksum: 731880219eb69f53ab8bdaf6b77eb6ac7e26478319d5e08d0d1bc663e8addc7ddabce8050fd385a735d448c48224789442d31d18313060f5d9a77db80132f935
+  languageName: node
+  linkType: hard
+
 "debounce@npm:^1.2.0":
   version: 1.2.1
   resolution: "debounce@npm:1.2.1"
@@ -21235,6 +21242,7 @@ __metadata:
     "@redwoodjs/core": 1.4.2
     bcrypt: ^5.0.1
     classnames: ^2.3.1
+    date-fns: ^2.29.2
     husky: ^8.0.1
     nodemailer: ^6.7.8
     tailwind-merge: ^1.4.0

@@ -32,9 +32,11 @@ const ResetPasswordPage = () => {
     const onSubmit = async () => {
         const result = await sendResetPasswordEmail();
 
-        if (!result.data?.success) {
-            setCustomError('An error occurred. Please try again later.');
-            alert(result.errors);
+        if (!result.data?.sendResetPasswordEmail.success) {
+            setCustomError(
+                result.data?.sendResetPasswordEmail.message ||
+                    'An error occurred. Please try again later. '
+            );
         }
     };
 
@@ -50,7 +52,9 @@ const ResetPasswordPage = () => {
                     onChange={onEmailChange}
                 />
                 <ErrorText>{data?.message || error || customError}</ErrorText>
-                {data?.success ? <p>data?.message</p> : null}
+                {data?.sendResetPasswordEmail.success ? (
+                    <p>{data?.sendResetPasswordEmail.message}</p>
+                ) : null}
                 <Button variant="primary" type="submit" disabled={loading}>
                     Login
                 </Button>
