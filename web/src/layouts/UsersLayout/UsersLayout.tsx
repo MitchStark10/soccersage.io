@@ -16,7 +16,7 @@ const UsersLayout = ({ children }: UserLayoutProps) => {
                     </Link>
                 </h1>
                 <Link
-                    to={routes.newUser()}
+                    to={routes.adminNewUser()}
                     className="rw-button rw-button-green"
                 >
                     <div className="rw-button-icon">+</div> New User

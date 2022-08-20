@@ -1,4 +1,5 @@
 import { useAuth } from '@redwoodjs/auth';
+import { Link, routes } from '@redwoodjs/router';
 import { useState } from 'react';
 import { useInputText } from 'src/hooks/use-input-text';
 import { Button } from '../Core/Form/Button';
@@ -47,9 +48,15 @@ export const LoginForm: React.VFC = () => {
             <Button variant="primary" type="submit" disabled={loading}>
                 Login
             </Button>
+            <Link
+                to={routes.resetPassword()}
+                className="text-center hover:underline"
+            >
+                Forgot your password?
+            </Link>
             <p className="w-fit justify-self-center"> - Or - </p>
             <Button variant="secondary" as="a" to="/sign-up">
-                Sign-Up
+                Sign Up
             </Button>
         </Form>
     );

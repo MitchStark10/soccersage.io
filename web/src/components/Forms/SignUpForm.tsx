@@ -66,7 +66,7 @@ export const SignUpForm: React.VFC = () => {
             />
             <ErrorText>{customError}</ErrorText>
             <Button variant="primary" type="submit" disabled={loading}>
-                Sign-Up
+                Sign Up
             </Button>
             <p className="w-fit justify-self-center"> - Or - </p>
             <Button variant="secondary" as="a" to="/login">

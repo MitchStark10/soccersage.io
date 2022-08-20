@@ -15,7 +15,7 @@ const NewTeam = () => {
     const [createTeam, { loading, error }] = useMutation(CREATE_TEAM_MUTATION, {
         onCompleted: () => {
             toast.success('Team created');
-            navigate(routes.teams());
+            navigate(routes.adminTeams());
         },
         onError: (error) => {
             toast.error(error.message);

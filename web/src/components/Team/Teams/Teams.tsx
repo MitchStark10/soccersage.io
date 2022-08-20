@@ -44,57 +44,66 @@ const TeamsList = ({ teams }) => {
     };
 
     return (
-        <div className="rw-segment rw-table-wrapper-responsive">
-            <table className="rw-table">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>&nbsp;</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {teams.map((team) => (
-                        <tr key={team.id}>
-                            <td>{truncate(team.id)}</td>
-                            <td>{truncate(team.name)}</td>
-                            <td>
-                                <nav className="rw-table-actions">
-                                    <Link
-                                        to={routes.adminEditTeam({
-                                            id: team.id,
-                                        })}
-                                        title={
-                                            'Show team ' + team.id + ' detail'
-                                        }
-                                        className="rw-button rw-button-small"
-                                    >
-                                        Show
-                                    </Link>
-                                    <Link
-                                        to={routes.adminEditTeam({
-                                            id: team.id,
-                                        })}
-                                        title={'Edit team ' + team.id}
-                                        className="rw-button rw-button-small rw-button-blue"
-                                    >
-                                        Edit
-                                    </Link>
-                                    <button
-                                        type="button"
-                                        title={'Delete team ' + team.id}
-                                        className="rw-button rw-button-small rw-button-red"
-                                        onClick={() => onDeleteClick(team.id)}
-                                    >
-                                        Delete
-                                    </button>
-                                </nav>
-                            </td>
+        <>
+            <div className="rw-segment rw-table-wrapper-responsive">
+                <table className="rw-table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>&nbsp;</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        {teams.map((team) => (
+                            <tr key={team.id}>
+                                <td>{truncate(team.id)}</td>
+                                <td>{truncate(team.name)}</td>
+                                <td>
+                                    <nav className="rw-table-actions">
+                                        <Link
+                                            to={routes.adminTeam({
+                                                id: team.id,
+                                            })}
+                                            title={
+                                                'Show team ' +
+                                                team.id +
+                                                ' detail'
+                                            }
+                                            className="rw-button rw-button-small"
+                                        >
+                                            Show
+                                        </Link>
+                                        <Link
+                                            to={routes.adminEditTeam({
+                                                id: team.id,
+                                            })}
+                                            title={'Edit team ' + team.id}
+                                            className="rw-button rw-button-small rw-button-blue"
+                                        >
+                                            Edit
+                                        </Link>
+                                        <button
+                                            type="button"
+                                            title={'Delete team ' + team.id}
+                                            className="rw-button rw-button-small rw-button-red"
+                                            onClick={() =>
+                                                onDeleteClick(team.id)
+                                            }
+                                        >
+                                            Delete
+                                        </button>
+                                    </nav>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <Link to={routes.adminNewTeam()} className="rw-button  mt-2">
+                <div className="rw-button-icon">+</div> New Team
+            </Link>
+        </>
     );
 };
 

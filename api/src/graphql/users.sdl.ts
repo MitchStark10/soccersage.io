@@ -36,9 +36,16 @@ export const schema = gql`
         roles: String
     }
 
+    type SuccessInput {
+        success: Boolean
+        message: String
+    }
+
     type Mutation {
         createUser(input: CreateUserInput!): User! @requireAuth
         updateUser(id: Int!, input: UpdateUserInput!): User! @requireAuth
         deleteUser(id: Int!): User! @requireAuth
+        sendResetPasswordEmail(email: String!): SuccessInput @skipAuth
+        resetPassword(resetToken: String!, password: String!): User! @skipAuth
     }
 `;
