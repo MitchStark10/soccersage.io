@@ -1,4 +1,5 @@
 import { GenerateResetPasswordEmailForm } from './GenerateResetPasswordEmailForm';
+import { ResetPasswordForm } from './ResetPasswordForm';
 
 const ResetPasswordPage = () => {
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -7,7 +8,7 @@ const ResetPasswordPage = () => {
     const token = params['token'];
 
     if (token) {
-        return <p>TBD</p>;
+        return <ResetPasswordForm token={token} />;
     } else {
         return <GenerateResetPasswordEmailForm />;
     }

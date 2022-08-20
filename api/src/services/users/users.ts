@@ -78,11 +78,11 @@ export const sendResetPasswordEmail: MutationResolvers['sendResetPasswordEmail']
             from: process.env.EMAIL_USER,
             to: lowerCaseEmail,
             subject: 'Please Reset Your Passowrd',
-            text: `You are receiveing this because you have requested to reseet your password at <domain name>.
-            Please click on the following link, or paste this into your browser to complete the process:
-            ${resetPasswordLink}.
+            html: `You are receiveing this because you have requested to reseet your password at predictor.io.
+            Please click on the following link, or paste this into your browser to complete the process: <br>
+            <a href="${resetPasswordLink}">${resetPasswordLink}</a><br><br>
 
-            If you did not request this, please respond to ${process.env.EMAIL_USER} and delete the email.}`,
+            If you did not request this, please respond to ${process.env.EMAIL_USER} and delete the email.`,
         };
 
         console.log('Sending reset password email');
@@ -110,15 +110,15 @@ export const sendResetPasswordEmail: MutationResolvers['sendResetPasswordEmail']
     };
 
 export const resetPassword: MutationResolvers['resetPassword'] = async (
-    { id, resetToken, password },
+    { resetToken, password },
     { context }
 ) => {
-    const associatedUser = await db.user.findUnique({
-        where: { id },
+    const associatedUser = await db.user.findFirst({
+        where: { resetToken },
     });
 
     if (associatedUser.resetToken !== resetToken) {
-        throw new RedwoodGraphQLError('Invalid id or reset token');
+        throw new RedwoodGraphQLError('Could not find user with reset token.');
     }
 
     const authHandler = createDbAuthHandler(
@@ -131,7 +131,7 @@ export const resetPassword: MutationResolvers['resetPassword'] = async (
 
     return await db.user.update({
         where: {
-            id,
+            id: associatedUser.id,
         },
         data: {
             hashedPassword,

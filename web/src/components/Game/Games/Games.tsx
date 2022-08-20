@@ -112,8 +112,8 @@ const GamesList = ({ games }) => {
                     </tbody>
                 </table>
             </div>
-            <Link to={routes.adminNewTeam()} className="rw-button  mt-2">
-                <div className="rw-button-icon">+</div> New Team
+            <Link to={routes.adminNewGame()} className="rw-button  mt-2">
+                <div className="rw-button-icon">+</div> New Game
             </Link>
         </>
     );

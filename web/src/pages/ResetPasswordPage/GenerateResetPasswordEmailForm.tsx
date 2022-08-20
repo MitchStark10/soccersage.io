@@ -56,7 +56,7 @@ export const GenerateResetPasswordEmailForm = () => {
                     <p>{data?.sendResetPasswordEmail.message}</p>
                 ) : null}
                 <Button variant="primary" type="submit" disabled={loading}>
-                    Login
+                    Send Reset Password Email
                 </Button>
             </Form>
         </>
