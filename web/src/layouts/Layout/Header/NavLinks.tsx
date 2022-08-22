@@ -7,11 +7,15 @@ export const NavLinks: React.VFC = () => {
 
     return (
         <div className="h-full sticky flex justify-start items-center gap-2">
-            <HeaderLink to={routes.home()}>TODO: Add Logo</HeaderLink>
+            <HeaderLink to={routes.home()}>
+                <img
+                    src="/logos/color_logo_no_bg.svg"
+                    alt="soccersage.io Logo"
+                ></img>
+            </HeaderLink>
             <HeaderLink to={routes.games()}>Games</HeaderLink>
             <HeaderLink to={routes.predictions()}>Predictions</HeaderLink>
             <HeaderLink to={routes.standings()}>Standings</HeaderLink>
-
             {isAuthenticated && hasRole('admin') ? (
                 <DropDownHeaderLinks label="Admin">
                     <HeaderLink to={routes.adminSeasons()}>Seasons</HeaderLink>
