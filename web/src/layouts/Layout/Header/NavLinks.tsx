@@ -11,6 +11,7 @@ export const NavLinks: React.VFC = () => {
                 <img
                     src="/logos/color_logo_no_bg.svg"
                     alt="soccersage.io Logo"
+                    className="w-[133px] h-[26px]"
                 ></img>
             </HeaderLink>
             <HeaderLink to={routes.games()}>Games</HeaderLink>
