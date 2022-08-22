@@ -8,7 +8,7 @@ import { NavLinks } from './NavLinks';
 export const Header = () => {
     const { isAuthenticated, currentUser, logOut } = useAuth();
     return (
-        <header className="w-full h-20 bg-primary text-white flex justify-between items-center gap-2 px-5">
+        <header className="w-full h-20 fixed bg-primary text-white flex justify-between items-center gap-2 px-5 z-50">
             <NavLinks />
             {isAuthenticated ? (
                 <div className="flex justify-between items-center">

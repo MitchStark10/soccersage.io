@@ -1,6 +1,6 @@
 import { useAuth } from '@redwoodjs/auth';
-import { Link, routes } from '@redwoodjs/router';
-import { useState } from 'react';
+import { Link, navigate, routes } from '@redwoodjs/router';
+import { useEffect, useState } from 'react';
 import { useInputText } from 'src/hooks/use-input-text';
 import { Button } from '../Core/Form/Button';
 import { Input } from '../Core/Form/Input';
@@ -23,10 +23,14 @@ export const LoginForm: React.VFC = () => {
         }
     };
 
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate(routes.games());
+        }
+    }, [isAuthenticated]);
+
     if (loading) {
         return <div>Loading...</div>;
-    } else if (isAuthenticated) {
-        return <p>Authenticated!</p>;
     }
 
     return (
