@@ -21,9 +21,9 @@ export const StandingsTable: React.VFC<Props> = ({ standingsData }) => {
         score.toString(),
     ]);
 
-    const currentUserStandingsData = tableData.find(
-        ([, username]) => username === currentUser.username
-    );
+    const currentUserStandingsData =
+        currentUser &&
+        tableData.find(([, username]) => username === currentUser.username);
 
     const tableDataToShow = tableData.slice(0, 10);
 

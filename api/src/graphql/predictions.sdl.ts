@@ -25,7 +25,7 @@ export const schema = gql`
         predictions: [Prediction!]! @requireAuth
         myPredictions: [Prediction!]! @requireAuth
         prediction(id: Int!): Prediction @requireAuth
-        standings(seasonId: Int!): StandingsResult @requireAuth
+        standings(seasonId: Int!): StandingsResult @skipAuth
     }
 
     input CreatePredictionInput {

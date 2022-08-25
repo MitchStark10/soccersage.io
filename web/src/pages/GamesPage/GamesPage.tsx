@@ -45,7 +45,7 @@ const GamesPage = () => {
         refetch: predictionsRefetch,
     } = useQuery<{ myPredictions: Prediction[] }>(MY_PREDICTIONS_QUERY);
 
-    const error = gameError || predictionsError;
+    const error = gameError || (isAuthenticated && predictionsError);
     const loading = gameLoading || (!predictionsData && isAuthenticated);
 
     if (error) {
