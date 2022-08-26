@@ -1,19 +1,14 @@
 import { useAuth } from '@redwoodjs/auth';
 import { routes } from '@redwoodjs/router';
 import { DropDownHeaderLinks, HeaderLink } from './HeaderLink';
+import { LogoLink } from './LogoLink';
 
 export const NavLinks: React.VFC = () => {
     const { isAuthenticated, hasRole } = useAuth();
 
     return (
         <div className="h-full sticky flex justify-start items-center gap-2">
-            <HeaderLink to={routes.home()}>
-                <img
-                    src="/logos/color_logo_no_bg.svg"
-                    alt="soccersage.io Logo"
-                    className="w-[133px] h-[26px]"
-                ></img>
-            </HeaderLink>
+            <LogoLink />
             <HeaderLink to={routes.games()}>Games</HeaderLink>
             <HeaderLink to={routes.predictions()}>Predictions</HeaderLink>
             <HeaderLink to={routes.standings()}>Standings</HeaderLink>
