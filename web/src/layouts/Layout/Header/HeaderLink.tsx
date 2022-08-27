@@ -8,9 +8,10 @@ const Header_LINK_STYLES =
 export const HeaderLink: React.FC<React.ComponentProps<typeof Link>> = ({
     to,
     children,
+    ...rest
 }) => {
     return (
-        <Link to={to} className={Header_LINK_STYLES}>
+        <Link to={to} className={Header_LINK_STYLES} {...rest}>
             {children}
         </Link>
     );

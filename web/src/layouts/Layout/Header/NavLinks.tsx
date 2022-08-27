@@ -7,11 +7,13 @@ import { LogoLink } from './LogoLink';
 interface Props {
     variant: 'desktop' | 'mobile';
     includeLogoLink?: boolean;
+    onNavLinkClick?: () => void;
 }
 
 export const NavLinks: React.VFC<Props> = ({
     variant,
     includeLogoLink = true,
+    onNavLinkClick,
 }) => {
     const { isAuthenticated, hasRole } = useAuth();
 
@@ -23,15 +25,39 @@ export const NavLinks: React.VFC<Props> = ({
             )}
         >
             {includeLogoLink ? <LogoLink /> : null}
-            <HeaderLink to={routes.games()}>Games</HeaderLink>
-            <HeaderLink to={routes.predictions()}>Predictions</HeaderLink>
-            <HeaderLink to={routes.standings()}>Standings</HeaderLink>
+            <HeaderLink to={routes.games()} onClick={onNavLinkClick}>
+                Games
+            </HeaderLink>
+            <HeaderLink to={routes.predictions()} onClick={onNavLinkClick}>
+                Predictions
+            </HeaderLink>
+            <HeaderLink to={routes.standings()} onClick={onNavLinkClick}>
+                Standings
+            </HeaderLink>
             {isAuthenticated && hasRole('admin') ? (
                 <DropDownHeaderLinks label="Admin">
-                    <HeaderLink to={routes.adminSeasons()}>Seasons</HeaderLink>
-                    <HeaderLink to={routes.adminTeams()}>Teams</HeaderLink>
-                    <HeaderLink to={routes.adminGames()}>Games</HeaderLink>
-                    <HeaderLink to={routes.adminPredictions()}>
+                    <HeaderLink
+                        to={routes.adminSeasons()}
+                        onClick={onNavLinkClick}
+                    >
+                        Seasons
+                    </HeaderLink>
+                    <HeaderLink
+                        to={routes.adminTeams()}
+                        onClick={onNavLinkClick}
+                    >
+                        Teams
+                    </HeaderLink>
+                    <HeaderLink
+                        to={routes.adminGames()}
+                        onClick={onNavLinkClick}
+                    >
+                        Games
+                    </HeaderLink>
+                    <HeaderLink
+                        to={routes.adminPredictions()}
+                        onClick={onNavLinkClick}
+                    >
                         Predictions
                     </HeaderLink>
                 </DropDownHeaderLinks>

@@ -1,12 +1,11 @@
 import { useAuth } from '@redwoodjs/auth';
 import { routes } from '@redwoodjs/router';
 import classNames from 'classnames';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Button } from 'src/components/Core/Form/Button';
 import { Text } from 'src/components/Core/Text/Text';
 import { Hamburger } from 'src/components/Icons/Hamburger';
 import { useClickOutside } from 'src/hooks/use-click-outside';
-import { useToggle } from 'src/hooks/use-toggle';
 import { HeaderLink } from './HeaderLink';
 import { LogoLink } from './LogoLink';
 import { NavLinks } from './NavLinks';
@@ -35,7 +34,7 @@ const DesktopHeader = () => {
 };
 
 const MobileHeader = () => {
-    const [isSidebarOpen, toggleIsSidebarOpen] = useToggle(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     return (
         <div className="flex flex-row items-center justify-start gap-2">
@@ -43,11 +42,11 @@ const MobileHeader = () => {
                 width="40px"
                 height="40px"
                 className="hover:bg-secondary p-2 rounded"
-                onClick={toggleIsSidebarOpen}
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
             />
             <LogoLink />
             {isSidebarOpen ? (
-                <MobileSideBar closeSidebar={toggleIsSidebarOpen} />
+                <MobileSideBar closeSidebar={() => setIsSidebarOpen(false)} />
             ) : null}
         </div>
     );
@@ -69,7 +68,11 @@ const MobileSideBar: React.VFC<MobileSidebarProps> = ({ closeSidebar }) => {
         >
             <p>TODO: User</p>
             <hr />
-            <NavLinks variant="mobile" includeLogoLink={false} />
+            <NavLinks
+                variant="mobile"
+                includeLogoLink={false}
+                onNavLinkClick={closeSidebar}
+            />
         </div>
     );
 };
