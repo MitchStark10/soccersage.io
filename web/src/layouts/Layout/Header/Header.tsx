@@ -1,9 +1,11 @@
 import { useAuth } from '@redwoodjs/auth';
 import { routes } from '@redwoodjs/router';
 import classNames from 'classnames';
+import { useRef } from 'react';
 import { Button } from 'src/components/Core/Form/Button';
 import { Text } from 'src/components/Core/Text/Text';
 import { Hamburger } from 'src/components/Icons/Hamburger';
+import { useClickOutside } from 'src/hooks/use-click-outside';
 import { useToggle } from 'src/hooks/use-toggle';
 import { HeaderLink } from './HeaderLink';
 import { LogoLink } from './LogoLink';
@@ -13,7 +15,7 @@ const DesktopHeader = () => {
     const { isAuthenticated, currentUser, logOut } = useAuth();
     return (
         <>
-            <NavLinks />
+            <NavLinks variant="desktop" />
             {isAuthenticated ? (
                 <div className="flex justify-between items-center">
                     <Text>{currentUser.email}</Text>
@@ -44,13 +46,32 @@ const MobileHeader = () => {
                 onClick={toggleIsSidebarOpen}
             />
             <LogoLink />
-            {isSidebarOpen ? <MobileSideBar /> : null}
+            {isSidebarOpen ? (
+                <MobileSideBar closeSidebar={toggleIsSidebarOpen} />
+            ) : null}
         </div>
     );
 };
 
-const MobileSideBar = () => {
-    return <div>Hello</div>;
+interface MobileSidebarProps {
+    closeSidebar: () => void;
+}
+
+const MobileSideBar: React.VFC<MobileSidebarProps> = ({ closeSidebar }) => {
+    const sidebarRef = useRef<HTMLDivElement>(null);
+
+    useClickOutside(sidebarRef, closeSidebar);
+
+    return (
+        <div
+            className="bg-primary fixed w-5/6 left-0 bottom-0 fit-under-nav border-t-white"
+            ref={sidebarRef}
+        >
+            <p>TODO: User</p>
+            <hr />
+            <NavLinks variant="mobile" includeLogoLink={false} />
+        </div>
+    );
 };
 
 const BASE_CLASSES = 'gap-2 px-5 z-50 ';
