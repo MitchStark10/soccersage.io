@@ -3,7 +3,7 @@ import { HeaderLink } from './HeaderLink';
 
 export const LogoLink = () => {
     return (
-        <HeaderLink to={routes.home()}>
+        <HeaderLink to={routes.home()} className="w-[173px]">
             <img
                 src="/logos/color_logo_no_bg.svg"
                 alt="soccersage.io Logo"

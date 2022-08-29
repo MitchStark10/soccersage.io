@@ -63,8 +63,6 @@ type AllowedRoles = string | string[] | undefined;
  * or when no roles are provided to check against. Otherwise returns false.
  */
 export const hasRole = (roles: AllowedRoles): boolean => {
-    console.log('in hasRole', roles);
-
     if (!isAuthenticated()) {
         return false;
     }

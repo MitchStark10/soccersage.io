@@ -45,7 +45,6 @@ const MobileHeader = () => {
                 height="40px"
                 className="hover:bg-secondary p-2 rounded"
                 onClick={() => {
-                    console.log('Handling hamburger click');
                     setIsSidebarOpen(!isSidebarOpen);
                 }}
                 ref={hamburgerRef}
@@ -77,7 +76,7 @@ const MobileSideBar: React.VFC<MobileSidebarProps> = ({
 
     return (
         <div
-            className="bg-primary fixed w-5/6 left-0 bottom-0 fit-under-nav border-t-white px-2 py-2"
+            className="bg-primary fixed w-5/6 left-0 bottom-0 fit-under-nav border-t-white px-2 py-2 z-50"
             ref={sidebarRef}
         >
             {isAuthenticated ? (
@@ -86,19 +85,21 @@ const MobileSideBar: React.VFC<MobileSidebarProps> = ({
                     <p>{currentUser.username}</p>
                 </div>
             ) : (
-                <HeaderLink to={routes.login()}>Login</HeaderLink>
+                <HeaderLink to={routes.login()} onClick={closeSidebar}>
+                    Login
+                </HeaderLink>
             )}
             <hr className="my-2" />
             <NavLinks
                 variant="mobile"
                 includeLogoLink={false}
-                onNavLinkClick={() => closeSidebar}
+                onNavLinkClick={closeSidebar}
             />
         </div>
     );
 };
 
-const BASE_CLASSES = 'gap-2 px-5 z-50 ';
+const BASE_CLASSES = 'gap-2 px-5 z-50';
 
 export const Header = () => {
     return (
@@ -106,12 +107,12 @@ export const Header = () => {
             <div
                 className={classNames(
                     BASE_CLASSES,
-                    'h-20 hidden sm:flex justify-between items-center'
+                    'h-20 hidden lg:flex justify-between items-center'
                 )}
             >
                 <DesktopHeader />
             </div>
-            <div className={classNames(BASE_CLASSES, 'block sm:hidden')}>
+            <div className={classNames(BASE_CLASSES, 'block lg:hidden')}>
                 <MobileHeader />
             </div>
         </header>

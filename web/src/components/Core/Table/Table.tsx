@@ -13,7 +13,7 @@ export const Table: React.VFC<Props> = ({
     return (
         <div
             className={classNames(
-                'relative overflow-x-auto shadow-md sm:rounded-lg',
+                'overflow-x-auto shadow-md sm:rounded-lg',
                 className
             )}
         >

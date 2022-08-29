@@ -2,16 +2,21 @@ import { Link } from '@redwoodjs/router';
 import classNames from 'classnames';
 import { useToggle } from 'src/hooks/use-toggle';
 
-const Header_LINK_STYLES =
-    'hover:bg-secondary flex justify-center items-center rounded p-5';
+const HEADER_LINK_STYLES =
+    'hover:bg-secondary flex justify-center items-center rounded p-5 w-full lg:w-auto';
 
 export const HeaderLink: React.FC<React.ComponentProps<typeof Link>> = ({
     to,
     children,
+    className,
     ...rest
 }) => {
     return (
-        <Link to={to} className={Header_LINK_STYLES} {...rest}>
+        <Link
+            to={to}
+            className={classNames(HEADER_LINK_STYLES, className)}
+            {...rest}
+        >
             {children}
         </Link>
     );
@@ -27,9 +32,9 @@ export const DropDownHeaderLinks: React.FC<DropDownHeaderLinksProps> = ({
     const [isHidden, toggleIsHidden] = useToggle(true);
 
     return (
-        <span className="relative bg-primary rounded">
+        <span className="relative bg-primary rounded w-full">
             <button
-                className={Header_LINK_STYLES}
+                className={HEADER_LINK_STYLES}
                 onClick={toggleIsHidden}
                 onKeyDown={toggleIsHidden}
             >
