@@ -5,7 +5,8 @@ import { useRef, useState } from 'react';
 import { Button } from 'src/components/Core/Form/Button';
 import { Text } from 'src/components/Core/Text/Text';
 import { Hamburger } from 'src/components/Icons/Hamburger';
-import { useClickOutside } from 'src/hooks/use-click-outside';
+import { Person } from 'src/components/Icons/Person';
+import { ClickOutsideRef, useClickOutside } from 'src/hooks/use-click-outside';
 import { HeaderLink } from './HeaderLink';
 import { LogoLink } from './LogoLink';
 import { NavLinks } from './NavLinks';
@@ -35,6 +36,7 @@ const DesktopHeader = () => {
 
 const MobileHeader = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const hamburgerRef = useRef<SVGSVGElement>(null);
 
     return (
         <div className="flex flex-row items-center justify-start gap-2">
@@ -42,36 +44,55 @@ const MobileHeader = () => {
                 width="40px"
                 height="40px"
                 className="hover:bg-secondary p-2 rounded"
-                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                onClick={() => {
+                    console.log('Handling hamburger click');
+                    setIsSidebarOpen(!isSidebarOpen);
+                }}
+                ref={hamburgerRef}
             />
             <LogoLink />
             {isSidebarOpen ? (
-                <MobileSideBar closeSidebar={() => setIsSidebarOpen(false)} />
+                <MobileSideBar
+                    closeSidebar={() => setIsSidebarOpen(false)}
+                    hamburgerRef={hamburgerRef}
+                />
             ) : null}
         </div>
     );
 };
 
 interface MobileSidebarProps {
+    hamburgerRef: ClickOutsideRef;
     closeSidebar: () => void;
 }
 
-const MobileSideBar: React.VFC<MobileSidebarProps> = ({ closeSidebar }) => {
+const MobileSideBar: React.VFC<MobileSidebarProps> = ({
+    closeSidebar,
+    hamburgerRef,
+}) => {
     const sidebarRef = useRef<HTMLDivElement>(null);
 
-    useClickOutside(sidebarRef, closeSidebar);
+    const { currentUser, isAuthenticated } = useAuth();
+    useClickOutside([sidebarRef, hamburgerRef], closeSidebar);
 
     return (
         <div
-            className="bg-primary fixed w-5/6 left-0 bottom-0 fit-under-nav border-t-white"
+            className="bg-primary fixed w-5/6 left-0 bottom-0 fit-under-nav border-t-white px-2 py-2"
             ref={sidebarRef}
         >
-            <p>TODO: User</p>
-            <hr />
+            {isAuthenticated ? (
+                <div className="flex flex-row justify-start items-center">
+                    <Person className="mx-2" />
+                    <p>{currentUser.username}</p>
+                </div>
+            ) : (
+                <HeaderLink to={routes.login()}>Login</HeaderLink>
+            )}
+            <hr className="my-2" />
             <NavLinks
                 variant="mobile"
                 includeLogoLink={false}
-                onNavLinkClick={closeSidebar}
+                onNavLinkClick={() => closeSidebar}
             />
         </div>
     );

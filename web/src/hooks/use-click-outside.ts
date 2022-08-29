@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 
+export type ClickOutsideRef = React.RefObject<HTMLElement | SVGSVGElement>;
+
 export const useClickOutside = (
-    ref: React.RefObject<HTMLElement>,
+    refs: Array<ClickOutsideRef>,
     handler: (e: MouseEvent) => void
 ) => {
     useEffect(() => {
@@ -9,7 +11,16 @@ export const useClickOutside = (
          * Alert if clicked on outside of element
          */
         function handleClickOutside(event) {
-            if (ref.current && !ref.current.contains(event.target)) {
+            let isOutside = true;
+
+            refs.forEach((ref) => {
+                if (ref.current && ref.current.contains(event.target)) {
+                    isOutside = false;
+                }
+            });
+
+            if (isOutside) {
+                console.log('handling outside click');
                 handler(event);
             }
         }
@@ -19,5 +30,5 @@ export const useClickOutside = (
             // Unbind the event listener on clean up
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [ref, handler]);
+    }, [refs, handler]);
 };

@@ -76,8 +76,6 @@ export const GameCard: React.VFC<Props> = ({
         refetchPredictions();
     };
 
-    console.log('game', game);
-
     return (
         <CardContainer className="w-full">
             <H6>
