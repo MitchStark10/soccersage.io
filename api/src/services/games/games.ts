@@ -32,7 +32,11 @@ export const updateGame: MutationResolvers['updateGame'] = ({ id, input }) => {
     });
 };
 
-export const deleteGame: MutationResolvers['deleteGame'] = ({ id }) => {
+export const deleteGame: MutationResolvers['deleteGame'] = async ({ id }) => {
+    await db.prediction.deleteMany({
+        where: { gameId: id },
+    });
+
     return db.game.delete({
         where: { id },
     });
