@@ -44,6 +44,14 @@ const getPredictionStatus = (
 };
 
 export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
+    // TODO: This logic finds all predictions, and includes the associated game for each prediction.
+    // While this works with small amounts of data, this will not scale very well, due to the
+    // re-retrieval of game data for each prediction.
+    // Other options to consider if/when more users join:
+    // 1. - Query for all predictions in a season and all games in a season concurrently.
+    //   a. - This is still not as performant as possible, but would reduce duplicate data and retain live standings.
+    // 2. - Store standings in a separate schema, and have a CRON job that updates them once an hour.
+    //   a. - This would allow for a much more performant solution, but would remove the ability to have live standings.
     const predictions = await db.prediction.findMany({
         where: { seasonId },
         include: {

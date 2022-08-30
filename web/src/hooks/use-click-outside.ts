@@ -20,7 +20,6 @@ export const useClickOutside = (
             });
 
             if (isOutside) {
-                console.log('handling outside click');
                 handler(event);
             }
         }
