@@ -31,8 +31,6 @@ const App = () => {
         };
     }, []);
 
-    console.log('in app rendeirng');
-
     return (
         <FatalErrorBoundary page={FatalErrorPage}>
             <RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
