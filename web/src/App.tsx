@@ -18,7 +18,6 @@ const setDocHeight = () => {
 
 const App = () => {
     useEffect(() => {
-        console.log('app mounted, setting event listeners');
         setDocHeight();
 
         // TODO: Consider debouncing the resize handlers

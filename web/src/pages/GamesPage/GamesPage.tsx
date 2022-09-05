@@ -61,8 +61,6 @@ const GamesPage = () => {
             return acc;
         }, {}) || {};
 
-    console.log('in games page');
-
     return (
         <>
             <MetaTags title="Games" description="Games page" />
