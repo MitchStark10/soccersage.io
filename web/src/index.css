@@ -11,8 +11,11 @@
 
 @layer utilities {
     .fit-under-nav {
-        /* 66px is the height of the navbar */
-        height: calc(100vh - 66px)
+        /*
+        66px is the height of the navbar
+        calc(var(--vh, 1vh) * 100 is the height of the iPhone notch
+        */
+        height: calc((var(--vh) * 100) - 66px);
     }
 }
 /**
