@@ -6,6 +6,7 @@ import { Button } from 'src/components/Core/Form/Button';
 import { Text } from 'src/components/Core/Text/Text';
 import { Hamburger } from 'src/components/Icons/Hamburger';
 import { Person } from 'src/components/Icons/Person';
+import { useBodyScrollLock } from 'src/hooks/use-body-scroll-lock';
 import { ClickOutsideRef, useClickOutside } from 'src/hooks/use-click-outside';
 import { HeaderLink } from './HeaderLink';
 import { LogoLink } from './LogoLink';
@@ -69,6 +70,7 @@ const MobileSideBar: React.VFC<MobileSidebarProps> = ({
     closeSidebar,
     hamburgerRef,
 }) => {
+    useBodyScrollLock();
     const sidebarRef = useRef<HTMLDivElement>(null);
 
     const { currentUser, isAuthenticated } = useAuth();
