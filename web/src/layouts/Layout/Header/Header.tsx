@@ -44,7 +44,7 @@ const MobileHeader = () => {
             <Hamburger
                 width="40px"
                 height="40px"
-                className="hover:bg-secondary p-2 rounded"
+                className="hover:bg-secondary p-2 rounded hover:cursor-pointer"
                 onClick={() => {
                     setIsSidebarOpen(!isSidebarOpen);
                 }}
