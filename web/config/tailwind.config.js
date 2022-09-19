@@ -8,6 +8,7 @@ module.exports = {
                 tertiary: '#6D4794',
                 white: '#FFFFFF',
                 gray: '#D3D3D3',
+                'background-gray': '#DCDCDC',
                 'light-gray': '#F9FAFB',
                 black: '#000000',
                 'error-red': '#E02424',
