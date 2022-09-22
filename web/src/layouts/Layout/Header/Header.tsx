@@ -101,11 +101,11 @@ const MobileSideBar: React.VFC<MobileSidebarProps> = ({
     );
 };
 
-const BASE_CLASSES = 'gap-2 px-5 z-50';
+const BASE_CLASSES = 'gap-2 px-5';
 
 export const Header = () => {
     return (
-        <header className="w-full fixed bg-primary text-white">
+        <header className="sticky top-0 border-b bg-primary text-white">
             <div
                 className={classNames(
                     BASE_CLASSES,
