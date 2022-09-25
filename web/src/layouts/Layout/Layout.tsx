@@ -11,7 +11,7 @@ const Layout = ({ children }: LayoutProps) => {
             <div className="h-screen relative overflow-y-scroll">
                 <Header />
                 <div
-                    className="px-5 m-8"
+                    className="px-5"
                     style={{ minHeight: 'calc(100vh - 225px)' }}
                 >
                     {children}

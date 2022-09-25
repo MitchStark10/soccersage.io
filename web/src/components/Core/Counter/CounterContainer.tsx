@@ -14,8 +14,8 @@ export const CounterContainer: React.FC<Props> = ({
     <div className="mb-4">
         <div className="flex flex-row justify-start items-center">
             <CounterNumber>{count}</CounterNumber>
-            <H2>{title}</H2>
+            <H2 className="text-primary ml-1">{title}</H2>
         </div>
-        {children}
+        <div className="text-xl items-center px-16">{children}</div>
     </div>
 );

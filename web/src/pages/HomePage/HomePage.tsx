@@ -1,22 +1,18 @@
 import { MetaTags } from '@redwoodjs/web';
 import { CounterContainer } from 'src/components/Core/Counter/CounterContainer';
 import { H1 } from 'src/components/Core/Text/H1';
+import { H2 } from 'src/components/Core/Text/H2';
 import { Text } from 'src/components/Core/Text/Text';
 
 const HomePage = () => {
     return (
-        <div>
+        <div className="bg-background-gray p-5 -mx-5 -mb-5">
             <MetaTags
                 title="soccersage.io"
                 description="Soccer Sage description"
             />
-            <H1>Show off your soccer knowledge</H1>
-            <Text className="text-center sm:w-[40vw] mx-auto">
-                Track your predictions across different leagues. Over the course
-                of a month, you will accumulate points and get to compete
-                against other soccer experts.
-            </Text>
-            <div className="grid grid-cols-3 md:grid-cols-6 border rounded rounded-b-none mt-4 p-4 justify-items-center items-center gap-y-4">
+            <H1 className="mt-0">Pre-season Begins!</H1>
+            <div className="grid grid-cols-3 md:grid-cols-6 border-y mt-4 p-4 justify-items-center items-center gap-y-4 -mx-5">
                 <img
                     className="w-20"
                     src="/logos/leagues/premier-league-logo.png"
@@ -41,7 +37,7 @@ const HomePage = () => {
                 />
             </div>
             {/* TODO: There should only be 1 h1 on the page */}
-            <div className="bg-light-gray p-4 rounded-b border border-t-0">
+            <div className="p-4 lg:w-2/3 mx-auto">
                 <H1>How to Play</H1>
                 <CounterContainer count={1} title="Sign up for an account">
                     <Text>

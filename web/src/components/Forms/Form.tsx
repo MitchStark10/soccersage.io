@@ -17,7 +17,7 @@ export const Form: React.FC<Props> = ({
     return (
         <form
             className={cn(
-                'border-gray-300 rounded-lg w-1/2 m-auto grid gap-y-4 items-center max-w-lg',
+                'border-gray-300 rounded-lg md:w-1/2 m-auto grid gap-y-4 items-center max-w-lg',
                 className
             )}
             onSubmit={handleSubmit}
