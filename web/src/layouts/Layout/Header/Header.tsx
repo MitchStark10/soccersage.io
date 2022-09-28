@@ -78,11 +78,11 @@ const MobileSideBar: React.VFC<MobileSidebarProps> = ({
 
     return (
         <div
-            className="bg-primary fixed w-5/6 left-0 bottom-0 fit-under-nav border-t-white px-2 py-2 z-50"
+            className="bg-primary fixed w-5/6 left-0 bottom-0 fit-under-nav border-t-white px-2 py-2 z-50 overflow-y-scroll"
             ref={sidebarRef}
         >
             {isAuthenticated ? (
-                <div className="flex flex-row justify-start items-center">
+                <div className="flex flex-row justify-start items-center py-4">
                     <Person className="mx-2" />
                     <p>{currentUser.username}</p>
                 </div>
@@ -101,11 +101,11 @@ const MobileSideBar: React.VFC<MobileSidebarProps> = ({
     );
 };
 
-const BASE_CLASSES = 'gap-2 px-5 z-50';
+const BASE_CLASSES = 'gap-2 px-5';
 
 export const Header = () => {
     return (
-        <header className="w-full fixed bg-primary text-white">
+        <header className="sticky top-0 bg-primary text-white">
             <div
                 className={classNames(
                     BASE_CLASSES,

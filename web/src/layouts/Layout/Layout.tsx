@@ -7,18 +7,18 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
     return (
-        <>
+        <main>
             <div className="h-screen relative overflow-y-scroll">
                 <Header />
-                <main
-                    className="px-5 mt-24"
-                    style={{ minHeight: 'calc(100vh - 225px)' }}
+                <div
+                    className="px-5"
+                    style={{ minHeight: 'calc(100vh - 180px)' }}
                 >
                     {children}
-                </main>
+                </div>
+                <Footer />
             </div>
-            <Footer />
-        </>
+        </main>
     );
 };
 

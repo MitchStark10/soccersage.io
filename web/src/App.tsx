@@ -9,7 +9,6 @@ import './index.css';
 import './scaffold.css';
 
 const setDocHeight = () => {
-    console.log('setting doc height', window.innerHeight);
     document.documentElement.style.setProperty(
         '--vh',
         `${window.innerHeight / 100}px`
