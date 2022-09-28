@@ -12,7 +12,7 @@ const Layout = ({ children }: LayoutProps) => {
                 <Header />
                 <div
                     className="px-5"
-                    style={{ minHeight: 'calc(100vh - 225px)' }}
+                    style={{ minHeight: 'calc(100vh - 180px)' }}
                 >
                     {children}
                 </div>
