@@ -28,7 +28,7 @@ const Routes = () => {
                 <Route path="/admin/seasons" page={SeasonSeasonsPage} name="adminSeasons" />
             </Set>
             <Set wrap={Layout}>
-                <Route path="/" page={HomePage} name="home" prerender />
+                <Route path="/" page={HomePage} name="home" />
                 <Route path="/predictions" page={PredictionsPage} name="predictions" />
                 <Route path="/sign-up" page={SignUpPage} name="signUp" />
                 <Route path="/login" page={LoginPage} name="login" />
