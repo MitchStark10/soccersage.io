@@ -1,5 +1,6 @@
 import { useAuth } from '@redwoodjs/auth';
 import { routes } from '@redwoodjs/router';
+import { useToggle } from 'src/hooks/use-toggle';
 import { DropDownHeaderLinks, HeaderLink } from './HeaderLink';
 import { LogoLink } from './LogoLink';
 
@@ -14,6 +15,13 @@ export const NavLinks: React.VFC<Props> = ({
     onNavLinkClick,
 }) => {
     const { isAuthenticated, hasRole } = useAuth();
+    const [isAdminDropdownHidden, toggleIsAdminDropDownHidden] =
+        useToggle(true);
+
+    const onAdminNavLinkClick = () => {
+        toggleIsAdminDropDownHidden();
+        onNavLinkClick?.();
+    };
 
     return (
         <div className="flex justify-start items-center">
@@ -33,28 +41,34 @@ export const NavLinks: React.VFC<Props> = ({
                     Standings
                 </HeaderLink>
                 {isAuthenticated && hasRole('admin') ? (
-                    <DropDownHeaderLinks label="Admin">
+                    <DropDownHeaderLinks
+                        label="Admin"
+                        isAdminDropdownHidden={isAdminDropdownHidden}
+                        toggleIsAdminDropdownHidden={
+                            toggleIsAdminDropDownHidden
+                        }
+                    >
                         <HeaderLink
                             to={routes.adminSeasons()}
-                            onClick={onNavLinkClick}
+                            onClick={onAdminNavLinkClick}
                         >
                             Seasons
                         </HeaderLink>
                         <HeaderLink
                             to={routes.adminTeams()}
-                            onClick={onNavLinkClick}
+                            onClick={onAdminNavLinkClick}
                         >
                             Teams
                         </HeaderLink>
                         <HeaderLink
                             to={routes.adminGames()}
-                            onClick={onNavLinkClick}
+                            onClick={onAdminNavLinkClick}
                         >
                             Games
                         </HeaderLink>
                         <HeaderLink
                             to={routes.adminPredictions()}
-                            onClick={onNavLinkClick}
+                            onClick={onAdminNavLinkClick}
                         >
                             Predictions
                         </HeaderLink>

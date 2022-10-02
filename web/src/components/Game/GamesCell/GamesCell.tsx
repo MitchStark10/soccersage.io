@@ -11,6 +11,12 @@ export const QUERY = gql`
             id
             homeTeamId
             awayTeamId
+            homeTeam {
+                name
+            }
+            awayTeam {
+                name
+            }
             homeTeamScore
             awayTeamScore
             isCompleted

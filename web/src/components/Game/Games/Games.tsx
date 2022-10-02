@@ -54,8 +54,8 @@ const GamesList = ({ games }) => {
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Home team id</th>
-                            <th>Away team id</th>
+                            <th>Home team name</th>
+                            <th>Away team name</th>
                             <th>Home team score</th>
                             <th>Away team score</th>
                             <th>Is completed</th>
@@ -66,8 +66,8 @@ const GamesList = ({ games }) => {
                         {games.map((game) => (
                             <tr key={game.id}>
                                 <td>{truncate(game.id)}</td>
-                                <td>{truncate(game.homeTeamId)}</td>
-                                <td>{truncate(game.awayTeamId)}</td>
+                                <td>{truncate(game.homeTeam.name)}</td>
+                                <td>{truncate(game.awayTeam.name)}</td>
                                 <td>{truncate(game.homeTeamScore)}</td>
                                 <td>{truncate(game.awayTeamScore)}</td>
                                 <td>{checkboxInputTag(game.isCompleted)}</td>

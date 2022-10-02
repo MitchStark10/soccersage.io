@@ -1,7 +1,7 @@
-import GamesCell from 'src/components/Game/GamesCell'
+import GamesCell from 'src/components/Game/GamesCell';
 
 const GamesPage = () => {
-  return <GamesCell />
-}
+    return <GamesCell />;
+};
 
-export default GamesPage
+export default GamesPage;
