@@ -6,12 +6,50 @@ import {
     NumberField,
     CheckboxField,
     Submit,
+    SelectField,
 } from '@redwoodjs/forms';
+import { useQuery } from '@redwoodjs/web';
+import { Loading } from 'src/components/Core/Loading/Loading';
+import { Season, Team } from 'types/graphql';
+
+const TEAM_QUERY = gql`
+    query TEAM_QUERY {
+        teams {
+            id
+            name
+        }
+    }
+`;
+
+const SEASONS_QUERY = gql`
+    query SEASONS_QUERY {
+        seasons {
+            id
+            name
+        }
+    }
+`;
 
 const GameForm = (props) => {
     const onSubmit = (data) => {
-        props.onSave(data, props?.game?.id);
+        const { homeTeamId, awayTeamId, seasonId, ...rest } = data;
+        props.onSave(
+            {
+                homeTeamId: parseInt(homeTeamId),
+                awayTeamId: parseInt(awayTeamId),
+                seasonId: parseInt(seasonId),
+                ...rest,
+            },
+            props?.game?.id
+        );
     };
+
+    const { data: teams, loading } = useQuery(TEAM_QUERY);
+    const { data: seasons, loading: loadingSeasons } = useQuery(SEASONS_QUERY);
+
+    if (loading || loadingSeasons) {
+        return <Loading />;
+    }
 
     return (
         <div className="rw-form-wrapper">
@@ -31,13 +69,19 @@ const GameForm = (props) => {
                     Home team id
                 </Label>
 
-                <NumberField
+                <SelectField
                     name="homeTeamId"
                     defaultValue={props.game?.homeTeamId}
                     className="rw-input"
                     errorClassName="rw-input rw-input-error"
                     validation={{ required: true }}
-                />
+                >
+                    {teams.teams.map((team: Team) => (
+                        <option key={team.id} value={team.id}>
+                            {team.name}
+                        </option>
+                    ))}
+                </SelectField>
 
                 <FieldError name="homeTeamId" className="rw-field-error" />
 
@@ -49,13 +93,19 @@ const GameForm = (props) => {
                     Away team id
                 </Label>
 
-                <NumberField
+                <SelectField
                     name="awayTeamId"
                     defaultValue={props.game?.awayTeamId}
                     className="rw-input"
                     errorClassName="rw-input rw-input-error"
                     validation={{ required: true }}
-                />
+                >
+                    {teams.teams.map((team: Team) => (
+                        <option key={team.id} value={team.id}>
+                            {team.name}
+                        </option>
+                    ))}
+                </SelectField>
 
                 <FieldError name="awayTeamId" className="rw-field-error" />
 
@@ -101,12 +151,19 @@ const GameForm = (props) => {
                     Season ID
                 </Label>
 
-                <NumberField
+                <SelectField
                     name="seasonId"
                     defaultValue={props.game?.seasonId}
                     className="rw-input"
                     errorClassName="rw-input rw-input-error"
-                />
+                    validation={{ required: true }}
+                >
+                    {seasons.seasons.map((season: Season) => (
+                        <option key={season.id} value={season.id}>
+                            {season.name}
+                        </option>
+                    ))}
+                </SelectField>
 
                 <FieldError name="seasonId" className="rw-field-error" />
 
