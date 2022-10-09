@@ -5,10 +5,10 @@ import { H6 } from 'src/components/Core/Text/H6';
 import { useMutation } from '@redwoodjs/web';
 import { useAuth } from '@redwoodjs/auth';
 import { navigate, routes } from '@redwoodjs/router';
+import { useState } from 'react';
 
 interface Props {
     game: Game;
-    refetchPredictions: () => void;
     prediction?: Prediction | null;
 }
 
@@ -31,14 +31,18 @@ const UPDATE_PREDICTION_MUTATION = gql`
     }
 `;
 
-export const GameCard: React.VFC<Props> = ({
-    game,
-    prediction,
-    refetchPredictions,
-}) => {
+let timeout = null;
+
+export const GameCard: React.VFC<Props> = ({ game, prediction }) => {
     const { currentUser } = useAuth();
     const [createPrediction] = useMutation(CREATE_PREDICTION_MUTATION);
     const [updatePrediction] = useMutation(UPDATE_PREDICTION_MUTATION);
+    const [localPredictedWinner, setLocalPredictedWinner] = useState<
+        number | null
+    >(null);
+    const [localPredictionResult, setLocalPredictionResult] = useState<
+        string | null
+    >(null);
 
     const makePrediction = async (
         newPrediction: 'tie' | 'win',
@@ -49,32 +53,44 @@ export const GameCard: React.VFC<Props> = ({
             return;
         }
 
-        if (prediction?.id) {
-            await updatePrediction({
-                variables: {
-                    id: prediction.id,
-                    input: {
-                        prediction: newPrediction,
-                        teamId,
-                    },
-                },
-            });
-        } else {
-            await createPrediction({
-                variables: {
-                    input: {
-                        userId: currentUser.id,
-                        gameId: game.id,
-                        prediction: newPrediction,
-                        seasonId: game.seasonId,
-                        teamId,
-                    },
-                },
-            });
+        setLocalPredictedWinner(teamId ?? -1);
+        setLocalPredictionResult(newPrediction);
+
+        if (timeout) {
+            clearTimeout(timeout);
         }
 
-        refetchPredictions();
+        timeout = setTimeout(async () => {
+            if (prediction?.id) {
+                await updatePrediction({
+                    variables: {
+                        id: prediction.id,
+                        input: {
+                            prediction: newPrediction,
+                            teamId,
+                        },
+                    },
+                });
+            } else {
+                await createPrediction({
+                    variables: {
+                        input: {
+                            userId: currentUser.id,
+                            gameId: game.id,
+                            prediction: newPrediction,
+                            seasonId: game.seasonId,
+                            teamId,
+                        },
+                    },
+                });
+            }
+        }, 500);
     };
+
+    const predictedWinningTeam = localPredictedWinner ?? prediction?.teamId;
+    const predictionResult =
+        localPredictionResult?.toUpperCase() ??
+        prediction?.prediction?.toUpperCase();
 
     return (
         <CardContainer className="w-full">
@@ -84,7 +100,7 @@ export const GameCard: React.VFC<Props> = ({
             <div className="grid gap-y-2 flex-col justify-between items-center mt-4">
                 <Button
                     variant={
-                        prediction?.teamId === game.homeTeamId
+                        predictedWinningTeam === game.homeTeamId
                             ? 'primary'
                             : 'secondary'
                     }
@@ -100,9 +116,7 @@ export const GameCard: React.VFC<Props> = ({
                 </Button>
                 <Button
                     variant={
-                        prediction?.prediction?.toUpperCase() === 'TIE'
-                            ? 'primary'
-                            : 'secondary'
+                        predictionResult === 'TIE' ? 'primary' : 'secondary'
                     }
                     onClick={() => makePrediction('tie', null)}
                 >
@@ -110,7 +124,7 @@ export const GameCard: React.VFC<Props> = ({
                 </Button>
                 <Button
                     variant={
-                        prediction?.teamId === game.awayTeamId
+                        predictedWinningTeam === game.awayTeamId
                             ? 'primary'
                             : 'secondary'
                     }

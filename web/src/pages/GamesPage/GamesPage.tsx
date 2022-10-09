@@ -39,18 +39,21 @@ const GamesPage = () => {
         error: gameError,
     } = useQuery<{ upcomingGames: Game[] }>(UPCOMING_GAMES_QUERY);
 
-    const {
-        data: predictionsData,
-        error: predictionsError,
-        refetch: predictionsRefetch,
-    } = useQuery<{ myPredictions: Prediction[] }>(MY_PREDICTIONS_QUERY);
+    const { data: predictionsData, error: predictionsError } = useQuery<{
+        myPredictions: Prediction[];
+    }>(MY_PREDICTIONS_QUERY);
 
     const error = gameError || (isAuthenticated && predictionsError);
-    const loading = gameLoading || (!predictionsData && isAuthenticated);
 
     if (error) {
         return <ErrorText>Error: {error.message}</ErrorText>;
-    } else if (loading) {
+    } else if (gameLoading && !gameData) {
+        console.log('rendering loading', {
+            gameLoading,
+            gameData,
+            predictionsData,
+            isAuthenticated,
+        });
         return <Loading />;
     }
 
@@ -75,7 +78,6 @@ const GamesPage = () => {
                                 key={index}
                                 game={game}
                                 prediction={predictionsMapByGameId[game.id]}
-                                refetchPredictions={predictionsRefetch}
                             />
                         );
                     })}
