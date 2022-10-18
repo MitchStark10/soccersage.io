@@ -44,7 +44,7 @@ export const Success = ({ game }: CellSuccessProps<EditGameById>) => {
     const [updateGame, { loading, error }] = useMutation(UPDATE_GAME_MUTATION, {
         onCompleted: () => {
             toast.success('Game updated');
-            navigate(routes.games());
+            navigate(routes.adminGames());
         },
         onError: (error) => {
             toast.error(error.message);
