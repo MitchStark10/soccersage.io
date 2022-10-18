@@ -64,7 +64,10 @@ const PredictionsPage = () => {
                 title="Predictions"
                 description="View all of your recent predictions"
             />
-            <H1 className="m-4 text-center">Predictions</H1>
+            {pendingPredictions.length === 0 &&
+            completedPredictions.length === 0 ? (
+                <H1 className="m-4 text-center">Predictions</H1>
+            ) : null}
             {data.myPredictions.length === 0 ? (
                 <Text>You haven&apos;t made any predictions yet.</Text>
             ) : null}

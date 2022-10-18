@@ -34,7 +34,7 @@ export const PredictionCard: React.VFC<Props> = ({ prediction }) => {
 
     return (
         <CardContainer
-            className={classNames({
+            className={classNames('border-2', {
                 'border-success-green': predictionStatus === 'correct',
                 'border-error-red': predictionStatus === 'incorrect',
             })}

@@ -12,7 +12,7 @@ module.exports = {
                 'light-gray': '#F9FAFB',
                 black: '#000000',
                 'error-red': '#E02424',
-                'success-green': '#00ff00',
+                'success-green': '#4BB543',
             },
         },
     },
