@@ -1,3 +1,4 @@
+import { useQuery } from '@apollo/client';
 import {
     Form,
     FormError,
@@ -8,7 +9,6 @@ import {
     Submit,
     SelectField,
 } from '@redwoodjs/forms';
-import { useQuery } from '@redwoodjs/web';
 import { Loading } from 'src/components/Core/Loading/Loading';
 import { Season, Team } from 'types/graphql';
 

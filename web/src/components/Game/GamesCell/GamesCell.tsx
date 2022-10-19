@@ -1,7 +1,7 @@
 import type { FindGames } from 'types/graphql';
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
 
 import { Link, routes } from '@redwoodjs/router';
+import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
 
 import Games from 'src/components/Game/Games';
 

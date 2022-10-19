@@ -1,5 +1,3 @@
-import { getFirstUserFromContext } from 'src/lib/auth';
-import { db } from 'src/lib/db';
 import type {
     Game,
     MutationResolvers,
@@ -8,6 +6,9 @@ import type {
     QueryResolvers,
     User,
 } from 'types/graphql';
+
+import { getFirstUserFromContext } from 'src/lib/auth';
+import { db } from 'src/lib/db';
 
 type PartialGame = Omit<
     Game,
@@ -147,6 +148,13 @@ export const deletePrediction: MutationResolvers['deletePrediction'] = ({
 };
 
 export const Prediction: PredictionResolvers = {
+    id: (_obj, { root }) => root.id,
+    teamId: (_obj, { root }) => root.teamId,
+    gameId: (_obj, { root }) => root.gameId,
+    userId: (_obj, { root }) => root.userId,
+    prediction: (_obj, { root }) => root.prediction,
+    user: (_obj, { root }) =>
+        db.user.findUnique({ where: { id: root.userId } }),
     team: (_obj, { root }) =>
         db.prediction.findUnique({ where: { id: root.id } }).team(),
     game: (_obj, { root }) =>

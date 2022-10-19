@@ -1,15 +1,18 @@
-import { db } from 'src/lib/db';
 import crypto from 'crypto';
+
+import { addDays } from 'date-fns';
+import nodemailer from 'nodemailer';
 import type {
-    QueryResolvers,
     MutationResolvers,
+    QueryResolvers,
     UserResolvers,
 } from 'types/graphql';
-import nodemailer from 'nodemailer';
+
+import { hashPassword } from '@redwoodjs/api';
 import { RedwoodGraphQLError } from '@redwoodjs/graphql-server';
-import { createDbAuthHandler } from 'src/functions/auth';
+
+import { db } from 'src/lib/db';
 import { generateResetPasswordToken } from 'src/lib/generate-reset-password-token';
-import { addDays } from 'date-fns';
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -109,10 +112,10 @@ export const sendResetPasswordEmail: MutationResolvers['sendResetPasswordEmail']
         };
     };
 
-export const resetPassword: MutationResolvers['resetPassword'] = async (
-    { resetToken, password },
-    { context }
-) => {
+export const resetPassword: MutationResolvers['resetPassword'] = async ({
+    resetToken,
+    password,
+}) => {
     const associatedUser = await db.user.findFirst({
         where: { resetToken },
     });
@@ -121,13 +124,8 @@ export const resetPassword: MutationResolvers['resetPassword'] = async (
         throw new RedwoodGraphQLError('Could not find user with reset token.');
     }
 
-    const authHandler = createDbAuthHandler(
-        context.event,
-        context.requestContext
-    );
-
     const salt = crypto.randomBytes(16).toString('base64');
-    const [hashedPassword] = authHandler._hashPassword(password, salt);
+    const [hashedPassword] = hashPassword(password, salt);
 
     return await db.user.update({
         where: {
@@ -142,6 +140,14 @@ export const resetPassword: MutationResolvers['resetPassword'] = async (
 };
 
 export const User: UserResolvers = {
+    id: (_obj, { root }) => root.id,
+    email: (_obj, { root }) => root.email,
+    username: (_obj, { root }) => root.username,
+    hashedPassword: (_obj, { root }) => root.hashedPassword,
+    resetToken: (_obj, { root }) => root.resetToken,
+    resetTokenExpiresAt: (_obj, { root }) => root.resetTokenExpiresAt,
+    salt: (_obj, { root }) => root.salt,
+    roles: (_obj, { root }) => root.roles,
     predictions: (_obj, { root }) =>
         db.user.findUnique({ where: { id: root.id } }).predictions(),
 };

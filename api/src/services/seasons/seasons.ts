@@ -1,9 +1,10 @@
-import { db } from 'src/lib/db';
 import type {
     QueryResolvers,
     MutationResolvers,
     SeasonResolvers,
 } from 'types/graphql';
+
+import { db } from 'src/lib/db';
 
 export const seasons: QueryResolvers['seasons'] = () => {
     return db.season.findMany();
@@ -38,6 +39,10 @@ export const deleteSeason: MutationResolvers['deleteSeason'] = ({ id }) => {
 };
 
 export const Season: SeasonResolvers = {
+    id: (_obj, { root }) => root.id,
+    name: (_obj, { root }) => root.name,
+    startDate: (_obj, { root }) => root.startDate,
+    endDate: (_obj, { root }) => root.endDate,
     Prediction: (_obj, { root }) =>
         db.season.findUnique({ where: { id: root.id } }).Prediction(),
 };

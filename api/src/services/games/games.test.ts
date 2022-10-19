@@ -16,7 +16,6 @@ describe('games', () => {
 
     scenario('returns a single game', async (scenario: StandardScenario) => {
         const result = await game({ id: scenario.game.one.id });
-
         expect(result).toEqual(scenario.game.one);
     });
 

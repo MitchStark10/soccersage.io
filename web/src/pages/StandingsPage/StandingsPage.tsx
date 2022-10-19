@@ -1,7 +1,9 @@
 import { useQuery } from '@apollo/client';
+
 import { Loading } from 'src/components/Core/Loading/Loading';
 import { ErrorText } from 'src/components/Core/Text/ErrorText';
 import { H1 } from 'src/components/Core/Text/H1';
+
 import { StandingsTable } from './StandingsTable';
 
 const STANDINGS_QUERY = gql`

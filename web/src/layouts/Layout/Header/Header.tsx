@@ -19,7 +19,7 @@ const DesktopHeader = () => {
             <NavLinks variant="desktop" />
             {isAuthenticated ? (
                 <div className="flex justify-between items-center">
-                    <Text>{currentUser.email}</Text>
+                    <Text>{currentUser?.email}</Text>
                     <Button
                         variant="secondary"
                         onClick={() => logOut()}

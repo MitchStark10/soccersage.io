@@ -1,13 +1,17 @@
-import { MetaTags, useQuery } from '@redwoodjs/web';
+import { useQuery } from '@apollo/client';
+import { Game, Prediction } from 'types/graphql';
+
+import { useAuth } from '@redwoodjs/auth';
+import { MetaTags } from '@redwoodjs/web';
+
+import { CardGrid } from 'src/components/Core/Card/CardGrid';
 import { Loading } from 'src/components/Core/Loading/Loading';
 import { ErrorText } from 'src/components/Core/Text/ErrorText';
-import { Text } from 'src/components/Core/Text/Text';
 import { H1 } from 'src/components/Core/Text/H1';
-import { Game, Prediction } from 'types/graphql';
+import { Text } from 'src/components/Core/Text/Text';
 import { GameCard } from 'src/components/Game/GameCard/GameCard';
+
 import { MY_PREDICTIONS_QUERY } from '../PredictionsPage/PredictionsPage';
-import { CardGrid } from 'src/components/Core/Card/CardGrid';
-import { useAuth } from '@redwoodjs/auth';
 
 const UPCOMING_GAMES_QUERY = gql`
     query FindUpcomingGames {

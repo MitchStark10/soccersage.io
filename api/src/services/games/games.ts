@@ -1,9 +1,10 @@
-import { db } from 'src/lib/db';
 import type {
     QueryResolvers,
     MutationResolvers,
     GameResolvers,
 } from 'types/graphql';
+
+import { db } from 'src/lib/db';
 
 export const games: QueryResolvers['games'] = () => {
     return db.game.findMany();
@@ -43,6 +44,13 @@ export const deleteGame: MutationResolvers['deleteGame'] = async ({ id }) => {
 };
 
 export const Game: GameResolvers = {
+    id: (_obj, { root }) => root.id,
+    seasonId: (_obj, { root }) => root.seasonId,
+    awayTeamId: (_obj, { root }) => root.awayTeamId,
+    homeTeamId: (_obj, { root }) => root.homeTeamId,
+    awayTeamScore: (_obj, { root }) => root.awayTeamScore,
+    homeTeamScore: (_obj, { root }) => root.homeTeamScore,
+    isCompleted: (_obj, { root }) => root.isCompleted,
     predictions: (_obj, { root }) =>
         db.game.findUnique({ where: { id: root.id } }).predictions(),
     homeTeam: (_obj, { root }) =>

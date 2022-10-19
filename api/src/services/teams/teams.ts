@@ -1,9 +1,10 @@
-import { db } from 'src/lib/db';
 import type {
     QueryResolvers,
     MutationResolvers,
     TeamResolvers,
 } from 'types/graphql';
+
+import { db } from 'src/lib/db';
 
 export const teams: QueryResolvers['teams'] = () => {
     return db.team.findMany();
@@ -35,6 +36,9 @@ export const deleteTeam: MutationResolvers['deleteTeam'] = ({ id }) => {
 };
 
 export const Team: TeamResolvers = {
+    id: (_obj, { root }) => root.id,
+    name: (_obj, { root }) => root.name,
+    logoUrl: (_obj, { root }) => root.logoUrl,
     Prediction: (_obj, { root }) =>
         db.team.findUnique({ where: { id: root.id } }).Prediction(),
     homeTeamGames: (_obj, { root }) =>

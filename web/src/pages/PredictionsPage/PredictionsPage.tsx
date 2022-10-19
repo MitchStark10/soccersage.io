@@ -1,4 +1,7 @@
+import { Prediction } from 'types/graphql';
+
 import { MetaTags } from '@redwoodjs/web';
+
 import { CardGrid } from 'src/components/Core/Card/CardGrid';
 import { Loading } from 'src/components/Core/Loading/Loading';
 import { ErrorText } from 'src/components/Core/Text/ErrorText';
@@ -6,7 +9,6 @@ import { H1 } from 'src/components/Core/Text/H1';
 import { Text } from 'src/components/Core/Text/Text';
 import { PredictionCard } from 'src/components/Prediction/PredictionCard';
 import { useAuthenticatedQuery } from 'src/hooks/use-authenticated-query';
-import { Prediction } from 'types/graphql';
 
 export const MY_PREDICTIONS_QUERY = gql`
     query FindMyPredictions {

@@ -1,7 +1,9 @@
-import { DbAuthHandler } from '@redwoodjs/api';
 import { APIGatewayProxyEvent } from 'aws-lambda';
-import { db } from 'src/lib/db';
 import { Context } from 'aws-lambda';
+
+import { DbAuthHandler } from '@redwoodjs/api';
+
+import { db } from 'src/lib/db';
 
 const forgotPasswordOptions = {
     // handler() is invoked after verifying that a user was found with the given

@@ -16,7 +16,6 @@ import type { StandardScenario } from './predictions.scenarios';
 describe('predictions', () => {
     scenario('returns all predictions', async (scenario: StandardScenario) => {
         const result = await predictions();
-
         expect(result.length).toEqual(Object.keys(scenario.prediction).length);
     });
 
