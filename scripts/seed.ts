@@ -1,10 +1,7 @@
 export default async () => {
     try {
-        console.log(
-            "\nUsing the default './scripts/seed.{js,ts}' template\nEdit the file to add seed data\n"
-        );
+        console.log('Seed data undefined');
     } catch (error) {
-        console.warn('Please define your seed data.');
         console.error(error);
     }
 };
