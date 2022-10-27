@@ -7,7 +7,11 @@ import type {
 import { db } from 'src/lib/db';
 
 export const games: QueryResolvers['games'] = () => {
-    return db.game.findMany();
+    return db.game.findMany({
+        orderBy: {
+            startDateTime: 'asc',
+        },
+    });
 };
 
 export const upcomingGames: QueryResolvers['upcomingGames'] = () => {

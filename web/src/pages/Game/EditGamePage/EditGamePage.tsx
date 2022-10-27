@@ -1,11 +1,11 @@
-import EditGameCell from 'src/components/Game/EditGameCell'
+import EditGameCell from 'src/components/Game/EditGameCell';
 
 type GamePageProps = {
-  id: number
-}
+    id: number;
+};
 
 const EditGamePage = ({ id }: GamePageProps) => {
-  return <EditGameCell id={id} />
-}
+    return <EditGameCell id={id} />;
+};
 
-export default EditGamePage
+export default EditGamePage;

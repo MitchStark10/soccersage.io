@@ -14,6 +14,7 @@ import {
 } from '@redwoodjs/forms';
 
 import { Loading } from 'src/components/Core/Loading/Loading';
+import { formatDatetime } from 'src/utils/format-datetime';
 
 const TEAM_QUERY = gql`
     query TEAM_QUERY {
@@ -54,6 +55,7 @@ const GameForm = (props) => {
         return <Loading />;
     }
 
+    console.log('start date time', props.game?.startDateTime);
     return (
         <div className="rw-form-wrapper">
             <Form onSubmit={onSubmit} error={props.error}>
@@ -156,7 +158,7 @@ const GameForm = (props) => {
 
                 <DatetimeLocalField
                     name="startDateTime"
-                    defaultValue={props.game?.startDateTime}
+                    defaultValue={formatDatetime(props.game?.startDateTime)}
                     className="rw-input"
                     errorClassName="rw-input rw-input-error"
                     validation={{ required: true }}
