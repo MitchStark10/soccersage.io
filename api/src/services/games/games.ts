@@ -51,6 +51,7 @@ export const Game: GameResolvers = {
     awayTeamScore: (_obj, { root }) => root.awayTeamScore,
     homeTeamScore: (_obj, { root }) => root.homeTeamScore,
     isCompleted: (_obj, { root }) => root.isCompleted,
+    startDateTime: (_obj, { root }) => root.startDateTime,
     predictions: (_obj, { root }) =>
         db.game.findUnique({ where: { id: root.id } }).predictions(),
     homeTeam: (_obj, { root }) =>

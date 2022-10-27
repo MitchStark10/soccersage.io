@@ -17,6 +17,7 @@ export const QUERY = gql`
             awayTeam {
                 name
             }
+            startDateTime
             homeTeamScore
             awayTeamScore
             isCompleted

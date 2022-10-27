@@ -11,6 +11,7 @@ export const schema = gql`
         homeTeam: Team!
         awayTeam: Team!
         season: Season!
+        startDateTime: DateTime!
     }
 
     type Query {
@@ -23,6 +24,7 @@ export const schema = gql`
         homeTeamId: Int!
         awayTeamId: Int!
         seasonId: Int!
+        startDateTime: DateTime!
         homeTeamScore: Int
         awayTeamScore: Int
         isCompleted: Boolean
@@ -35,6 +37,7 @@ export const schema = gql`
         awayTeamScore: Int
         seasonId: Int
         isCompleted: Boolean
+        startDateTime: DateTime
     }
 
     type Mutation {

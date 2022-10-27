@@ -1,4 +1,6 @@
 import { useQuery } from '@apollo/client';
+import { Season, Team } from 'types/graphql';
+
 import {
     Form,
     FormError,
@@ -8,9 +10,10 @@ import {
     CheckboxField,
     Submit,
     SelectField,
+    DatetimeLocalField,
 } from '@redwoodjs/forms';
+
 import { Loading } from 'src/components/Core/Loading/Loading';
-import { Season, Team } from 'types/graphql';
 
 const TEAM_QUERY = gql`
     query TEAM_QUERY {
@@ -142,6 +145,24 @@ const GameForm = (props) => {
                 />
 
                 <FieldError name="awayTeamScore" className="rw-field-error" />
+
+                <Label
+                    name="startDateTime"
+                    className="rw-label"
+                    errorClassName="rw-label rw-label-error"
+                >
+                    Start date time
+                </Label>
+
+                <DatetimeLocalField
+                    name="startDateTime"
+                    defaultValue={props.game?.startDateTime}
+                    className="rw-input"
+                    errorClassName="rw-input rw-input-error"
+                    validation={{ required: true }}
+                />
+
+                <FieldError name="startDateTime" className="rw-field-error" />
 
                 <Label
                     name="seasonId"

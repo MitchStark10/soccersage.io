@@ -6,6 +6,7 @@ export const standard = defineScenario<Prisma.GameCreateArgs>({
             data: {
                 homeTeam: { create: { name: 'String8184842' } },
                 awayTeam: { create: { name: 'String342092' } },
+                startDateTime: new Date(),
                 season: {
                     create: {
                         name: 'String8184842',
@@ -19,6 +20,7 @@ export const standard = defineScenario<Prisma.GameCreateArgs>({
             data: {
                 homeTeam: { create: { name: 'String2664163' } },
                 awayTeam: { create: { name: 'String9522390' } },
+                startDateTime: new Date(),
                 season: {
                     create: {
                         name: 'String9522390',
