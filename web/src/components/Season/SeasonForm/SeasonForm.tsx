@@ -8,11 +8,7 @@ import {
     Submit,
 } from '@redwoodjs/forms';
 
-const formatDatetime = (value) => {
-    if (value) {
-        return value.replace(/:\d{2}\.\d{3}\w/, '');
-    }
-};
+import { formatDatetime } from 'src/utils/format-datetime';
 
 const SeasonForm = (props) => {
     const onSubmit = (data) => {

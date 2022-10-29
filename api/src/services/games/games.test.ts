@@ -24,6 +24,7 @@ describe('games', () => {
             input: {
                 homeTeamId: scenario.game.two.homeTeamId,
                 awayTeamId: scenario.game.two.awayTeamId,
+                startDateTime: new Date(),
                 seasonId: scenario.game.two.seasonId,
             },
         });
