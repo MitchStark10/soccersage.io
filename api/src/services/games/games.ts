@@ -15,7 +15,9 @@ export const games: QueryResolvers['games'] = () => {
 };
 
 export const upcomingGames: QueryResolvers['upcomingGames'] = () => {
-    return db.game.findMany({ where: { isCompleted: false } });
+    return db.game.findMany({
+        where: { isCompleted: false, startDateTime: { gt: new Date() } },
+    });
 };
 
 export const game: QueryResolvers['game'] = ({ id }) => {
