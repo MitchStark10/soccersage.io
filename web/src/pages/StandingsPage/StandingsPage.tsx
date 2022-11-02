@@ -1,5 +1,7 @@
 import { useQuery } from '@apollo/client';
 
+import { MetaTags } from '@redwoodjs/web';
+
 import { Loading } from 'src/components/Core/Loading/Loading';
 import { ErrorText } from 'src/components/Core/Text/ErrorText';
 import { H1 } from 'src/components/Core/Text/H1';
@@ -32,6 +34,10 @@ const StandingsPage = () => {
 
     return (
         <>
+            <MetaTags
+                title="Standings"
+                description="View the current soccersage.io standings"
+            />
             <H1>Standings</H1>
             <StandingsTable standingsData={data.standings.userIdRankings} />
         </>

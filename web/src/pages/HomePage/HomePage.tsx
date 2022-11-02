@@ -1,14 +1,14 @@
 import { MetaTags } from '@redwoodjs/web';
+
 import { CounterContainer } from 'src/components/Core/Counter/CounterContainer';
 import { H1 } from 'src/components/Core/Text/H1';
-import { H2 } from 'src/components/Core/Text/H2';
 import { Text } from 'src/components/Core/Text/Text';
 
 const HomePage = () => {
     return (
         <div className="bg-background-gray p-5 -mx-5 -mb-5">
             <MetaTags
-                title="soccersage.io"
+                title="Getting Started"
                 description="Soccer Sage description"
             />
             <H1 className="mt-0">Pre-season Begins!</H1>
