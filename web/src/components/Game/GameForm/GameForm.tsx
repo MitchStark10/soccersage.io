@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client';
-import { Season, Team } from 'types/graphql';
+import { Game, Season, Team, UpdateGameInput } from 'types/graphql';
+import { RecursivePartial } from 'types/recursive-partial';
 
 import {
     Form,
@@ -11,6 +12,7 @@ import {
     Submit,
     SelectField,
     DatetimeLocalField,
+    RWGqlError,
 } from '@redwoodjs/forms';
 
 import { Loading } from 'src/components/Core/Loading/Loading';
@@ -34,8 +36,17 @@ const SEASONS_QUERY = gql`
     }
 `;
 
-const GameForm = (props) => {
-    const onSubmit = (data) => {
+interface Props {
+    game?: RecursivePartial<Game>;
+    onSave: (game: UpdateGameInput, id?: number) => void;
+    error?: RWGqlError;
+    loading?: boolean;
+}
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const GameForm = (props: Props) => {
+    const onSubmit = (data: any) => {
+        /* eslint-enable @typescript-eslint/no-explicit-any */
         const { homeTeamId, awayTeamId, seasonId, ...rest } = data;
         props.onSave(
             {
@@ -55,7 +66,6 @@ const GameForm = (props) => {
         return <Loading />;
     }
 
-    console.log('start date time', props.game?.startDateTime);
     return (
         <div className="rw-form-wrapper">
             <Form onSubmit={onSubmit} error={props.error}>

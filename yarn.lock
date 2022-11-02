@@ -10393,6 +10393,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"date-fns-tz@npm:^1.3.7":
+  version: 1.3.7
+  resolution: "date-fns-tz@npm:1.3.7"
+  peerDependencies:
+    date-fns: ">=2.0.0"
+  checksum: 4b1232e94d4a7dd76d1ed9d326b678b67ba398f4246beb8269241f0d40c1264c9279fa50207161dc86df1f10f911be82984f0b370af1cc8c48a8725ef38875ef
+  languageName: node
+  linkType: hard
+
 "date-fns@npm:^2.16.1, date-fns@npm:^2.29.3":
   version: 2.29.3
   resolution: "date-fns@npm:2.29.3"
@@ -20520,6 +20529,7 @@ __metadata:
     bcrypt: ^5.1.0
     classnames: ^2.3.2
     date-fns: ^2.29.3
+    date-fns-tz: ^1.3.7
     husky: ^8.0.1
     nodemailer: ^6.8.0
     tailwind-merge: ^1.6.2
