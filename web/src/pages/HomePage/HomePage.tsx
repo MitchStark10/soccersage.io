@@ -17,14 +17,28 @@ const HomePage = () => {
                     className="w-20"
                     src="/logos/leagues/premier-league-logo.png"
                     alt="Premier League Logo"
+                    width={80}
+                    height={80}
                 />
-                <img src="/logos/leagues/la-liga-logo.png" alt="La Liga Logo" />
+                <img
+                    src="/logos/leagues/la-liga-logo.png"
+                    alt="La Liga Logo"
+                    width={243}
+                    height={137}
+                />
                 <img
                     src="/logos/leagues/bundesliga-logo.png"
                     alt="Bundesliga Logo"
                     className="w-20"
+                    width={80}
+                    height={80}
                 />
-                <img src="/logos/leagues/serie-a-logo.png" alt="Serie A Logo" />
+                <img
+                    src="/logos/leagues/serie-a-logo.png"
+                    alt="Serie A Logo"
+                    width={243}
+                    height={137}
+                />
                 <img
                     src="/logos/leagues/ligue-1-logo.png"
                     alt="Ligue 1 Logo"
@@ -34,6 +48,8 @@ const HomePage = () => {
                     src="/logos/leagues/mls-logo.svg"
                     alt="MLS Logo"
                     className="w-24"
+                    width={80}
+                    height={80}
                 />
             </div>
             {/* TODO: There should only be 1 h1 on the page */}
