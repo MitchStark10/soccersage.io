@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
+
+import { useQuery } from '@apollo/client';
+import type { DocumentNode } from 'graphql';
+
 import { useAuth } from '@redwoodjs/auth';
 import { navigate, routes } from '@redwoodjs/router';
-import type { DocumentNode } from 'graphql';
-import { useEffect } from 'react';
-import { useQuery } from '@apollo/client';
 
 export const useAuthenticatedQuery = (query: DocumentNode) => {
     const { isAuthenticated, loading: authLoading } = useAuth();

@@ -1,17 +1,21 @@
-import { useAuth } from '@redwoodjs/auth';
-import { Link, navigate, routes } from '@redwoodjs/router';
 import { useEffect, useState } from 'react';
+
+import { Link, navigate, routes } from '@redwoodjs/router';
+
+import { useAuth } from 'src/hooks/use-auth';
 import { useInputText } from 'src/hooks/use-input-text';
+
 import { Button } from '../Core/Form/Button';
 import { Input } from '../Core/Form/Input';
 import { ErrorText } from '../Core/Text/ErrorText';
+
 import { Form } from './Form';
 
 export const LoginForm: React.VFC = () => {
     const [email, onEmailChange] = useInputText('');
     const [password, onPasswordChange] = useInputText('');
     const [error, setError] = useState('');
-    const { logIn, loading, isAuthenticated } = useAuth();
+    const { logIn, loading, isInitialized, isAuthenticated } = useAuth();
 
     const handleSubmit = async () => {
         const response = await logIn({
@@ -29,7 +33,7 @@ export const LoginForm: React.VFC = () => {
         }
     }, [isAuthenticated]);
 
-    if (loading) {
+    if (!isInitialized) {
         return <div>Loading...</div>;
     }
 
