@@ -106,13 +106,6 @@ const signupOptions = {
     // If this returns anything else, it will be returned by the
     // `signUp()` function in the form of: `{ message: 'String here' }`.
     handler: async ({ username, hashedPassword, salt, ...rest }) => {
-        console.log('signupOptions', {
-            username,
-            hashedPassword,
-            salt,
-            rest,
-        });
-
         const {
             userAttributes: { email },
         } = rest;
