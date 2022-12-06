@@ -1,10 +1,14 @@
-import { Link } from '@redwoodjs/router';
 import cn from 'classnames';
+
+import { Link } from '@redwoodjs/router';
+
+import LoadingDots from './LoadingDots';
 
 type BaseProps = {
     children: React.ReactNode;
     className?: string;
     variant: 'primary' | 'secondary' | 'tertiary';
+    loading?: boolean;
 };
 
 type ButtonAsButton = BaseProps &
@@ -21,7 +25,11 @@ type ButtonAsExternal = BaseProps &
 type ButtonProps = ButtonAsButton | ButtonAsExternal;
 
 export const Button: React.FC<ButtonProps> = (props) => {
-    const { className, ...rest } = props;
+    const { className, children, ...rest } = props;
+
+    const isDisabled =
+        props.as === 'button' && (props.disabled ?? props.loading);
+
     const compiledClassname = cn(
         ' focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center',
         {
@@ -29,15 +37,14 @@ export const Button: React.FC<ButtonProps> = (props) => {
                 props.variant === 'primary',
             ' text-black bg-white border-gray hover:border-primary hover:text-primary focus:ring-gray border':
                 props.variant === 'secondary',
-            'opacity-75': props.as !== 'a' && props.disabled,
+            'opacity-75': isDisabled,
         },
         className
     );
 
     if (rest.as === 'a') {
-        const { children, ...linkRest } = rest;
         return (
-            <Link className={compiledClassname} {...linkRest}>
+            <Link className={compiledClassname} {...rest}>
                 {children}
             </Link>
         );
@@ -47,7 +54,10 @@ export const Button: React.FC<ButtonProps> = (props) => {
         <button
             className={compiledClassname}
             type={rest.type || 'button'}
+            disabled={isDisabled}
             {...rest}
-        />
+        >
+            {rest.loading ? <LoadingDots /> : children}
+        </button>
     );
 };

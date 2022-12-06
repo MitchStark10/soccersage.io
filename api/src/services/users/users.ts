@@ -33,6 +33,7 @@ export const user: QueryResolvers['user'] = ({ id }) => {
 };
 
 export const createUser: MutationResolvers['createUser'] = ({ input }) => {
+    console.log('attemtping to create user');
     return db.user.create({
         data: input,
     });

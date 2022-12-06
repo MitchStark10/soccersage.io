@@ -1,10 +1,14 @@
+import { useState } from 'react';
+
 import { useAuth } from '@redwoodjs/auth';
 import { navigate, routes } from '@redwoodjs/router';
-import { useState } from 'react';
+
 import { useInputText } from 'src/hooks/use-input-text';
+
 import { Button } from '../Core/Form/Button';
 import { Input } from '../Core/Form/Input';
 import { ErrorText } from '../Core/Text/ErrorText';
+
 import { Form } from './Form';
 
 export const SignUpForm: React.VFC = () => {
@@ -65,7 +69,7 @@ export const SignUpForm: React.VFC = () => {
                 required
             />
             <ErrorText>{customError}</ErrorText>
-            <Button variant="primary" type="submit" disabled={loading}>
+            <Button variant="primary" type="submit" loading={loading}>
                 Sign Up
             </Button>
             <p className="w-fit justify-self-center"> - Or - </p>

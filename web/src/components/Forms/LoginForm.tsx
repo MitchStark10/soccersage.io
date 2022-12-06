@@ -53,7 +53,7 @@ export const LoginForm: React.VFC = () => {
                 onChange={onPasswordChange}
             />
             <ErrorText>{error}</ErrorText>
-            <Button variant="primary" type="submit" disabled={loading}>
+            <Button variant="primary" type="submit" loading={loading}>
                 Login
             </Button>
             <Link

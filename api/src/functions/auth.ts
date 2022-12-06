@@ -2,6 +2,7 @@ import { APIGatewayProxyEvent } from 'aws-lambda';
 import { Context } from 'aws-lambda';
 
 import { DbAuthHandler } from '@redwoodjs/api';
+import { RedwoodGraphQLError } from '@redwoodjs/graphql-server';
 
 import { db } from 'src/lib/db';
 
@@ -104,7 +105,7 @@ const signupOptions = {
     //
     // If this returns anything else, it will be returned by the
     // `signUp()` function in the form of: `{ message: 'String here' }`.
-    handler: ({ username, hashedPassword, salt, ...rest }) => {
+    handler: async ({ username, hashedPassword, salt, ...rest }) => {
         console.log('signupOptions', {
             username,
             hashedPassword,
@@ -116,15 +117,25 @@ const signupOptions = {
             userAttributes: { email },
         } = rest;
 
-        return db.user.create({
-            data: {
-                username,
-                email: email.toLowerCase(),
-                hashedPassword,
-                salt,
-                roles: 'user',
-            },
-        });
+        try {
+            const createResponse = await db.user.create({
+                data: {
+                    username,
+                    email: email.toLowerCase(),
+                    hashedPassword,
+                    salt,
+                    roles: 'user',
+                },
+            });
+            console.log('create response', createResponse);
+            return createResponse;
+        } catch (error) {
+            if (error.toString().includes('Unique constraint failed')) {
+                throw new RedwoodGraphQLError('Username already taken');
+            }
+
+            throw error;
+        }
     },
 
     errors: {
