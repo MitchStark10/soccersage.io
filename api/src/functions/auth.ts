@@ -120,7 +120,6 @@ const signupOptions = {
                     roles: 'user',
                 },
             });
-            console.log('create response', createResponse);
             return createResponse;
         } catch (error) {
             if (error.toString().includes('Unique constraint failed')) {
