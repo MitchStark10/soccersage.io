@@ -1,11 +1,21 @@
-import { Link } from '@redwoodjs/router';
 import classNames from 'classnames';
 
-const HEADER_LINK_STYLES =
-    'hover:bg-secondary flex justify-center items-center rounded p-5 w-full lg:w-auto';
+import { Link } from '@redwoodjs/router';
 
-export const HeaderLink: React.FC<React.ComponentProps<typeof Link>> = ({
+const HEADER_LINK_STYLES =
+    'hover:bg-secondary flex justify-start items-center rounded p-5 w-full lg:w-auto gap-4';
+
+interface BaseHeaderLinkProps {
+    icon?: React.ReactNode;
+    variant: 'desktop' | 'mobile';
+}
+
+type HeaderLinkProps = React.ComponentProps<typeof Link> & BaseHeaderLinkProps;
+
+export const HeaderLink: React.FC<HeaderLinkProps> = ({
     to,
+    icon,
+    variant,
     children,
     className,
     ...rest
@@ -16,11 +26,12 @@ export const HeaderLink: React.FC<React.ComponentProps<typeof Link>> = ({
             className={classNames(HEADER_LINK_STYLES, className)}
             {...rest}
         >
+            {variant === 'mobile' ? icon : null}
             {children}
         </Link>
     );
 };
-interface DropDownHeaderLinksProps {
+interface DropDownHeaderLinksProps extends BaseHeaderLinkProps {
     label: string;
     toggleIsAdminDropdownHidden: () => void;
     isAdminDropdownHidden: boolean;
@@ -28,6 +39,8 @@ interface DropDownHeaderLinksProps {
 
 export const DropDownHeaderLinks: React.FC<DropDownHeaderLinksProps> = ({
     label,
+    variant,
+    icon,
     children,
     toggleIsAdminDropdownHidden,
     isAdminDropdownHidden,
@@ -39,6 +52,7 @@ export const DropDownHeaderLinks: React.FC<DropDownHeaderLinksProps> = ({
                 onClick={toggleIsAdminDropdownHidden}
                 onKeyDown={toggleIsAdminDropdownHidden}
             >
+                {variant === 'mobile' ? icon : null}
                 {label}
             </button>
             <div
