@@ -119,7 +119,7 @@ export const Header = () => {
             <div
                 className={classNames(
                     BASE_CLASSES,
-                    'h-20 hidden lg:flex justify-between items-center'
+                    'hidden lg:flex justify-between items-center'
                 )}
             >
                 <DesktopHeader />

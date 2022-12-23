@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 
-import { Link } from '@redwoodjs/router';
+import { Link, useMatch } from '@redwoodjs/router';
 
 const HEADER_LINK_STYLES =
-    'hover:bg-secondary flex justify-start items-center rounded p-5 w-full lg:w-auto gap-4';
+    'hover:bg-secondary flex justify-start items-center rounded p-5 w-full lg:w-auto gap-4 md:my-2';
 
 interface BaseHeaderLinkProps {
     icon?: React.ReactNode;
@@ -20,10 +20,17 @@ export const HeaderLink: React.FC<HeaderLinkProps> = ({
     className,
     ...rest
 }) => {
+    const { match: isActivePath } = useMatch(to);
+    console.log('isActivePath', {
+        to,
+        isActivePath,
+    });
     return (
         <Link
             to={to}
-            className={classNames(HEADER_LINK_STYLES, className)}
+            className={classNames(HEADER_LINK_STYLES, className, {
+                'font-bold': isActivePath,
+            })}
             {...rest}
         >
             {variant === 'mobile' ? icon : null}
