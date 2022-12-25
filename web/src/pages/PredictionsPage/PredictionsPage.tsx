@@ -74,6 +74,11 @@ const PredictionsPage = () => {
                 <Text>You haven&apos;t made any predictions yet.</Text>
             ) : null}
 
+            {/* TODO: Display the following stat cards:
+            Predictions Made/Won/Percentage
+            Current place in standings standings
+            Current streak */}
+
             {pendingPredictions.length > 0 ? (
                 <>
                     <H1>Pending Results</H1>
