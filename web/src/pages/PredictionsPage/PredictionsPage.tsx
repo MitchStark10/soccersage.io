@@ -9,6 +9,7 @@ import { H1 } from 'src/components/Core/Text/H1';
 import { Text } from 'src/components/Core/Text/Text';
 import { PredictionCard } from 'src/components/Prediction/PredictionCard';
 import { useAuthenticatedQuery } from 'src/hooks/use-authenticated-query';
+import { CardContainer } from 'src/components/Core/Card/CardContainer';
 
 export const MY_PREDICTIONS_QUERY = gql`
     query FindMyPredictions {
@@ -75,9 +76,13 @@ const PredictionsPage = () => {
             ) : null}
 
             {/* TODO: Display the following stat cards:
-            Predictions Made/Won/Percentage
-            Current place in standings standings
+                Predictions Made
+                Prediction Accuracy (percentage)
             Current streak */}
+
+            <CardContainer>
+                {data.myPredictions.length} Predictions Made
+            </CardContainer>
 
             {pendingPredictions.length > 0 ? (
                 <>

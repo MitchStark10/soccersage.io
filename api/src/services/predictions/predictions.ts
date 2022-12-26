@@ -44,6 +44,10 @@ const getPredictionStatus = (
     return winningTeamId === prediction.teamId ? 'correct' : 'incorrect';
 };
 
+interface UserPredictionMap {
+    [key: string]: PartialPrediction[]
+}
+
 export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
     // TODO: This logic finds all predictions, and includes the associated game for each prediction.
     // While this works with small amounts of data, this will not scale very well, due to the
@@ -53,7 +57,7 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
     //   a. - This is still not as performant as possible, but would reduce duplicate data and retain live standings.
     // 2. - Store standings in a separate schema, and have a CRON job that updates them once an hour.
     //   a. - This would allow for a much more performant solution, but would remove the ability to have live standings.
-    const predictions = await db.prediction.findMany({
+    const predictions: PartialPrediction[] = await db.prediction.findMany({
         where: { seasonId },
         include: {
             game: true,
@@ -61,9 +65,7 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
         },
     });
 
-    const userPredictionMap = predictions.reduce<{
-        [key: string]: PartialPrediction[];
-    }>((acc, prediction) => {
+    const userPredictionMap = predictions.reduce<UserPredictionMap>((acc, prediction) => {
         if (acc[prediction.userId]) {
             acc[prediction.userId].push(prediction);
         } else {
@@ -75,7 +77,7 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
 
     // TODO: Define the exact scoring algorithm that we would like to use
     const userIdRankings = Object.entries(userPredictionMap).map(
-        ([userId, predictions]) => {
+        ([userId, predictions]: [string, PartialPrediction[]]) => {
             const { email, username } = predictions[0].user;
             const score = predictions.reduce<number>((acc, prediction) => {
                 const predictionStatus = getPredictionStatus(prediction);
@@ -110,6 +112,10 @@ export const myPredictions: QueryResolvers['myPredictions'] = (
     { context }
 ) => {
     const user = getFirstUserFromContext(context);
+    // TODO: Return the current user streak
+    // TODO: Ideally, we'd like to be able to display the user's current place in the standings
+    // but that would require us to recalculate the standings for all users. Until there's a more performant solution,
+    // this idea will remain in the backlog
     return db.prediction.findMany({
         where: { userId: user.id },
     });
