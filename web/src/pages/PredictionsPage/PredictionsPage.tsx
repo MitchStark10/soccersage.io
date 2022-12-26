@@ -52,11 +52,11 @@ const PredictionsPage = () => {
         return <Loading />;
     }
 
-    const pendingPredictions = data.myPredictions.filter(
+    const pendingPredictions: Prediction[] = data.myPredictions.filter(
         (prediction: Prediction) => !prediction.game.isCompleted
     );
 
-    const completedPredictions = data.myPredictions.filter(
+    const completedPredictions: Prediction[] = data.myPredictions.filter(
         (prediction: Prediction) => prediction.game.isCompleted
     );
 
