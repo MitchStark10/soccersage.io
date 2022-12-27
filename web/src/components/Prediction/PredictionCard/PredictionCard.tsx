@@ -1,22 +1,14 @@
 import classNames from 'classnames';
+import { Prediction } from 'types/graphql';
+import { getWinningTeamId } from 'utilities/get-winning-team-id';
+
 import { CardContainer } from 'src/components/Core/Card/CardContainer';
 import { H6 } from 'src/components/Core/Text/H6';
 import { Text } from 'src/components/Core/Text/Text';
-import { Game, Prediction } from 'types/graphql';
 
 interface Props {
     prediction: Prediction;
 }
-
-const getWinningTeamId = (game: Game) => {
-    if (game.homeTeamScore > game.awayTeamScore) {
-        return game.homeTeamId;
-    } else if (game.awayTeamScore > game.homeTeamScore) {
-        return game.awayTeamId;
-    }
-
-    return null;
-};
 
 const getPredictionStatus = (prediction: Prediction) => {
     if (!prediction.game.isCompleted) {

@@ -1,5 +1,4 @@
 import type {
-    Game,
     MutationResolvers,
     Prediction as PredictionType,
     PredictionResolvers,
@@ -7,29 +6,16 @@ import type {
     User,
 } from 'types/graphql';
 
+import { PartialGame, getWinningTeamId } from '../../../../utilities/get-winning-team-id';
+
 import { getFirstUserFromContext } from 'src/lib/auth';
 import { db } from 'src/lib/db';
 
-type PartialGame = Omit<
-    Game,
-    'homeTeam' | 'awayTeam' | 'predictions' | 'season'
->;
 type PartialUser = Omit<User, 'predictions' | 'resetTokenExpiresAt'>;
 
 type PartialPrediction = Omit<PredictionType, 'game' | 'user'> & {
     game: PartialGame;
     user: PartialUser;
-};
-
-//TODO: Re-use these functions from the PredictionCard
-const getWinningTeamId = (game: PartialGame) => {
-    if (game.homeTeamScore > game.awayTeamScore) {
-        return game.homeTeamId;
-    } else if (game.awayTeamScore > game.homeTeamScore) {
-        return game.awayTeamId;
-    }
-
-    return null;
 };
 
 const getPredictionStatus = (
