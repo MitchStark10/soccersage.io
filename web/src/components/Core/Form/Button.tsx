@@ -25,10 +25,10 @@ type ButtonAsExternal = BaseProps &
 type ButtonProps = ButtonAsButton | ButtonAsExternal;
 
 export const Button: React.FC<ButtonProps> = (props) => {
-    const { className, children, ...rest } = props;
+    const { className, children, loading, ...rest } = props;
 
     const isDisabled =
-        props.as === 'button' && (props.disabled ?? props.loading);
+        props.as === 'button' && (props.disabled ?? loading);
 
     const compiledClassname = cn(
         ' focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center',
@@ -57,7 +57,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
             disabled={isDisabled}
             {...rest}
         >
-            {rest.loading ? <LoadingDots /> : children}
+            {loading ? <LoadingDots /> : children}
         </button>
     );
 };
