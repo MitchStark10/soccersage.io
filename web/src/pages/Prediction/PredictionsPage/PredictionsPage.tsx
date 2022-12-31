@@ -1,7 +1,7 @@
-import PredictionsCell from 'src/components/Prediction/PredictionsCell'
+import PredictionsCell from 'src/components/Prediction/PredictionsCell';
 
 const PredictionsPage = () => {
-  return <PredictionsCell />
-}
+    return <PredictionsCell />;
+};
 
-export default PredictionsPage
+export default PredictionsPage;
