@@ -1,12 +1,14 @@
-import { AuthProvider } from '@redwoodjs/auth';
+import { useEffect } from 'react';
 
+import { AuthProvider } from '@redwoodjs/auth';
 import { FatalErrorBoundary, RedwoodProvider } from '@redwoodjs/web';
 import { RedwoodApolloProvider } from '@redwoodjs/web/apollo';
-import { useEffect } from 'react';
+
 import FatalErrorPage from 'src/pages/FatalErrorPage';
 import Routes from 'src/Routes';
 import './index.css';
 import './scaffold.css';
+import '@fontsource/open-sans';
 
 const setDocHeight = () => {
     document.documentElement.style.setProperty(

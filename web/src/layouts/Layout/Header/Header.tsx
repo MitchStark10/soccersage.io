@@ -33,7 +33,9 @@ const DesktopHeader = () => {
                     </Button>
                 </div>
             ) : (
-                <HeaderLink to={routes.login()}>Login</HeaderLink>
+                <HeaderLink variant="mobile" to={routes.login()}>
+                    Login
+                </HeaderLink>
             )}
         </>
     );
@@ -91,7 +93,11 @@ const MobileSideBar: React.VFC<MobileSidebarProps> = ({
                     <p>{currentUser.username}</p>
                 </div>
             ) : (
-                <HeaderLink to={routes.login()} onClick={closeSidebar}>
+                <HeaderLink
+                    variant="mobile"
+                    to={routes.login()}
+                    onClick={closeSidebar}
+                >
                     Login
                 </HeaderLink>
             )}
@@ -113,7 +119,7 @@ export const Header = () => {
             <div
                 className={classNames(
                     BASE_CLASSES,
-                    'h-20 hidden lg:flex justify-between items-center'
+                    'hidden lg:flex justify-between items-center'
                 )}
             >
                 <DesktopHeader />

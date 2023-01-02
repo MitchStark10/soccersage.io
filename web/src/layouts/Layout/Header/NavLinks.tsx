@@ -1,6 +1,12 @@
 import { useAuth } from '@redwoodjs/auth';
 import { routes } from '@redwoodjs/router';
+
+import { Clipboard } from 'src/components/Icons/Clipboard';
+import { Lock } from 'src/components/Icons/Lock';
+import { SoccerBall } from 'src/components/Icons/SoccerBall';
+import { Trophy } from 'src/components/Icons/Trophy';
 import { useToggle } from 'src/hooks/use-toggle';
+
 import { DropDownHeaderLinks, HeaderLink } from './HeaderLink';
 import { LogoLink } from './LogoLink';
 
@@ -11,6 +17,7 @@ interface Props {
 }
 
 export const NavLinks: React.VFC<Props> = ({
+    variant,
     includeLogoLink = true,
     onNavLinkClick,
 }) => {
@@ -31,42 +38,63 @@ export const NavLinks: React.VFC<Props> = ({
                     'h-full sticky flex justify-start items-center gap-2 flex-col lg:flex-row w-full lg:w-auto'
                 }
             >
-                <HeaderLink to={routes.games()} onClick={onNavLinkClick}>
+                <HeaderLink
+                    variant={variant}
+                    to={routes.games()}
+                    onClick={onNavLinkClick}
+                    icon={<SoccerBall />}
+                >
                     Games
                 </HeaderLink>
-                <HeaderLink to={routes.predictions()} onClick={onNavLinkClick}>
+                <HeaderLink
+                    variant={variant}
+                    to={routes.predictions()}
+                    onClick={onNavLinkClick}
+                    icon={<Clipboard />}
+                >
                     Predictions
                 </HeaderLink>
-                <HeaderLink to={routes.standings()} onClick={onNavLinkClick}>
+                <HeaderLink
+                    variant={variant}
+                    to={routes.standings()}
+                    onClick={onNavLinkClick}
+                    icon={<Trophy />}
+                >
                     Standings
                 </HeaderLink>
                 {isAuthenticated && hasRole('admin') ? (
                     <DropDownHeaderLinks
+                        variant={variant}
                         label="Admin"
+                        icon={<Lock />}
                         isAdminDropdownHidden={isAdminDropdownHidden}
                         toggleIsAdminDropdownHidden={
                             toggleIsAdminDropDownHidden
                         }
                     >
                         <HeaderLink
+                            variant={variant}
                             to={routes.adminSeasons()}
                             onClick={onAdminNavLinkClick}
                         >
                             Seasons
                         </HeaderLink>
                         <HeaderLink
+                            variant={variant}
                             to={routes.adminTeams()}
                             onClick={onAdminNavLinkClick}
                         >
                             Teams
                         </HeaderLink>
                         <HeaderLink
+                            variant={variant}
                             to={routes.adminGames()}
                             onClick={onAdminNavLinkClick}
                         >
                             Games
                         </HeaderLink>
                         <HeaderLink
+                            variant={variant}
                             to={routes.adminPredictions()}
                             onClick={onAdminNavLinkClick}
                         >

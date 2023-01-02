@@ -1,6 +1,8 @@
 import { useAuth } from '@redwoodjs/auth';
-import Layout from './Layout';
+
 import NotFoundPage from 'src/pages/NotFoundPage/NotFoundPage';
+
+import Layout from './Layout';
 
 export const AdminLayout: React.FC = ({ children }) => {
     const { hasRole, loading } = useAuth();
