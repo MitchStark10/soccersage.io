@@ -6,7 +6,7 @@ import type {
     User,
 } from 'types/graphql';
 
-import { PartialGame, getWinningTeamId } from '../../../../utilities/get-winning-team-id';
+import { PartialGame, getWinningTeamId } from 'utilities/get-winning-team-id';
 
 import { getFirstUserFromContext } from 'src/lib/auth';
 import { db } from 'src/lib/db';

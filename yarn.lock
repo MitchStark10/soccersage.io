@@ -7565,6 +7565,7 @@ __metadata:
   dependencies:
     "@redwoodjs/api": 3.4.0
     "@redwoodjs/graphql-server": 3.4.0
+    utilities: ^1.0.6
   languageName: unknown
   linkType: soft
 
@@ -23614,6 +23615,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"utilities@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "utilities@npm:1.0.6"
+  checksum: e47972461e07a4753aef39ad7c4d5d6a0e279d9ce31bec6e8d441afede5bf2e01fcf44acb21887fcf55748c1ed4848024d5532a3139965a0b944131640cdca48
+  languageName: node
+  linkType: hard
+
+"utilities@workspace:utilities":
+  version: 0.0.0-use.local
+  resolution: "utilities@workspace:utilities"
+  languageName: unknown
+  linkType: soft
+
 "utils-merge@npm:1.0.1":
   version: 1.0.1
   resolution: "utils-merge@npm:1.0.1"
@@ -23906,6 +23920,7 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     tailwindcss: ^3.2.3
+    utilities: ^1.0.6
   languageName: unknown
   linkType: soft
 
