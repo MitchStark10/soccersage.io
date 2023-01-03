@@ -44,7 +44,10 @@ const GamesPage = () => {
     } = useQuery<{ upcomingGames: Game[] }>(UPCOMING_GAMES_QUERY);
 
     const { data: predictionsData, error: predictionsError } = useQuery<{
-        myPredictions: Prediction[];
+        myPredictions: {
+            streakCount: number;
+            predictions: Prediction[];
+        };
     }>(MY_PREDICTIONS_QUERY);
 
     const error = gameError || (isAuthenticated && predictionsError);
@@ -63,7 +66,7 @@ const GamesPage = () => {
 
     const games = gameData.upcomingGames;
     const predictionsMapByGameId =
-        predictionsData?.myPredictions.reduce((acc, prediction) => {
+        predictionsData?.myPredictions.predictions.reduce((acc, prediction) => {
             acc[prediction.gameId] = prediction;
             return acc;
         }, {}) || {};

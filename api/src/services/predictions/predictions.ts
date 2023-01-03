@@ -1,4 +1,5 @@
 import type {
+    Game,
     MutationResolvers,
     Prediction as PredictionType,
     PredictionResolvers,
@@ -6,32 +7,25 @@ import type {
     User,
 } from 'types/graphql';
 
-import { PartialGame, getWinningTeamId } from 'utilities/get-winning-team-id';
+import { getPredictionStatus } from 'utilities/get-prediction-status';
 
 import { getFirstUserFromContext } from 'src/lib/auth';
 import { db } from 'src/lib/db';
 
 type PartialUser = Omit<User, 'predictions' | 'resetTokenExpiresAt'>;
 
+type PartialGame = Omit<
+    Game,
+    'homeTeam' | 'awayTeam' | 'predictions' | 'season'
+>;
+
 type PartialPrediction = Omit<PredictionType, 'game' | 'user'> & {
     game: PartialGame;
     user: PartialUser;
 };
 
-const getPredictionStatus = (
-    prediction: PartialPrediction
-): 'incomplete' | 'correct' | 'incorrect' => {
-    if (!prediction.game.isCompleted) {
-        return 'incomplete';
-    }
-
-    const winningTeamId = getWinningTeamId(prediction.game);
-
-    return winningTeamId === prediction.teamId ? 'correct' : 'incorrect';
-};
-
 interface UserPredictionMap {
-    [key: string]: PartialPrediction[]
+    [key: string]: PartialPrediction[];
 }
 
 export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
@@ -51,15 +45,18 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
         },
     });
 
-    const userPredictionMap = predictions.reduce<UserPredictionMap>((acc, prediction) => {
-        if (acc[prediction.userId]) {
-            acc[prediction.userId].push(prediction);
-        } else {
-            acc[prediction.userId] = [prediction];
-        }
+    const userPredictionMap = predictions.reduce<UserPredictionMap>(
+        (acc, prediction) => {
+            if (acc[prediction.userId]) {
+                acc[prediction.userId].push(prediction);
+            } else {
+                acc[prediction.userId] = [prediction];
+            }
 
-        return acc;
-    }, {});
+            return acc;
+        },
+        {}
+    );
 
     // TODO: Define the exact scoring algorithm that we would like to use
     const userIdRankings = Object.entries(userPredictionMap).map(
@@ -93,18 +90,41 @@ export const predictions: QueryResolvers['predictions'] = () => {
     return db.prediction.findMany();
 };
 
-export const myPredictions: QueryResolvers['myPredictions'] = (
+export const myPredictions: QueryResolvers['myPredictions'] = async (
     _temp,
     { context }
 ) => {
+
     const user = getFirstUserFromContext(context);
-    // TODO: Return the current user streak
     // TODO: Ideally, we'd like to be able to display the user's current place in the standings
     // but that would require us to recalculate the standings for all users. Until there's a more performant solution,
     // this idea will remain in the backlog
-    return db.prediction.findMany({
+    const predictions = await db.prediction.findMany({
         where: { userId: user.id },
+        include: {
+            game: true,
+        },
+        orderBy: { game: { startDateTime: 'desc' } },
     });
+
+
+    let streakCount = 0;
+
+    for (const prediction of predictions) {
+        const predictionStatus = getPredictionStatus(prediction);
+        if (predictionStatus === 'correct') {
+            streakCount++;
+        } else {
+            break;
+        }
+    }
+
+    console.log('returning predictions', predictions);
+
+    return {
+        streakCount,
+        predictions,
+    };
 };
 
 export const prediction: QueryResolvers['prediction'] = ({ id }) => {

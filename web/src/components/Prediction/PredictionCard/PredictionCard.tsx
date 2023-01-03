@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { Prediction } from 'types/graphql';
-import { getWinningTeamId } from 'utilities/get-winning-team-id';
+import { getPredictionStatus } from 'utilities/get-prediction-status';
 
 import { CardContainer } from 'src/components/Core/Card/CardContainer';
 import { H6 } from 'src/components/Core/Text/H6';
@@ -9,16 +9,6 @@ import { Text } from 'src/components/Core/Text/Text';
 interface Props {
     prediction: Prediction;
 }
-
-const getPredictionStatus = (prediction: Prediction) => {
-    if (!prediction.game.isCompleted) {
-        return 'incomplete';
-    }
-
-    const winningTeamId = getWinningTeamId(prediction.game);
-
-    return winningTeamId === prediction.teamId ? 'correct' : 'incorrect';
-};
 
 export const PredictionCard: React.VFC<Props> = ({ prediction }) => {
     const predictedTie = prediction.prediction.toUpperCase() === 'TIE';
