@@ -1,6 +1,8 @@
 import { MetaTags } from '@redwoodjs/web';
 
 import { CounterContainer } from 'src/components/Core/Counter/CounterContainer';
+import { ListItem } from 'src/components/Core/List/ListItem';
+import { UnorderedList } from 'src/components/Core/List/UnorderedList';
 import { Text } from 'src/components/Core/Text/Text';
 
 const HomePage = () => {
@@ -10,7 +12,7 @@ const HomePage = () => {
                 title="Getting Started"
                 description="Soccer Sage description"
             />
-            <Text As="h1" className="mt-0">
+            <Text As="h1" textAlign="center" className="mt-0">
                 Pre-season Begins!
             </Text>
             <div className="grid grid-cols-3 md:grid-cols-6 mt-4 p-4 justify-items-center items-center gap-y-4 -mx-5">
@@ -79,22 +81,22 @@ const HomePage = () => {
                             soccersage.io provides you with the ability to track
                             each prediction that you&apos;ve made for the
                             current season.
-                            <ul className="list-disc ml-8">
-                                <li>
+                            <UnorderedList>
+                                <ListItem>
                                     If you correctly predict the winning team,
                                     you wil be awared 2 points for that
                                     prediction.{' '}
-                                </li>
-                                <li>
+                                </ListItem>
+                                <ListItem>
                                     If you correctly predict a tie, you will be
                                     awared a a single point for that prediction.
-                                </li>
-                                <li>
+                                </ListItem>
+                                <ListItem>
                                     If you do not predict the game&apos;s
                                     outcome correctly, you will not be awarded
                                     any points.
-                                </li>
-                            </ul>
+                                </ListItem>
+                            </UnorderedList>
                         </Text>
                     </CounterContainer>
                     <CounterContainer count={4} title="Win prizes">

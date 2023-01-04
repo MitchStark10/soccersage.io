@@ -12,13 +12,13 @@ export const CounterContainer: React.FC<Props> = ({
     title,
     children,
 }) => (
-    <div className="mb-4">
+    <div className="mb-12">
         <div className="flex flex-row justify-start items-center">
             <CounterNumber>{count}</CounterNumber>
-            <Text As="h2" className="text-primary-dark ml-1">
+            <Text As="h3" className="text-primary-dark ml-1 font-extrabold">
                 {title}
             </Text>
         </div>
-        <div className="text-xl items-center px-16">{children}</div>
+        <div className="text-xl items-center mt-4">{children}</div>
     </div>
 );

@@ -25,7 +25,7 @@ const TEXT_ALIGN_CLASSES = 'text-left text-center text-right';
 export const Text: React.FC<Props> = ({
     As = 'p',
     variant = As,
-    textAlign = 'center',
+    textAlign = 'left',
     className,
     children,
 }) => {
