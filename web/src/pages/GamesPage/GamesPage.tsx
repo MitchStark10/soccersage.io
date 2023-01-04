@@ -7,7 +7,6 @@ import { MetaTags } from '@redwoodjs/web';
 import { CardGrid } from 'src/components/Core/Card/CardGrid';
 import { Loading } from 'src/components/Core/Loading/Loading';
 import { ErrorText } from 'src/components/Core/Text/ErrorText';
-import { H1 } from 'src/components/Core/Text/H1';
 import { Text } from 'src/components/Core/Text/Text';
 import { GameCard } from 'src/components/Game/GameCard/GameCard';
 
@@ -74,7 +73,7 @@ const GamesPage = () => {
     return (
         <>
             <MetaTags title="Games" description="Games page" />
-            <H1>Upcoming Games</H1>
+            <Text As="h1">Upcoming Games</Text>
             {games.length === 0 ? (
                 <Text>There are no upcoming games.</Text>
             ) : (

@@ -1,11 +1,14 @@
+import { useState } from 'react';
+
 import { Game, Prediction } from 'types/graphql';
-import { CardContainer } from 'src/components/Core/Card/CardContainer';
-import { Button } from 'src/components/Core/Form/Button';
-import { H6 } from 'src/components/Core/Text/H6';
-import { useMutation } from '@redwoodjs/web';
+
 import { useAuth } from '@redwoodjs/auth';
 import { navigate, routes } from '@redwoodjs/router';
-import { useState } from 'react';
+import { useMutation } from '@redwoodjs/web';
+
+import { CardContainer } from 'src/components/Core/Card/CardContainer';
+import { Button } from 'src/components/Core/Form/Button';
+import { Text } from 'src/components/Core/Text/Text';
 
 interface Props {
     game: Game;
@@ -94,9 +97,9 @@ export const GameCard: React.VFC<Props> = ({ game, prediction }) => {
 
     return (
         <CardContainer className="w-full">
-            <H6>
+            <Text As="h6">
                 {game.homeTeam.name} vs {game.awayTeam.name}
-            </H6>
+            </Text>
             <div className="grid gap-y-2 flex-col justify-between items-center mt-4">
                 <Button
                     variant={

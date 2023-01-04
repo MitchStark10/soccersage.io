@@ -6,7 +6,6 @@ import { MetaTags } from '@redwoodjs/web';
 import { CardGrid } from 'src/components/Core/Card/CardGrid';
 import { Loading } from 'src/components/Core/Loading/Loading';
 import { ErrorText } from 'src/components/Core/Text/ErrorText';
-import { H1 } from 'src/components/Core/Text/H1';
 import { Text } from 'src/components/Core/Text/Text';
 import { PredictionCard } from 'src/components/Prediction/Cards';
 import { StatCard } from 'src/components/Prediction/Cards/StatCard';
@@ -85,7 +84,9 @@ const PredictionsPage = () => {
             />
             {pendingPredictions.length === 0 &&
             completedPredictions.length === 0 ? (
-                <H1 className="m-4 text-center">Predictions</H1>
+                <Text As="h1" textAlign="center" className="m-4">
+                    Predictions
+                </Text>
             ) : null}
             {predictionResults.length === 0 ? (
                 <Text>You haven&apos;t made any predictions yet.</Text>
@@ -105,7 +106,7 @@ const PredictionsPage = () => {
 
             {pendingPredictions.length > 0 ? (
                 <>
-                    <H1>Pending Results</H1>
+                    <Text As="h1">Pending Results</Text>
                     <CardGrid>
                         {pendingPredictions.map((prediction) => (
                             <PredictionCard

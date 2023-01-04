@@ -1,4 +1,4 @@
-import { H2 } from '../Text/H2';
+import { Text } from 'src/components/Core/Text/Text';
 
 import { CounterNumber } from './CounterNumber';
 
@@ -15,7 +15,9 @@ export const CounterContainer: React.FC<Props> = ({
     <div className="mb-4">
         <div className="flex flex-row justify-start items-center">
             <CounterNumber>{count}</CounterNumber>
-            <H2 className="text-primary-dark ml-1">{title}</H2>
+            <Text As="h2" className="text-primary-dark ml-1">
+                {title}
+            </Text>
         </div>
         <div className="text-xl items-center px-16">{children}</div>
     </div>

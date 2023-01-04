@@ -1,7 +1,6 @@
 import { MetaTags } from '@redwoodjs/web';
 
 import { CounterContainer } from 'src/components/Core/Counter/CounterContainer';
-import { H1 } from 'src/components/Core/Text/H1';
 import { Text } from 'src/components/Core/Text/Text';
 
 const HomePage = () => {
@@ -11,7 +10,9 @@ const HomePage = () => {
                 title="Getting Started"
                 description="Soccer Sage description"
             />
-            <H1 className="mt-0">Pre-season Begins!</H1>
+            <Text As="h1" className="mt-0">
+                Pre-season Begins!
+            </Text>
             <div className="grid grid-cols-3 md:grid-cols-6 mt-4 p-4 justify-items-center items-center gap-y-4 -mx-5">
                 <img
                     className="w-20"

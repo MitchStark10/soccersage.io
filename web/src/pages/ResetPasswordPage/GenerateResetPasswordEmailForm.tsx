@@ -1,9 +1,11 @@
-import { MetaTags, useMutation } from '@redwoodjs/web';
 import { useState } from 'react';
+
+import { MetaTags, useMutation } from '@redwoodjs/web';
+
 import { Button } from 'src/components/Core/Form/Button';
 import { Input } from 'src/components/Core/Form/Input';
 import { ErrorText } from 'src/components/Core/Text/ErrorText';
-import { H1 } from 'src/components/Core/Text/H1';
+import { Text } from 'src/components/Core/Text/Text';
 import { Form } from 'src/components/Forms/Form';
 import { useInputText } from 'src/hooks/use-input-text';
 
@@ -43,7 +45,7 @@ export const GenerateResetPasswordEmailForm = () => {
     return (
         <>
             <MetaTags title="ResetPassword" description="ResetPassword page" />
-            <H1>Reset Password</H1>
+            <Text As="h1">Reset Password</Text>
             <Form onSubmit={onSubmit}>
                 <Input
                     id="email"

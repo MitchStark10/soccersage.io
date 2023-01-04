@@ -4,7 +4,7 @@ import { MetaTags } from '@redwoodjs/web';
 
 import { Loading } from 'src/components/Core/Loading/Loading';
 import { ErrorText } from 'src/components/Core/Text/ErrorText';
-import { H1 } from 'src/components/Core/Text/H1';
+import { Text } from 'src/components/Core/Text/Text';
 
 import { StandingsTable } from './StandingsTable';
 
@@ -38,7 +38,7 @@ const StandingsPage = () => {
                 title="Standings"
                 description="View the current soccersage.io standings"
             />
-            <H1>Standings</H1>
+            <Text As="h1">Standings</Text>
             <StandingsTable standingsData={data.standings.userIdRankings} />
         </>
     );

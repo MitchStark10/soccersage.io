@@ -1,7 +1,5 @@
-import classNames from 'classnames';
 import { FC } from 'react';
-import { H1 } from '../Text/H1';
-import { H2 } from '../Text/H2';
+
 import { Text } from '../Text/Text';
 
 interface DocumentNode {
@@ -129,19 +127,22 @@ export const Contentful: FC<Props> = ({ node, influencedBy }) => {
         if (node)
             switch (influencedBy) {
                 case 'heading-1':
-                    return <H1 className={className}>{node.value}</H1>;
+                    return (
+                        <Text As="h1" className={className}>
+                            {node.value}
+                        </Text>
+                    );
                 case 'heading-2':
                     return (
-                        <H2 className={classNames(className, 'text-left')}>
+                        <Text As="h2" textAlign="left">
                             {node.value}
-                        </H2>
+                        </Text>
                     );
                 case 'list-item':
                     return <li className={className}>{node.value}</li>;
                 default:
                     return <Text className={className}>{node.value}</Text>;
             }
-    } else {
         console.warn('Unhandled node type', node.nodeType);
         return null;
     }

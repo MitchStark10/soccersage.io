@@ -1,10 +1,10 @@
-import { H1 } from 'src/components/Core/Text/H1';
+import { Text } from 'src/components/Core/Text/Text';
 import Layout from 'src/layouts/Layout/Layout';
 
 const NotFoundPage = () => {
     return (
         <Layout>
-            <H1>Page Not found</H1>
+            <Text As="h1">Page not found</Text>
         </Layout>
     );
 };

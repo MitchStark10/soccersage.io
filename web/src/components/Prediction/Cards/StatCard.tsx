@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { H1 } from 'src/components/Core/Text/H1';
+import { Text } from 'src/components/Core/Text/Text';
 
 interface Props {
     title: string;
@@ -11,7 +11,9 @@ export const StatCard: React.FC<Props> = ({ title, children }) => {
     return (
         <span className="flex flex-col justify-start items-start">
             <div className="uppercase">{title}</div>
-            <H1 className="ml-0 my-2">{children}</H1>
+            <Text As="h6" className="ml-0 my-2">
+                {children}
+            </Text>
         </span>
     );
 };
