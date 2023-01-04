@@ -32,9 +32,9 @@ export const Button: React.FC<ButtonProps> = (props) => {
     const compiledClassname = cn(
         ' focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center',
         {
-            'text-white bg-primary hover:bg-secondary focus:ring-gray':
+            'text-white bg-primary focus:ring-gray':
                 props.variant === 'primary',
-            ' text-black bg-white border-gray hover:bg-primary-dark hover:text-white hover:border-primary-dark focus:ring-gray border':
+            ' text-black bg-white border-gray hover:bg-secondary hover:text-white hover:border-secondary focus:ring-gray border':
                 props.variant === 'secondary',
             'opacity-75': isDisabled,
         },

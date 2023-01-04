@@ -11,12 +11,12 @@ interface Props {
 
 const STYLE_MAP = {
     p: 'text-base',
-    h1: 'text-4xl',
-    h2: 'text-3xl',
-    h3: 'text-2xl',
-    h4: 'text-xl',
-    h5: 'text-lg',
-    h6: 'text-base font-semibold m-4',
+    h1: 'text-4xl my-8',
+    h2: 'text-3xl my-6',
+    h3: 'text-2xl my-6',
+    h4: 'text-xl my-4',
+    h5: 'text-lg my-4',
+    h6: 'text-base font-semibold my-4',
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- Ensures that text align classes are compiled into our CSS

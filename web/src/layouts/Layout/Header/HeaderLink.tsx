@@ -21,10 +21,6 @@ export const HeaderLink: React.FC<HeaderLinkProps> = ({
     ...rest
 }) => {
     const { match: isActivePath } = useMatch(to);
-    console.log('isActivePath', {
-        to,
-        isActivePath,
-    });
     return (
         <Link
             to={to}

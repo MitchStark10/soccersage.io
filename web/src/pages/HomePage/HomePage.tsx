@@ -15,7 +15,7 @@ const HomePage = () => {
             <Text As="h1" textAlign="center" className="mt-0">
                 Pre-season Begins!
             </Text>
-            <div className="grid grid-cols-3 md:grid-cols-6 mt-4 p-4 justify-items-center items-center gap-y-4 -mx-5">
+            <div className="grid grid-cols-3 md:grid-cols-6 my-4 p-4 justify-items-center items-center gap-y-4 -mx-5">
                 <img
                     className="w-20"
                     src="/logos/leagues/premier-league-logo.png"
