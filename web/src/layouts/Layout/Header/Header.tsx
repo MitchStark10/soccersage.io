@@ -6,7 +6,6 @@ import { useAuth } from '@redwoodjs/auth';
 import { routes } from '@redwoodjs/router';
 
 import { Button } from 'src/components/Core/Form/Button';
-import { Text } from 'src/components/Core/Text/Text';
 import { Hamburger } from 'src/components/Icons/Hamburger';
 import { Person } from 'src/components/Icons/Person';
 import { useBodyScrollLock } from 'src/hooks/use-body-scroll-lock';
@@ -17,13 +16,13 @@ import { LogoLink } from './LogoLink';
 import { NavLinks } from './NavLinks';
 
 const DesktopHeader = () => {
-    const { isAuthenticated, currentUser, logOut } = useAuth();
+    const { isAuthenticated, logOut } = useAuth();
     return (
         <>
             <NavLinks variant="desktop" />
             {isAuthenticated ? (
                 <div className="flex justify-between items-center">
-                    <Text>{currentUser?.email}</Text>
+                    {/* TODO: Replace this with a user dropdown */}
                     <Button
                         variant="secondary"
                         onClick={() => logOut()}
@@ -115,7 +114,7 @@ const BASE_CLASSES = 'gap-2 px-5';
 
 export const Header = () => {
     return (
-        <header className="sticky top-0 bg-primary text-white">
+        <header className="sticky top-0 border-b border-b-background-gray shadow bg-white">
             <div
                 className={classNames(
                     BASE_CLASSES,

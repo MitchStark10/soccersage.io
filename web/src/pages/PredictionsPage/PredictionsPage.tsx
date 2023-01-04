@@ -1,5 +1,5 @@
-import { getPredictionStatus } from 'utilities/get-prediction-status';
 import { Prediction } from 'types/graphql';
+import { getPredictionStatus } from 'utilities/get-prediction-status';
 
 import { MetaTags } from '@redwoodjs/web';
 
@@ -8,9 +8,9 @@ import { Loading } from 'src/components/Core/Loading/Loading';
 import { ErrorText } from 'src/components/Core/Text/ErrorText';
 import { H1 } from 'src/components/Core/Text/H1';
 import { Text } from 'src/components/Core/Text/Text';
-import { PredictionCard } from 'src/components/Prediction/PredictionCard';
+import { PredictionCard } from 'src/components/Prediction/Cards';
+import { StatCard } from 'src/components/Prediction/Cards/StatCard';
 import { useAuthenticatedQuery } from 'src/hooks/use-authenticated-query';
-import { CardContainer } from 'src/components/Core/Card/CardContainer';
 
 export const MY_PREDICTIONS_QUERY = gql`
     query FindMyPredictions {
@@ -91,19 +91,17 @@ const PredictionsPage = () => {
                 <Text>You haven&apos;t made any predictions yet.</Text>
             ) : null}
 
-            <H1>Stats</H1>
-            <CardGrid className="my-8">
-                <CardContainer>
-                    {predictionResults.length} Predictions Made
-                </CardContainer>
-                <CardContainer>
+            <div className="from-primary to-primary-dark bg-gradient-to-r py-6 -mx-5 px-5 text-white flex flex-row justify-evenly items-center">
+                <StatCard title="Predictions Made">
+                    {predictionResults.length}
+                </StatCard>
+                <StatCard title="Success Rate">
                     {(correctPredictions / completedPredictionsCount) * 100}%
-                    Success Rate
-                </CardContainer>
-                <CardContainer>
-                    {data.myPredictions.streakCount} Current Streak
-                </CardContainer>
-            </CardGrid>
+                </StatCard>
+                <StatCard title="Current Streak">
+                    {data.myPredictions.streakCount}
+                </StatCard>
+            </div>
 
             {pendingPredictions.length > 0 ? (
                 <>
@@ -119,17 +117,14 @@ const PredictionsPage = () => {
                 </>
             ) : null}
             {completedPredictions.length > 0 ? (
-                <>
-                    <H1>Completed Predictions</H1>
-                    <CardGrid>
-                        {completedPredictions.map((prediction) => (
-                            <PredictionCard
-                                key={prediction.id}
-                                prediction={prediction}
-                            />
-                        ))}
-                    </CardGrid>
-                </>
+                <CardGrid className="my-8">
+                    {completedPredictions.map((prediction) => (
+                        <PredictionCard
+                            key={prediction.id}
+                            prediction={prediction}
+                        />
+                    ))}
+                </CardGrid>
             ) : null}
         </>
     );
