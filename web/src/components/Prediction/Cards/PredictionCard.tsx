@@ -37,6 +37,7 @@ const GameDisplay: React.FC<{ game: Game }> = ({ game }) => {
                 {game.isCompleted
                     ? 'FT'
                     : new Date(game.startDateTime).toLocaleDateString()}{' '}
+                {/* TODO: Add an "upcoming" pill */}
             </Text>
             <TeamText
                 align="center"
@@ -54,6 +55,9 @@ export const PredictionCard: React.VFC<Props> = ({ prediction }) => {
     return (
         <CardContainer className={'border-2 bg-white shadow-md'}>
             <GameDisplay game={prediction.game} />
+            {/* TODO: Add the prediction text
+            TODO: Add the prediction status check
+            or x mark */}
         </CardContainer>
     );
 };
