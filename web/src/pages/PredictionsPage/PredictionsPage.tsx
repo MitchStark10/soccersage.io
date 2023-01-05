@@ -1,5 +1,4 @@
 import { Prediction } from 'types/graphql';
-import { getPredictionStatus } from 'utilities/get-prediction-status';
 
 import { MetaTags } from '@redwoodjs/web';
 
@@ -10,6 +9,7 @@ import { Text } from 'src/components/Core/Text/Text';
 import { PredictionCard } from 'src/components/Prediction/Cards';
 import { StatCard } from 'src/components/Prediction/Cards/StatCard';
 import { useAuthenticatedQuery } from 'src/hooks/use-authenticated-query';
+import { getPredictionStatus } from 'src/utils/get-prediction-status';
 
 export const MY_PREDICTIONS_QUERY = gql`
     query FindMyPredictions {

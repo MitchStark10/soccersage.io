@@ -1,28 +1,15 @@
 import type {
-    Game,
     MutationResolvers,
-    Prediction as PredictionType,
     PredictionResolvers,
     QueryResolvers,
-    User,
 } from 'types/graphql';
-
-import { getPredictionStatus } from 'utilities/get-prediction-status';
 
 import { getFirstUserFromContext } from 'src/lib/auth';
 import { db } from 'src/lib/db';
-
-type PartialUser = Omit<User, 'predictions' | 'resetTokenExpiresAt'>;
-
-type PartialGame = Omit<
-    Game,
-    'homeTeam' | 'awayTeam' | 'predictions' | 'season'
->;
-
-type PartialPrediction = Omit<PredictionType, 'game' | 'user'> & {
-    game: PartialGame;
-    user: PartialUser;
-};
+import {
+    getPredictionStatus,
+    PartialPrediction,
+} from 'src/lib/get-prediction-status';
 
 interface UserPredictionMap {
     [key: string]: PartialPrediction[];
@@ -94,7 +81,6 @@ export const myPredictions: QueryResolvers['myPredictions'] = async (
     _temp,
     { context }
 ) => {
-
     const user = getFirstUserFromContext(context);
     // TODO: Ideally, we'd like to be able to display the user's current place in the standings
     // but that would require us to recalculate the standings for all users. Until there's a more performant solution,
@@ -103,10 +89,10 @@ export const myPredictions: QueryResolvers['myPredictions'] = async (
         where: { userId: user.id },
         include: {
             game: true,
+            user: true,
         },
         orderBy: { game: { startDateTime: 'desc' } },
     });
-
 
     let streakCount = 0;
 

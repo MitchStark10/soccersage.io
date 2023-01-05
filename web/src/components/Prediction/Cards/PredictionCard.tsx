@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import { Prediction } from 'types/graphql';
-import { getPredictionStatus } from 'utilities/get-prediction-status';
 
 import { CardContainer } from 'src/components/Core/Card/CardContainer';
 import { Text } from 'src/components/Core/Text/Text';
+import { getPredictionStatus } from 'src/utils/get-prediction-status';
 
 interface Props {
     prediction: Prediction;
