@@ -12,9 +12,9 @@ interface Props {
 
 const STYLE_MAP = {
     p: 'text-base',
-    h1: 'text-4xl py-8',
-    h2: 'text-3xl py-6',
-    h3: 'text-2xl py-6',
+    h1: 'text-4xl py-8 font-extrabold',
+    h2: 'text-3xl py-6 font-extrabold',
+    h3: 'text-2xl py-6 font-bold',
     h4: 'text-xl py-4',
     h5: 'text-lg py-4',
     h6: 'text-base font-semibold py-4',
