@@ -36,6 +36,7 @@ export const MY_PREDICTIONS_QUERY = gql`
                         name
                         logoUrl
                     }
+                    startDateTime
                 }
                 team {
                     name
@@ -62,10 +63,6 @@ const PredictionsPage = () => {
 
     const predictionResults = data.myPredictions.predictions;
 
-    const pendingPredictions: Prediction[] = predictionResults.filter(
-        (prediction: Prediction) => !prediction.game.isCompleted
-    );
-
     const completedPredictions: Prediction[] = predictionResults.filter(
         (prediction: Prediction) => prediction.game.isCompleted
     );
@@ -82,8 +79,7 @@ const PredictionsPage = () => {
                 title="Predictions"
                 description="View all of your recent predictions"
             />
-            {pendingPredictions.length === 0 &&
-            completedPredictions.length === 0 ? (
+            {predictionResults.length === 0 ? (
                 <Text As="h1" textAlign="center" className="m-4">
                     Predictions
                 </Text>
@@ -92,7 +88,7 @@ const PredictionsPage = () => {
                 <Text>You haven&apos;t made any predictions yet.</Text>
             ) : null}
 
-            <div className="from-primary to-primary-dark bg-gradient-to-r py-6 -mx-5 px-5 text-white flex flex-row justify-evenly items-center">
+            <div className="from-primary to-primary-dark bg-gradient-to-r py-6 -mx-5 px-5 text-white flex flex-row justify-evenly items-center mb-5">
                 <StatCard title="Predictions Made">
                     {predictionResults.length}
                 </StatCard>
@@ -104,22 +100,9 @@ const PredictionsPage = () => {
                 </StatCard>
             </div>
 
-            {pendingPredictions.length > 0 ? (
-                <>
-                    <Text As="h1">Pending Results</Text>
-                    <CardGrid>
-                        {pendingPredictions.map((prediction) => (
-                            <PredictionCard
-                                key={prediction.id}
-                                prediction={prediction}
-                            />
-                        ))}
-                    </CardGrid>
-                </>
-            ) : null}
-            {completedPredictions.length > 0 ? (
-                <CardGrid className="my-8">
-                    {completedPredictions.map((prediction) => (
+            {predictionResults.length > 0 ? (
+                <CardGrid>
+                    {predictionResults.map((prediction) => (
                         <PredictionCard
                             key={prediction.id}
                             prediction={prediction}

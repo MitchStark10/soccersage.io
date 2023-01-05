@@ -1,22 +1,24 @@
 import classNames from 'classnames';
+import { Alignment } from 'types/alignment';
 
-type TextTypes = 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+type TextTypes = 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'caption';
 
 interface Props {
-    variant?: TextTypes;
+    variant?: TextTypes | 'caption';
     As?: TextTypes;
-    textAlign?: 'left' | 'center' | 'right';
+    textAlign?: Alignment;
     className?: string;
 }
 
 const STYLE_MAP = {
     p: 'text-base',
-    h1: 'text-4xl my-8',
-    h2: 'text-3xl my-6',
-    h3: 'text-2xl my-6',
-    h4: 'text-xl my-4',
-    h5: 'text-lg my-4',
-    h6: 'text-base font-semibold my-4',
+    h1: 'text-4xl py-8',
+    h2: 'text-3xl py-6',
+    h3: 'text-2xl py-6',
+    h4: 'text-xl py-4',
+    h5: 'text-lg py-4',
+    h6: 'text-base font-semibold py-4',
+    caption: 'text-sm py-2',
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars -- Ensures that text align classes are compiled into our CSS
