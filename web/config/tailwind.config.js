@@ -20,6 +20,14 @@ module.exports = {
                 'tertiary-light': '#F2A15F',
                 'tertiary-dark': '#AF622C',
 
+                'success-background': '#E6F4EA',
+                'success-dark': '#006400',
+                success: '#4BB543',
+
+                info: '#008CCC',
+                'info-background': '#E6F4F9',
+                'info-dark': '#002b63',
+
                 white: '#FFFFFF',
                 gray: '#D3D3D3',
                 'background-gray': '#F5F5F5',
@@ -27,6 +35,9 @@ module.exports = {
                 black: '#000000',
                 'error-red': '#E02424',
                 'success-green': '#4BB543',
+            },
+            borderRadius: {
+                circle: '100%',
             },
         },
     },

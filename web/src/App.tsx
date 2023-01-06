@@ -8,7 +8,6 @@ import FatalErrorPage from 'src/pages/FatalErrorPage';
 import Routes from 'src/Routes';
 import './index.css';
 import './scaffold.css';
-import '@fontsource/open-sans';
 
 const setDocHeight = () => {
     document.documentElement.style.setProperty(

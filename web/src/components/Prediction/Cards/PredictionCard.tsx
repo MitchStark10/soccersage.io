@@ -1,9 +1,13 @@
+import classNames from 'classnames';
 import { Alignment } from 'types/alignment';
 import { Game, Prediction, Team } from 'types/graphql';
 
 import { CardContainer } from 'src/components/Core/Card/CardContainer';
+import { Pill } from 'src/components/Core/Pill/Pill';
 import { Text } from 'src/components/Core/Text/Text';
-// import { getPredictionStatus } from 'src/utils/get-prediction-status';
+import { Check } from 'src/components/Icons/Check';
+import { X } from 'src/components/Icons/X';
+import { getPredictionStatus } from 'src/utils/get-prediction-status';
 
 interface Props {
     prediction: Prediction;
@@ -30,34 +34,67 @@ const TeamText: React.FC<TeamProps> = ({ team, imageFocus, align }) => {
 };
 
 const GameDisplay: React.FC<{ game: Game }> = ({ game }) => {
+    const isGameInFuture = new Date(game.startDateTime) > new Date();
+
     return (
-        <div className="grid grid-cols-3 w-full items-center">
-            <TeamText align="center" team={game.homeTeam} imageFocus={'left'} />
-            <Text textAlign="center" variant="caption">
+        <div className="grid grid-cols-3 w-full md:w-3/4 items-center">
+            <TeamText align="left" team={game.homeTeam} imageFocus={'right'} />
+            <Text
+                textAlign="center"
+                variant="caption"
+                className="flex flex-col items-center gap-2"
+            >
                 {game.isCompleted
                     ? 'FT'
                     : new Date(game.startDateTime).toLocaleDateString()}{' '}
-                {/* TODO: Add an "upcoming" pill */}
+                {isGameInFuture && <Pill variant="info">Upcoming</Pill>}
             </Text>
-            <TeamText
-                align="center"
-                team={game.awayTeam}
-                imageFocus={'right'}
-            />
+            <TeamText align="right" team={game.awayTeam} imageFocus={'left'} />
         </div>
     );
 };
 
 export const PredictionCard: React.VFC<Props> = ({ prediction }) => {
-    // const predictedTie = prediction.prediction.toUpperCase() === 'TIE';
-    // const predictionStatus = getPredictionStatus(prediction);
+    const predictedTie = prediction.prediction.toUpperCase() === 'TIE';
+    const predictionStatus = getPredictionStatus(prediction);
+    const pillVariant =
+        predictionStatus === 'correct'
+            ? 'success'
+            : predictionStatus === 'incorrect'
+            ? 'failure'
+            : 'info';
 
     return (
-        <CardContainer className={'border-2 bg-white shadow-md'}>
+        <CardContainer className={'border bg-white shadow-md relative'}>
+            {predictionStatus !== 'incomplete' && (
+                <Pill
+                    variant={pillVariant}
+                    className={classNames(
+                        'py-0.5 rounded-circle absolute bottom-5 right-5',
+                        {
+                            'px-1.5': predictionStatus === 'correct',
+                            'px-2': predictionStatus === 'incorrect',
+                        }
+                    )}
+                >
+                    {predictionStatus === 'correct' && <Check />}
+                    {predictionStatus === 'incorrect' && <X />}
+                </Pill>
+            )}
             <GameDisplay game={prediction.game} />
-            {/* TODO: Add the prediction text
-            TODO: Add the prediction status check
-            or x mark */}
+            <Text
+                className="flex gap-2 w-full md:w-3/4 mt-6 items-center"
+                textAlign="left"
+            >
+                You predicted{' '}
+                {predictedTie ? (
+                    'a tie'
+                ) : (
+                    <>
+                        <b>{prediction.team.name}</b> to win
+                    </>
+                )}
+            </Text>
         </CardContainer>
     );
 };
