@@ -73,7 +73,7 @@ const GamesPage = () => {
     return (
         <>
             <MetaTags title="Games" description="Games page" />
-            <Text As="h1" textAlign="left">
+            <Text As="h1" textAlign="center">
                 Upcoming Games
             </Text>
             {games.length === 0 ? (
