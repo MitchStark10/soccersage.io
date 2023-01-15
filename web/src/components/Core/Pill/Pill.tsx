@@ -20,6 +20,8 @@ export const Pill: React.FC<Props> = ({ children, variant, className }) => {
                     'border-info-dark text-info-dark bg-info-background':
                         variant === 'info',
                     // TODO: Add the failure variant
+                    'border-error-red text-error-red bg-white':
+                        variant === 'failure',
                 },
                 className
             )}

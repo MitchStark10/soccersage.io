@@ -114,7 +114,7 @@ const BASE_CLASSES = 'gap-2 px-5';
 
 export const Header = () => {
     return (
-        <header className="sticky top-0 border-b border-b-background-gray shadow bg-white">
+        <header className="sticky top-0 border-b border-b-background-gray shadow bg-white z-10">
             <div
                 className={classNames(
                     BASE_CLASSES,

@@ -40,8 +40,8 @@ const GameDisplay: React.FC<{ game: Game }> = ({ game }) => {
         <div className="grid grid-cols-3 w-full md:w-3/4 items-center">
             <TeamText align="left" team={game.homeTeam} imageFocus={'right'} />
             <Text
-                textAlign="center"
                 variant="caption"
+                textAlign="center"
                 className="flex flex-col items-center gap-2"
             >
                 {game.isCompleted
@@ -65,34 +65,33 @@ export const PredictionCard: React.VFC<Props> = ({ prediction }) => {
             : 'info';
 
     return (
-        <CardContainer className={'border bg-white shadow-md relative'}>
-            {predictionStatus !== 'incomplete' && (
-                <Pill
-                    variant={pillVariant}
-                    className={classNames(
-                        'py-0.5 rounded-circle absolute bottom-5 right-5',
-                        {
-                            'px-1.5': predictionStatus === 'correct',
-                            'px-2': predictionStatus === 'incorrect',
-                        }
-                    )}
-                >
-                    {predictionStatus === 'correct' && <Check />}
-                    {predictionStatus === 'incorrect' && <X />}
-                </Pill>
-            )}
+        <CardContainer className={'border bg-white shadow-md'}>
             <GameDisplay game={prediction.game} />
             <Text
-                className="flex gap-2 w-full md:w-3/4 mt-6 items-center"
+                className="flex w-full md:w-3/4 mt-6 justify-between items-center"
                 textAlign="left"
             >
-                You predicted{' '}
-                {predictedTie ? (
-                    'a tie'
-                ) : (
-                    <>
-                        <b>{prediction.team.name}</b> to win
-                    </>
+                <span>
+                    You predicted{' '}
+                    {predictedTie ? (
+                        <b>a tie</b>
+                    ) : (
+                        <>
+                            <b>{prediction.team.name}</b> to win
+                        </>
+                    )}
+                </span>
+                {predictionStatus !== 'incomplete' && (
+                    <Pill
+                        variant={pillVariant}
+                        className={classNames('py-0.5 rounded-circle', {
+                            'px-1.5': predictionStatus === 'correct',
+                            'px-2': predictionStatus === 'incorrect',
+                        })}
+                    >
+                        {predictionStatus === 'correct' && <Check />}
+                        {predictionStatus === 'incorrect' && <X />}
+                    </Pill>
                 )}
             </Text>
         </CardContainer>
