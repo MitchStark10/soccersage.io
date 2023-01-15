@@ -2191,13 +2191,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource/open-sans@npm:^4.5.13":
-  version: 4.5.13
-  resolution: "@fontsource/open-sans@npm:4.5.13"
-  checksum: 3003bfc4759be298e044d936ac174fdb3d2e01b544b530c78dd05b53cbf37b72a23cbd31628d2bf1f9878bd2673b65dfaf8baaf2ba401e79718ff4501d238ab6
-  languageName: node
-  linkType: hard
-
 "@fortawesome/fontawesome-common-types@npm:6.2.1":
   version: 6.2.1
   resolution: "@fortawesome/fontawesome-common-types@npm:6.2.1"
@@ -20869,7 +20862,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@fontsource/open-sans": ^4.5.13
     "@fortawesome/fontawesome-svg-core": ^6.2.0
     "@fortawesome/free-solid-svg-icons": ^6.2.0
     "@fortawesome/react-fontawesome": ^0.2.0
@@ -23621,12 +23613,6 @@ __metadata:
   checksum: e47972461e07a4753aef39ad7c4d5d6a0e279d9ce31bec6e8d441afede5bf2e01fcf44acb21887fcf55748c1ed4848024d5532a3139965a0b944131640cdca48
   languageName: node
   linkType: hard
-
-"utilities@workspace:utilities":
-  version: 0.0.0-use.local
-  resolution: "utilities@workspace:utilities"
-  languageName: unknown
-  linkType: soft
 
 "utils-merge@npm:1.0.1":
   version: 1.0.1
