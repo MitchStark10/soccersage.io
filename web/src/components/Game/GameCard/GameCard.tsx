@@ -8,6 +8,7 @@ import { useMutation } from '@redwoodjs/web';
 
 import { CardContainer } from 'src/components/Core/Card/CardContainer';
 import { Button } from 'src/components/Core/Form/Button';
+import { CheckPill } from 'src/components/Core/Pill/Checkpill';
 import { Text } from 'src/components/Core/Text/Text';
 
 interface Props {
@@ -97,10 +98,14 @@ export const GameCard: React.VFC<Props> = ({ game, prediction }) => {
 
     return (
         <CardContainer className="w-full">
-            <Text As="h6">
-                {game.homeTeam.name} vs {game.awayTeam.name}
-            </Text>
-            <div className="grid gap-y-2 flex-col justify-between items-center mt-4">
+            <div className="flex justify-center gap-4 items-center w-full">
+                <Text As="h6">
+                    {game.homeTeam.name} vs {game.awayTeam.name}
+                </Text>
+                {predictionResult && <CheckPill variant="info" />}
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 justify-between items-center mt-4">
                 <Button
                     variant={
                         predictedWinningTeam === game.homeTeamId

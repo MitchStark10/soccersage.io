@@ -1,37 +1,16 @@
-import classNames from 'classnames';
-import { Alignment } from 'types/alignment';
-import { Game, Prediction, Team } from 'types/graphql';
+import { Game, Prediction } from 'types/graphql';
 
 import { CardContainer } from 'src/components/Core/Card/CardContainer';
+import { CheckPill } from 'src/components/Core/Pill/Checkpill';
 import { Pill } from 'src/components/Core/Pill/Pill';
+import { XPill } from 'src/components/Core/Pill/XPill';
+import { TeamText } from 'src/components/Core/Text/TeamText';
 import { Text } from 'src/components/Core/Text/Text';
-import { Check } from 'src/components/Icons/Check';
-import { X } from 'src/components/Icons/X';
 import { getPredictionStatus } from 'src/utils/get-prediction-status';
 
 interface Props {
     prediction: Prediction;
 }
-
-interface TeamProps {
-    team: Team;
-    imageFocus: 'left' | 'right';
-    align: Alignment;
-}
-
-const TeamText: React.FC<TeamProps> = ({ team, imageFocus, align }) => {
-    return (
-        <Text textAlign={align}>
-            {imageFocus === 'left' && team.logoUrl && (
-                <img src={team.logoUrl} alt={team.name} />
-            )}
-            {team.name}
-            {imageFocus === 'right' && team.logoUrl && (
-                <img src={team.logoUrl} alt={team.name} />
-            )}
-        </Text>
-    );
-};
 
 const GameDisplay: React.FC<{ game: Game }> = ({ game }) => {
     const isGameInFuture = new Date(game.startDateTime) > new Date();
@@ -57,18 +36,12 @@ const GameDisplay: React.FC<{ game: Game }> = ({ game }) => {
 export const PredictionCard: React.VFC<Props> = ({ prediction }) => {
     const predictedTie = prediction.prediction.toUpperCase() === 'TIE';
     const predictionStatus = getPredictionStatus(prediction);
-    const pillVariant =
-        predictionStatus === 'correct'
-            ? 'success'
-            : predictionStatus === 'incorrect'
-            ? 'failure'
-            : 'info';
 
     return (
-        <CardContainer className={'border bg-white shadow-md'}>
+        <CardContainer className={'border shadow-md'}>
             <GameDisplay game={prediction.game} />
             <Text
-                className="flex w-full md:w-3/4 mt-6 justify-between items-center"
+                className="flex w-full md:w-3/4 mt-6 justify-between items-center gap-1"
                 textAlign="left"
             >
                 <span>
@@ -81,17 +54,11 @@ export const PredictionCard: React.VFC<Props> = ({ prediction }) => {
                         </>
                     )}
                 </span>
-                {predictionStatus !== 'incomplete' && (
-                    <Pill
-                        variant={pillVariant}
-                        className={classNames('py-0.5 rounded-circle', {
-                            'px-1.5': predictionStatus === 'correct',
-                            'px-2': predictionStatus === 'incorrect',
-                        })}
-                    >
-                        {predictionStatus === 'correct' && <Check />}
-                        {predictionStatus === 'incorrect' && <X />}
-                    </Pill>
+                {predictionStatus === 'correct' && (
+                    <CheckPill variant="success" />
+                )}
+                {predictionStatus === 'incorrect' && (
+                    <XPill variant="failure" />
                 )}
             </Text>
         </CardContainer>

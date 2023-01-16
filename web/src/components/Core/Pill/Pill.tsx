@@ -2,14 +2,14 @@ import classNames from 'classnames';
 
 import { Text } from 'src/components/Core/Text/Text';
 
-interface Props {
+export interface PillProps {
     children: React.ReactNode;
     variant: 'success' | 'failure' | 'info';
     className?: string;
 }
 
 // TODO: Add tests to ensure that the correct colors are applied to each variant
-export const Pill: React.FC<Props> = ({ children, variant, className }) => {
+export const Pill: React.FC<PillProps> = ({ children, variant, className }) => {
     return (
         <Text
             className={classNames(
