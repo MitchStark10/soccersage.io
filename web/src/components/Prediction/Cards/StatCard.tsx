@@ -10,8 +10,8 @@ interface Props {
 export const StatCard: React.FC<Props> = ({ title, children }) => {
     return (
         <span className="flex flex-col justify-start items-start">
-            <div className="uppercase">{title}</div>
-            <Text As="h6" className="ml-0 my-2">
+            <div>{title}</div>
+            <Text As="h2" className="ml-0">
                 {children}
             </Text>
         </span>
