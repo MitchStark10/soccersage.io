@@ -18,7 +18,7 @@ export const Table: React.VFC<Props> = ({
             )}
         >
             <table className="w-full text-sm text-left">
-                <thead className="text-xs text-gray-700 uppercase bg-light-gray">
+                <thead className="text-sm uppercase bg-primary-dark text-white">
                     <tr>
                         {columnLabels.map((label, index) => (
                             <th key={index} scope="col" className="px-6 py-3">

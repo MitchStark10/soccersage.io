@@ -1,4 +1,5 @@
 import { useAuth } from '@redwoodjs/auth';
+
 import { Table } from 'src/components/Core/Table/Table';
 
 interface StandingInfo {

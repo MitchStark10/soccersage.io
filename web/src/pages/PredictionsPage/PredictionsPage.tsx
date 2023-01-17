@@ -93,7 +93,12 @@ const PredictionsPage = () => {
                     {predictionResults.length}
                 </StatCard>
                 <StatCard title="Success Rate">
-                    {(correctPredictions / completedPredictionsCount) * 100}%
+                    {completedPredictionsCount > 0
+                        ? `${
+                              (correctPredictions / completedPredictionsCount) *
+                              100
+                          }%`
+                        : 'N/A'}
                 </StatCard>
                 <StatCard title="Current Streak">
                     {data.myPredictions.streakCount}
