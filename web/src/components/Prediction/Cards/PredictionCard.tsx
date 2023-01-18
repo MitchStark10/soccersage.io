@@ -1,7 +1,7 @@
 import { Game, Prediction } from 'types/graphql';
 
 import { CardContainer } from 'src/components/Core/Card/CardContainer';
-import { CheckPill } from 'src/components/Core/Pill/Checkpill';
+import { CheckPill } from 'src/components/Core/Pill/CheckPill';
 import { Pill } from 'src/components/Core/Pill/Pill';
 import { XPill } from 'src/components/Core/Pill/XPill';
 import { TeamText } from 'src/components/Core/Text/TeamText';

@@ -8,7 +8,7 @@ import { useMutation } from '@redwoodjs/web';
 
 import { CardContainer } from 'src/components/Core/Card/CardContainer';
 import { Button } from 'src/components/Core/Form/Button';
-import { CheckPill } from 'src/components/Core/Pill/Checkpill';
+import { CheckPill } from 'src/components/Core/Pill/CheckPill';
 import { Text } from 'src/components/Core/Text/Text';
 
 interface Props {
