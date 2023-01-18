@@ -83,7 +83,7 @@ const MobileSideBar: React.VFC<MobileSidebarProps> = ({
 
     return (
         <div
-            className="bg-primary fixed w-5/6 left-0 bottom-0 fit-under-nav border-t-white px-2 py-2 z-50 overflow-y-scroll"
+            className="bg-white fixed w-5/6 left-0 bottom-0 fit-under-nav border-t-white px-2 py-2 z-50 overflow-y-scroll"
             ref={sidebarRef}
         >
             {isAuthenticated ? (
@@ -103,8 +103,8 @@ const MobileSideBar: React.VFC<MobileSidebarProps> = ({
             <hr className="my-2" />
             <NavLinks
                 variant="mobile"
-                includeLogoLink={false}
                 onNavLinkClick={closeSidebar}
+                includeLogoLink={false}
             />
         </div>
     );

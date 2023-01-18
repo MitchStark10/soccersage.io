@@ -3923,6 +3923,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@reduxjs/toolkit@npm:^1.9.1":
+  version: 1.9.1
+  resolution: "@reduxjs/toolkit@npm:1.9.1"
+  dependencies:
+    immer: ^9.0.16
+    redux: ^4.2.0
+    redux-thunk: ^2.4.2
+    reselect: ^4.1.7
+  peerDependencies:
+    react: ^16.9.0 || ^17.0.0 || ^18
+    react-redux: ^7.2.1 || ^8.0.2
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-redux:
+      optional: true
+  checksum: 8fcea47d76ea5219b25893e0e38a967298a0221817df3de830d5d5bbf730df208af536f22c9a6079dd0b4340899dbbfaff8b70d12bb926602676ace50b2b3ca4
+  languageName: node
+  linkType: hard
+
 "@redwoodjs/api-server@npm:3.4.0":
   version: 3.4.0
   resolution: "@redwoodjs/api-server@npm:3.4.0"
@@ -14390,6 +14410,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"immer@npm:^9.0.16":
+  version: 9.0.18
+  resolution: "immer@npm:9.0.18"
+  checksum: d32e3cd051f2922a39b0c34a903285efe42b315d6abed289f35a2aa18fbfebfae71f340d331f1389c083ce4a27aaa9cb4ffe365b4cd78c5cf752d27335d96e5a
+  languageName: node
+  linkType: hard
+
 "immutable@npm:~3.7.6":
   version: 3.7.6
   resolution: "immutable@npm:3.7.6"
@@ -20332,6 +20359,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"redux-thunk@npm:^2.4.2":
+  version: 2.4.2
+  resolution: "redux-thunk@npm:2.4.2"
+  peerDependencies:
+    redux: ^4
+  checksum: e202d6ef7dfa7df08ed24cb221aa89d6c84dbaa7d65fe90dbd8e826d0c10d801f48388f9a7598a4fd970ecbc93d335014570a61ca7bc8bf569eab5de77b31a3c
+  languageName: node
+  linkType: hard
+
+"redux@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "redux@npm:4.2.0"
+  dependencies:
+    "@babel/runtime": ^7.9.2
+  checksum: 6b8b543499c9b8aa6afa01ef68950f4b2ea68d803381ac65797b1a5a7e39ba88ee3650c2a5a1dd500c78ad022de45cd5ed4a5f41fe7d51db8b07d12fbe84d146
+  languageName: node
+  linkType: hard
+
 "regenerate-unicode-properties@npm:^10.1.0":
   version: 10.1.0
   resolution: "regenerate-unicode-properties@npm:10.1.0"
@@ -20652,7 +20697,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"reselect@npm:^4.0.0":
+"reselect@npm:^4.0.0, reselect@npm:^4.1.7":
   version: 4.1.7
   resolution: "reselect@npm:4.1.7"
   checksum: d94b6fec351b5f612d2424d8e7aaee9b62cb3a83a345c4e79e09aa35fb9874923a7e82ad9a2cb25491c1522ed07a1c32df9e585ae67c48630613133c7aa14ec7
@@ -20865,6 +20910,7 @@ __metadata:
     "@fortawesome/fontawesome-svg-core": ^6.2.0
     "@fortawesome/free-solid-svg-icons": ^6.2.0
     "@fortawesome/react-fontawesome": ^0.2.0
+    "@reduxjs/toolkit": ^1.9.1
     "@redwoodjs/core": 3.4.0
     babel-plugin-module-resolver: ^4.1.0
     bcrypt: ^5.1.0
