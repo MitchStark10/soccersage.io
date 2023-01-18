@@ -77,7 +77,6 @@ const MobileSideBar: React.VFC<MobileSidebarProps> = ({
 }) => {
     useBodyScrollLock();
     const sidebarRef = useRef<HTMLDivElement>(null);
-
     const { currentUser, isAuthenticated } = useAuth();
     useClickOutside([sidebarRef, hamburgerRef], closeSidebar);
 

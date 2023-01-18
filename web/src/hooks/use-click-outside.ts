@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 
+import { store } from 'src/store';
+import { uiReducerSlice } from 'src/store/reducers/uiReducer';
+
 export type ClickOutsideRef = React.RefObject<HTMLElement | SVGSVGElement>;
 
 export const useClickOutside = (
@@ -7,6 +10,7 @@ export const useClickOutside = (
     handler: (e: MouseEvent) => void
 ) => {
     useEffect(() => {
+        store.dispatch(uiReducerSlice.actions.setOverlay(true));
         /**
          * Alert if clicked on outside of element
          */
@@ -20,13 +24,15 @@ export const useClickOutside = (
             });
 
             if (isOutside) {
+                store.dispatch(uiReducerSlice.actions.setOverlay(false));
                 handler(event);
             }
         }
-        // Bind the event listener
+
         document.addEventListener('mousedown', handleClickOutside);
+
         return () => {
-            // Unbind the event listener on clean up
+            store.dispatch(uiReducerSlice.actions.setOverlay(false));
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [refs, handler]);
