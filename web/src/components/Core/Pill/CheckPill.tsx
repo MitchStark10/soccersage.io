@@ -8,7 +8,7 @@ interface Props {
 
 export const CheckPill: React.FC<Props> = ({ variant }) => {
     return (
-        <Pill variant={variant} className="py-0.5 rounded-circle px-[6px]">
+        <Pill variant={variant} className="py-[3px] rounded-circle px-[5.5px]">
             <Check />
         </Pill>
     );

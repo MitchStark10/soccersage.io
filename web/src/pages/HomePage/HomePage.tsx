@@ -56,7 +56,7 @@ const HomePage = () => {
                 />
             </div>
             {/* TODO: There should only be 1 h1 on the page */}
-            <div className="bg-white -mx-5">
+            <div className="-mx-5">
                 <div className="px-4 py-10 lg:w-2/3 mx-auto">
                     <CounterContainer count={1} title="Sign up for an account">
                         <Text>

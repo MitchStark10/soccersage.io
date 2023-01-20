@@ -12,14 +12,12 @@ type LayoutProps = {
 
 const Content = ({ children }: LayoutProps) => {
     const isUsingOverlay = useSelector(
-        (state: RootState) => state.isUsingOverlay
+        (state: RootState) => state.ui.isUsingOverlay
     );
-
-    console.log('isUsingOverlay', isUsingOverlay);
 
     return (
         <div
-            className={classNames('px-5 bg-background-gray', {
+            className={classNames('px-5 pb-5 bg-background-gray', {
                 'opacity-40': isUsingOverlay,
             })}
             style={{

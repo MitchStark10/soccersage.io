@@ -88,21 +88,24 @@ const PredictionsPage = () => {
                 <Text>You haven&apos;t made any predictions yet.</Text>
             ) : null}
 
-            <div className="from-primary to-primary-dark bg-gradient-to-r py-6 -mx-5 px-5 text-white flex flex-row justify-evenly items-center mb-5">
-                <StatCard title="Predictions Made">
-                    {predictionResults.length}
-                </StatCard>
-                <StatCard title="Success Rate">
-                    {completedPredictionsCount > 0
-                        ? `${
-                              (correctPredictions / completedPredictionsCount) *
-                              100
-                          }%`
-                        : 'N/A'}
-                </StatCard>
-                <StatCard title="Current Streak">
-                    {data.myPredictions.streakCount}
-                </StatCard>
+            <div className="from-primary to-primary-dark bg-gradient-to-r py-6 -mx-5 px-5 text-white mb-5">
+                <div className="grid grid-cols-1 sm:grid-cols-3 sm:justify-center sm:items-center sm:justify-items-center lg:w-1/2 mx-auto">
+                    <StatCard title="Predictions Made">
+                        {predictionResults.length}
+                    </StatCard>
+                    <StatCard title="Success Rate">
+                        {completedPredictionsCount > 0
+                            ? `${
+                                  (correctPredictions /
+                                      completedPredictionsCount) *
+                                  100
+                              }%`
+                            : 'N/A'}
+                    </StatCard>
+                    <StatCard title="Current Streak">
+                        {data.myPredictions.streakCount}
+                    </StatCard>
+                </div>
             </div>
 
             {predictionResults.length > 0 ? (
