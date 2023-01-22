@@ -26,8 +26,8 @@ const HomePage = () => {
                 <img
                     src="/logos/leagues/la-liga-logo.png"
                     alt="La Liga Logo"
-                    width={243}
-                    height={137}
+                    width={175}
+                    height={98}
                 />
                 <img
                     src="/logos/leagues/bundesliga-logo.png"
@@ -39,13 +39,15 @@ const HomePage = () => {
                 <img
                     src="/logos/leagues/serie-a-logo.png"
                     alt="Serie A Logo"
-                    width={243}
-                    height={137}
+                    width={200}
+                    height={112}
                 />
                 <img
                     src="/logos/leagues/ligue-1-logo.png"
                     alt="Ligue 1 Logo"
-                    className="w-20"
+                    className="w-16"
+                    width={150}
+                    height={75}
                 />
                 <img
                     src="/logos/leagues/mls-logo.svg"
@@ -77,7 +79,7 @@ const HomePage = () => {
                         </Text>
                     </CounterContainer>
                     <CounterContainer count={3} title="Track your predictions">
-                        <Text>
+                        <Text As="div" variant="p">
                             soccersage.io provides you with the ability to track
                             each prediction that you&apos;ve made for the
                             current season.

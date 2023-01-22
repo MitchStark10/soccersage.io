@@ -1,7 +1,16 @@
 import classNames from 'classnames';
 import { Alignment } from 'types/alignment';
 
-type TextTypes = 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'caption';
+type TextTypes =
+    | 'p'
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'h5'
+    | 'h6'
+    | 'caption'
+    | 'div';
 
 interface Props {
     variant?: TextTypes | 'caption';
