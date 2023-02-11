@@ -17,10 +17,6 @@ const SEASON_OPTIONS: OptionData[] = [
         value: '1',
         label: 'Alpha Season',
     },
-    {
-        value: '2',
-        label: 'Beta Season',
-    },
 ];
 
 const STANDINGS_QUERY = gql`
