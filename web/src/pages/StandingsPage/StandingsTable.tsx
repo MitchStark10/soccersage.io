@@ -1,6 +1,7 @@
 import { useAuth } from '@redwoodjs/auth';
 
 import { Table } from 'src/components/Core/Table/Table';
+import { Star } from 'src/components/Icons/Star';
 
 interface StandingInfo {
     userId: string;
@@ -13,32 +14,39 @@ interface Props {
     standingsData: StandingInfo[];
 }
 
+const StarredUsername: React.VFC<{ username: string; currentUser }> = ({
+    username,
+    currentUser,
+}) => {
+    if (username === currentUser) {
+        return (
+            <div>
+                <Star className="mr-2" />
+                {username}
+            </div>
+        );
+    }
+
+    return <p>{username}</p>;
+};
+
 export const StandingsTable: React.VFC<Props> = ({ standingsData }) => {
     const { currentUser } = useAuth();
 
     const tableData = standingsData.map(({ username, score }, index) => [
         (index + 1).toString(),
-        username,
+        <StarredUsername
+            key={username}
+            username={username}
+            currentUser={currentUser?.username}
+        />,
         score.toString(),
     ]);
-
-    const currentUserStandingsData =
-        currentUser &&
-        tableData.find(([, username]) => username === currentUser.username);
-
-    const tableDataToShow = tableData.slice(0, 10);
-
-    if (
-        currentUserStandingsData &&
-        parseInt(currentUserStandingsData[0]) > 10
-    ) {
-        tableDataToShow.push(...[['...'], currentUserStandingsData, ['...']]);
-    }
 
     return (
         <Table
             columnLabels={['Ranking', 'User', 'Points']}
-            tableData={tableDataToShow}
+            tableData={tableData}
         />
     );
 };

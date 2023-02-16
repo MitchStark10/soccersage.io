@@ -1,8 +1,10 @@
+import { ReactNode } from 'react';
+
 import classNames from 'classnames';
 
 interface Props {
     columnLabels: string[];
-    tableData: string[][];
+    tableData: ReactNode[][];
     className?: string;
 }
 export const Table: React.VFC<Props> = ({
