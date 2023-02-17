@@ -27,6 +27,8 @@ const STANDINGS_QUERY = gql`
                 username
                 email
                 score
+                correctWins
+                correctTies
             }
         }
     }
@@ -57,13 +59,15 @@ const StandingsPage = () => {
             <Text As="h1" textAlign="center">
                 Standings
             </Text>
-            <Select
-                title={currentSeasonTitle}
-                value={season}
-                setValue={setSeason}
-                options={SEASON_OPTIONS}
-            />
-            <StandingsTable standingsData={data.standings.userIdRankings} />
+            <div className="max-w-[700px] mx-auto">
+                <Select
+                    title={currentSeasonTitle}
+                    value={season}
+                    setValue={setSeason}
+                    options={SEASON_OPTIONS}
+                />
+                <StandingsTable standingsData={data.standings.userIdRankings} />
+            </div>
         </>
     );
 };

@@ -16,6 +16,12 @@ interface UserPredictionMap {
     [key: string]: PartialPrediction[];
 }
 
+interface ScoreData {
+    score: number;
+    correctWins: number;
+    correctTies: number;
+}
+
 export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
     // TODO: This logic finds all predictions, and includes the associated game for each prediction.
     // While this works with small amounts of data, this will not scale very well, due to the
@@ -49,23 +55,38 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
     const userIdRankings = Object.entries(userPredictionMap).map(
         ([userId, predictions]: [string, PartialPrediction[]]) => {
             const { email, username } = predictions[0].user;
-            const score = predictions.reduce<number>((acc, prediction) => {
-                const predictionStatus = getPredictionStatus(prediction);
-                switch (predictionStatus) {
-                    case PREDICTION_STATUS.correctWin:
-                        return acc + 3;
-                    case PREDICTION_STATUS.correctTie:
-                        return acc + 2;
-                    default:
-                        return acc;
-                }
-            }, 0);
+            const { score, correctTies, correctWins } =
+                predictions.reduce<ScoreData>(
+                    (acc, prediction) => {
+                        const predictionStatus =
+                            getPredictionStatus(prediction);
+                        switch (predictionStatus) {
+                            case PREDICTION_STATUS.correctWin:
+                                return {
+                                    score: acc.score + 3,
+                                    correctWins: acc.correctWins + 1,
+                                    correctTies: acc.correctTies,
+                                };
+                            case PREDICTION_STATUS.correctTie:
+                                return {
+                                    score: acc.score + 2,
+                                    correctWins: acc.correctWins,
+                                    correctTies: acc.correctTies + 1,
+                                };
+                            default:
+                                return acc;
+                        }
+                    },
+                    { score: 0, correctWins: 0, correctTies: 0 }
+                );
 
             return {
                 email,
                 username,
                 userId,
                 score,
+                correctTies,
+                correctWins,
             };
         }
     );
@@ -109,8 +130,6 @@ export const myPredictions: QueryResolvers['myPredictions'] = async (
             break;
         }
     }
-
-    console.log('returning predictions', predictions);
 
     return {
         streakCount,

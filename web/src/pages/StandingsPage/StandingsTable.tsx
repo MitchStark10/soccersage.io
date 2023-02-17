@@ -6,6 +6,8 @@ import { Star } from 'src/components/Icons/Star';
 interface StandingInfo {
     userId: string;
     score: number;
+    correctWins: number;
+    correctTies: number;
     email: string;
     username: string;
 }

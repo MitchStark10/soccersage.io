@@ -15,6 +15,8 @@ export const schema = gql`
         username: String!
         email: String!
         score: Int!
+        correctWins: Int!
+        correctTies: Int!
     }
 
     type StandingsResult {
