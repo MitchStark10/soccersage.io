@@ -12,6 +12,12 @@ export type PartialPrediction = Omit<Prediction, 'game' | 'user'> & {
     user: PartialUser;
 };
 
+export const PREDICTION_STATUS = {
+    correctWin: 'correctWin',
+    correctTie: 'correctTie',
+    incorrect: 'incorrect',
+};
+
 const getWinningTeamId = (game: PartialGame) => {
     if (game.homeTeamScore > game.awayTeamScore) {
         return game.homeTeamId;
@@ -34,5 +40,14 @@ export const getPredictionStatus = (prediction: PartialPrediction) => {
 
     const winningTeamId = getWinningTeamId(prediction.game);
 
-    return winningTeamId === prediction.teamId ? 'correct' : 'incorrect';
+    if (
+        winningTeamId === null &&
+        prediction.prediction.toLowerCase() === 'tie'
+    ) {
+        return PREDICTION_STATUS.correctTie;
+    }
+
+    return winningTeamId === prediction.teamId
+        ? PREDICTION_STATUS.correctTie
+        : PREDICTION_STATUS.incorrect;
 };

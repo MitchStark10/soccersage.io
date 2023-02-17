@@ -9,6 +9,7 @@ import { db } from 'src/lib/db';
 import {
     getPredictionStatus,
     PartialPrediction,
+    PREDICTION_STATUS,
 } from 'src/lib/get-prediction-status';
 
 interface UserPredictionMap {
@@ -45,15 +46,16 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
         {}
     );
 
-    // TODO: Define the exact scoring algorithm that we would like to use
     const userIdRankings = Object.entries(userPredictionMap).map(
         ([userId, predictions]: [string, PartialPrediction[]]) => {
             const { email, username } = predictions[0].user;
             const score = predictions.reduce<number>((acc, prediction) => {
                 const predictionStatus = getPredictionStatus(prediction);
                 switch (predictionStatus) {
-                    case 'correct':
-                        return acc + 1;
+                    case PREDICTION_STATUS.correctWin:
+                        return acc + 3;
+                    case PREDICTION_STATUS.correctTie:
+                        return acc + 2;
                     default:
                         return acc;
                 }
@@ -98,7 +100,10 @@ export const myPredictions: QueryResolvers['myPredictions'] = async (
 
     for (const prediction of predictions) {
         const predictionStatus = getPredictionStatus(prediction);
-        if (predictionStatus === 'correct') {
+        if (
+            predictionStatus === PREDICTION_STATUS.correctWin ||
+            predictionStatus === PREDICTION_STATUS.correctTie
+        ) {
             streakCount++;
         } else {
             break;
