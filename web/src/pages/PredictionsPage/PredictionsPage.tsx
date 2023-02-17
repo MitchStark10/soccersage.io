@@ -9,7 +9,10 @@ import { Text } from 'src/components/Core/Text/Text';
 import { PredictionCard } from 'src/components/Prediction/Cards';
 import { StatCard } from 'src/components/Prediction/Cards/StatCard';
 import { useAuthenticatedQuery } from 'src/hooks/use-authenticated-query';
-import { getPredictionStatus } from 'src/utils/get-prediction-status';
+import {
+    getPredictionStatus,
+    PREDICTION_STATUS,
+} from 'src/utils/get-prediction-status';
 
 export const MY_PREDICTIONS_QUERY = gql`
     query FindMyPredictions {
@@ -70,7 +73,9 @@ const PredictionsPage = () => {
     const completedPredictionsCount = completedPredictions.length;
 
     const correctPredictions: number = completedPredictions.filter(
-        (prediction) => getPredictionStatus(prediction) === 'correct'
+        (prediction) =>
+            getPredictionStatus(prediction) === PREDICTION_STATUS.correctTie ||
+            getPredictionStatus(prediction) === PREDICTION_STATUS.correctWin
     ).length;
 
     return (

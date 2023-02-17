@@ -6,7 +6,10 @@ import { Pill } from 'src/components/Core/Pill/Pill';
 import { XPill } from 'src/components/Core/Pill/XPill';
 import { TeamText } from 'src/components/Core/Text/TeamText';
 import { Text } from 'src/components/Core/Text/Text';
-import { getPredictionStatus } from 'src/utils/get-prediction-status';
+import {
+    getPredictionStatus,
+    PREDICTION_STATUS,
+} from 'src/utils/get-prediction-status';
 
 interface Props {
     prediction: Prediction;
@@ -54,10 +57,11 @@ export const PredictionCard: React.VFC<Props> = ({ prediction }) => {
                         </>
                     )}
                 </span>
-                {predictionStatus === 'correct' && (
-                    <CheckPill variant="success" />
-                )}
-                {predictionStatus === 'incorrect' && (
+                {predictionStatus === PREDICTION_STATUS.correctWin ||
+                    (predictionStatus === PREDICTION_STATUS.correctTie && (
+                        <CheckPill variant="success" />
+                    ))}
+                {predictionStatus === PREDICTION_STATUS.incorrect && (
                     <XPill variant="failure" />
                 )}
             </Text>

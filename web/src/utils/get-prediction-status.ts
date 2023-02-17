@@ -5,6 +5,12 @@ type PartialGame = Omit<
     'homeTeam' | 'awayTeam' | 'predictions' | 'season'
 >;
 
+export const PREDICTION_STATUS = {
+    correctWin: 'correctWin',
+    correctTie: 'correctTie',
+    incorrect: 'incorrect',
+};
+
 // TODO: RedwoodJS doesn't appear to have good code sharing between the API and web sides.
 // Ideally, this code (which is identically to a file on the API side) would be shared between the two.
 export type PartialPrediction = Omit<Prediction, 'game' | 'user'> & {
@@ -33,5 +39,14 @@ export const getPredictionStatus = (prediction: PartialPrediction) => {
 
     const winningTeamId = getWinningTeamId(prediction.game);
 
-    return winningTeamId === prediction.teamId ? 'correct' : 'incorrect';
+    if (
+        winningTeamId === null &&
+        prediction.prediction.toLowerCase() === 'tie'
+    ) {
+        return PREDICTION_STATUS.correctTie;
+    }
+
+    return winningTeamId === prediction.teamId
+        ? PREDICTION_STATUS.correctTie
+        : PREDICTION_STATUS.incorrect;
 };
