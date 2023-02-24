@@ -37,6 +37,7 @@ const Routes = () => {
                 <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
                 <Route path="/games" page={GamesPage} name="games" />
                 <Route path="/standings" page={StandingsPage} name="standings" />
+                <Route path="/rules" page={RulesPage} name="rules" />
                 <Route notfound page={NotFoundPage} />
             </Set>
         </Router>

@@ -1,9 +1,11 @@
 import { MetaTags } from '@redwoodjs/web';
 
 import { CounterContainer } from 'src/components/Core/Counter/CounterContainer';
+import { Button } from 'src/components/Core/Form/Button';
 import { ListItem } from 'src/components/Core/List/ListItem';
 import { UnorderedList } from 'src/components/Core/List/UnorderedList';
 import { Text } from 'src/components/Core/Text/Text';
+import { HowToPlay } from 'src/components/Game/HowToPlay';
 
 const HomePage = () => {
     return (
@@ -57,62 +59,7 @@ const HomePage = () => {
                     height={80}
                 />
             </div>
-            {/* TODO: There should only be 1 h1 on the page */}
-            <div className="-mx-5">
-                <div className="px-4 py-10 lg:w-2/3 mx-auto">
-                    <CounterContainer count={1} title="Sign up for an account">
-                        <Text>
-                            Signing up for an account will enable your
-                            prediction history to be saved, and will provide us
-                            with a way to contact you if you are a season
-                            winner.
-                        </Text>
-                    </CounterContainer>
-                    <CounterContainer
-                        count={2}
-                        title="View the upcoming games, and make your predictions"
-                    >
-                        <Text>
-                            Seasons in soccersage.io last for one calendar-based
-                            month. For example, a season may last from September
-                            1 - September 30.
-                        </Text>
-                    </CounterContainer>
-                    <CounterContainer count={3} title="Track your predictions">
-                        <Text As="div" variant="p">
-                            soccersage.io provides you with the ability to track
-                            each prediction that you&apos;ve made for the
-                            current season.
-                            <UnorderedList>
-                                <ListItem>
-                                    If you correctly predict the winning team,
-                                    you wil be awared 2 points for that
-                                    prediction.{' '}
-                                </ListItem>
-                                <ListItem>
-                                    If you correctly predict a tie, you will be
-                                    awared a a single point for that prediction.
-                                </ListItem>
-                                <ListItem>
-                                    If you do not predict the game&apos;s
-                                    outcome correctly, you will not be awarded
-                                    any points.
-                                </ListItem>
-                            </UnorderedList>
-                        </Text>
-                    </CounterContainer>
-                    <CounterContainer count={4} title="Win prizes">
-                        <Text>
-                            You&apos;ll be able to track each of your
-                            predictions, as well as have the ability to track
-                            how your predictions compare to your competitors. If
-                            you manage to place 1st for a given month, we will
-                            reach out to you for your prize money for that given
-                            season!
-                        </Text>
-                    </CounterContainer>
-                </div>
-            </div>
+            <HowToPlay />
         </div>
     );
 };
