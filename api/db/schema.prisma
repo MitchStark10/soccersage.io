@@ -66,6 +66,11 @@ model User {
     predictions         Prediction[]
 }
 
+model Feedback {
+    id       Int    @id @default(autoincrement())
+    feedback String
+}
+
 model RW_DataMigration {
     version    String   @id
     name       String
