@@ -1,9 +1,5 @@
 import { MetaTags } from '@redwoodjs/web';
 
-import { CounterContainer } from 'src/components/Core/Counter/CounterContainer';
-import { Button } from 'src/components/Core/Form/Button';
-import { ListItem } from 'src/components/Core/List/ListItem';
-import { UnorderedList } from 'src/components/Core/List/UnorderedList';
 import { Text } from 'src/components/Core/Text/Text';
 import { HowToPlay } from 'src/components/Game/HowToPlay';
 
