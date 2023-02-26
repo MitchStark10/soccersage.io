@@ -1,19 +1,11 @@
 import { Route, Router, Set } from '@redwoodjs/router'
 
-import ScaffoldLayout from 'src/layouts/ScaffoldLayout';
-
 import { AdminLayout } from './layouts/Layout/AdminLayout';
 import Layout from './layouts/Layout/Layout';
 
 const Routes = () => {
     return (
         <Router>
-            <Set wrap={ScaffoldLayout} title="Feedbacks" titleTo="feedbacks" buttonLabel="New Feedback" buttonTo="newFeedback">
-                <Route path="/feedbacks/new" page={FeedbackNewFeedbackPage} name="newFeedback" />
-                <Route path="/feedbacks/{id:Int}/edit" page={FeedbackEditFeedbackPage} name="editFeedback" />
-                <Route path="/feedbacks/{id:Int}" page={FeedbackFeedbackPage} name="feedback" />
-                <Route path="/feedbacks" page={FeedbackFeedbacksPage} name="feedbacks" />
-            </Set>
             <Set wrap={AdminLayout}>
                 <Route path="/admin/users/new" page={UserNewUserPage} name="adminNewUser" />
                 <Route path="/admin/users/{id:Int}/edit" page={UserEditUserPage} name="adminEditUser" />
@@ -35,6 +27,7 @@ const Routes = () => {
                 <Route path="/admin/seasons/{id:Int}/edit" page={SeasonEditSeasonPage} name="adminEditSeason" />
                 <Route path="/admin/seasons/{id:Int}" page={SeasonSeasonPage} name="adminSeason" />
                 <Route path="/admin/seasons" page={SeasonSeasonsPage} name="adminSeasons" />
+                <Route path="/admin/feedback" page={FeedbackFeedbacksPage} name="adminFeedback" />
             </Set>
             <Set wrap={Layout}>
                 <Route path="/" page={HomePage} name="home" />
@@ -45,6 +38,7 @@ const Routes = () => {
                 <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
                 <Route path="/games" page={GamesPage} name="games" />
                 <Route path="/standings" page={StandingsPage} name="standings" />
+                <Route path="/provide-feedback" page={FeedbackNewFeedbackPage} name="provideFeedback" />
                 <Route notfound page={NotFoundPage} />
             </Set>
         </Router>

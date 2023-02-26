@@ -18,7 +18,7 @@ export const schema = gql`
     }
 
     type Mutation {
-        createFeedback(input: CreateFeedbackInput!): Feedback! @requireAuth
+        createFeedback(input: CreateFeedbackInput!): Feedback! @skipAuth
         updateFeedback(id: Int!, input: UpdateFeedbackInput!): Feedback!
             @requireAuth
         deleteFeedback(id: Int!): Feedback! @requireAuth
