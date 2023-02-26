@@ -1,4 +1,6 @@
-import { Route, Router, Set } from '@redwoodjs/router';
+import { Route, Router, Set } from '@redwoodjs/router'
+
+import ScaffoldLayout from 'src/layouts/ScaffoldLayout';
 
 import { AdminLayout } from './layouts/Layout/AdminLayout';
 import Layout from './layouts/Layout/Layout';
@@ -6,6 +8,12 @@ import Layout from './layouts/Layout/Layout';
 const Routes = () => {
     return (
         <Router>
+            <Set wrap={ScaffoldLayout} title="Feedbacks" titleTo="feedbacks" buttonLabel="New Feedback" buttonTo="newFeedback">
+                <Route path="/feedbacks/new" page={FeedbackNewFeedbackPage} name="newFeedback" />
+                <Route path="/feedbacks/{id:Int}/edit" page={FeedbackEditFeedbackPage} name="editFeedback" />
+                <Route path="/feedbacks/{id:Int}" page={FeedbackFeedbackPage} name="feedback" />
+                <Route path="/feedbacks" page={FeedbackFeedbacksPage} name="feedbacks" />
+            </Set>
             <Set wrap={AdminLayout}>
                 <Route path="/admin/users/new" page={UserNewUserPage} name="adminNewUser" />
                 <Route path="/admin/users/{id:Int}/edit" page={UserEditUserPage} name="adminEditUser" />
