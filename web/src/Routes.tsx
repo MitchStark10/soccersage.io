@@ -1,4 +1,4 @@
-import { Route, Router, Set } from '@redwoodjs/router'
+import { Route, Router, Set } from '@redwoodjs/router';
 
 import { AdminLayout } from './layouts/Layout/AdminLayout';
 import Layout from './layouts/Layout/Layout';
@@ -28,6 +28,7 @@ const Routes = () => {
                 <Route path="/admin/seasons/{id:Int}" page={SeasonSeasonPage} name="adminSeason" />
                 <Route path="/admin/seasons" page={SeasonSeasonsPage} name="adminSeasons" />
                 <Route path="/admin/feedback" page={FeedbackFeedbacksPage} name="adminFeedback" />
+                <Route path="/admin/feedback/{id:Int}" page={FeedbackFeedbackPage} name="adminFeedback" />
             </Set>
             <Set wrap={Layout}>
                 <Route path="/" page={HomePage} name="home" />

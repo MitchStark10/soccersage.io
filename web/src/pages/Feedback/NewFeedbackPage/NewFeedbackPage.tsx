@@ -1,7 +1,7 @@
-import NewFeedback from 'src/components/Feedback/NewFeedback'
+import NewFeedback from 'src/components/Feedback/NewFeedback';
 
 const NewFeedbackPage = () => {
-  return <NewFeedback />
-}
+    return <NewFeedback />;
+};
 
-export default NewFeedbackPage
+export default NewFeedbackPage;
