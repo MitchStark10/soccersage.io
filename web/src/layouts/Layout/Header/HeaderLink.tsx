@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Link, useMatch } from '@redwoodjs/router';
 
 const HEADER_LINK_STYLES =
-    'hover:bg-primary-dark hover:text-white flex justify-start items-center rounded p-5 w-full lg:w-auto gap-4 md:my-2';
+    'betterhover:hover:bg-primary-dark betterhover:hover:text-white flex justify-start items-center rounded p-5 w-full lg:w-auto gap-4 md:my-2';
 
 interface BaseHeaderLinkProps {
     icon?: React.ReactNode;

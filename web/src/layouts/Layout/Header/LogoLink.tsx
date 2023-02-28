@@ -7,7 +7,7 @@ export const LogoLink = () => {
         <HeaderLink
             variant="desktop"
             to={routes.home()}
-            className="w-[173px] text-black hover:text-white"
+            className="w-[173px] text-black betterhover:hover:text-white"
         >
             {/* <img
                 src="/logos/black_logo_no_bg.svg"

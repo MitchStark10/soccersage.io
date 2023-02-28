@@ -39,7 +39,7 @@ export const Select: React.FC<SelectProps> = ({
                     <div className="relative inline-flex align-middle w-full">
                         <button
                             className={
-                                'bg-white text-slate-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 flex gap-2 items-center'
+                                'bg-white text-slate-700 font-bold uppercase text-sm px-6 py-3 rounded shadow betterhover:hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 flex gap-2 items-center'
                             }
                             type="button"
                             ref={btnDropdownRef}

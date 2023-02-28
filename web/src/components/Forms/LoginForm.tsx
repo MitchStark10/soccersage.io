@@ -58,7 +58,7 @@ export const LoginForm: React.VFC = () => {
             </Button>
             <Link
                 to={routes.resetPassword()}
-                className="text-center hover:underline"
+                className="text-center betterhover:hover:underline"
             >
                 Forgot your password?
             </Link>

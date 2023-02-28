@@ -39,6 +39,9 @@ module.exports = {
             borderRadius: {
                 circle: '100%',
             },
+            screens: {
+                betterhover: { raw: '(hover: hover)' },
+            },
         },
     },
     plugins: [],
