@@ -14,6 +14,13 @@ export const handler = createGraphQLHandler({
     directives,
     sdls,
     services,
+    cors: {
+        origin:
+            process.env.NODE_ENV === 'production'
+                ? 'https://soccersage-io-api.onrender.com'
+                : '*',
+        credentials: true,
+    },
     onException: () => {
         // Disconnect from your database with an unhandled exception.
         db.$disconnect();
