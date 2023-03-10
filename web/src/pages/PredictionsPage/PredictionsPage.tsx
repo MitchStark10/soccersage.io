@@ -85,12 +85,9 @@ const PredictionsPage = () => {
                 description="View all of your recent predictions"
             />
             {predictionResults.length === 0 ? (
-                <Text As="h1" textAlign="center" className="m-4">
+                <Text As="h1" textAlign="center">
                     Predictions
                 </Text>
-            ) : null}
-            {predictionResults.length === 0 ? (
-                <Text>You haven&apos;t made any predictions yet.</Text>
             ) : null}
 
             <div className="from-primary to-primary-dark bg-gradient-to-r py-6 -mx-5 px-5 text-white mb-5">
@@ -112,6 +109,12 @@ const PredictionsPage = () => {
                     </StatCard>
                 </div>
             </div>
+
+            {predictionResults.length === 0 ? (
+                <Text variant="h4" textAlign="center">
+                    You haven&apos;t made any predictions yet.
+                </Text>
+            ) : null}
 
             {predictionResults.length > 0 ? (
                 <CardGrid>
