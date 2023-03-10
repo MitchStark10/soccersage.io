@@ -53,7 +53,9 @@ export const ResetPasswordForm: React.VFC<Props> = ({ token }) => {
 
     return (
         <>
-            <Text As="h1">Reset Password</Text>
+            <Text As="h1" textAlign="center">
+                Reset Password
+            </Text>
             <Form onSubmit={onSubmit}>
                 <Input
                     type="password"

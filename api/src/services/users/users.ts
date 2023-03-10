@@ -76,20 +76,18 @@ export const sendResetPasswordEmail: MutationResolvers['sendResetPasswordEmail']
             data: { resetToken, resetTokenExpiresAt: addDays(new Date(), 1) },
         });
 
-        console.log('Prepping mail options');
         const resetPasswordLink = `${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`;
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: lowerCaseEmail,
-            subject: 'Please Reset Your Passowrd',
+            subject: 'Please Reset Your Password',
             html: `You are receiveing this because you have requested to reseet your password at predictor.io.
             Please click on the following link, or paste this into your browser to complete the process: <br>
             <a href="${resetPasswordLink}">${resetPasswordLink}</a><br><br>
 
-            If you did not request this, please respond to ${process.env.EMAIL_USER} and delete the email.`,
+            If you did not request this, please respond to admin@soccersage.io and delete the email.`,
         };
 
-        console.log('Sending reset password email');
         try {
             await transporter.sendMail(mailOptions);
         } catch (error) {
@@ -102,7 +100,6 @@ export const sendResetPasswordEmail: MutationResolvers['sendResetPasswordEmail']
                 message: errorMessage,
             };
         }
-        console.log('Reset password email sent');
 
         return {
             success: true,

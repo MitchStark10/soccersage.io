@@ -45,7 +45,9 @@ export const GenerateResetPasswordEmailForm = () => {
     return (
         <>
             <MetaTags title="ResetPassword" description="ResetPassword page" />
-            <Text As="h1">Reset Password</Text>
+            <Text As="h1" textAlign="center">
+                Reset Password
+            </Text>
             <Form onSubmit={onSubmit}>
                 <Input
                     id="email"

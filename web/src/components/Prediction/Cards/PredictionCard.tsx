@@ -26,9 +26,16 @@ const GameDisplay: React.FC<{ game: Game }> = ({ game }) => {
                 textAlign="center"
                 className="flex flex-col items-center gap-2"
             >
-                {game.isCompleted
-                    ? 'FT'
-                    : new Date(game.startDateTime).toLocaleDateString()}{' '}
+                {game.isCompleted ? (
+                    <>
+                        <div className="font-bold text-3xl">
+                            {game.homeTeamScore} - {game.awayTeamScore}
+                        </div>
+                        FT
+                    </>
+                ) : (
+                    new Date(game.startDateTime).toLocaleDateString()
+                )}{' '}
                 {isGameInFuture && <Pill variant="info">Upcoming</Pill>}
             </Text>
             <TeamText align="right" team={game.awayTeam} imageFocus={'left'} />
