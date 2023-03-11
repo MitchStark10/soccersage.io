@@ -100,6 +100,13 @@ export const NavLinks: React.VFC<Props> = ({
                         >
                             Predictions
                         </HeaderLink>
+                        <HeaderLink
+                            variant={variant}
+                            to={routes.adminFeedbackOverview()}
+                            onClick={onAdminNavLinkClick}
+                        >
+                            Feedback
+                        </HeaderLink>
                     </DropDownHeaderLinks>
                 ) : null}
             </div>

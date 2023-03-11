@@ -25,7 +25,7 @@ const Feedback = ({ feedback }: Props) => {
     const [deleteFeedback] = useMutation(DELETE_FEEDBACK_MUTATION, {
         onCompleted: () => {
             toast.success('Feedback deleted');
-            navigate(routes.feedbacks());
+            navigate(routes.adminFeedbackOverview());
         },
         onError: (error) => {
             toast.error(error.message);
