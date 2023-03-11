@@ -42,6 +42,7 @@ export const LoginForm: React.VFC = () => {
             <Input
                 id="email"
                 label="Email"
+                type="email"
                 value={email}
                 onChange={onEmailChange}
             />
