@@ -16,7 +16,7 @@ import {
 } from '@redwoodjs/forms';
 
 import { Loading } from 'src/components/Core/Loading/Loading';
-import { formatDatetime } from 'src/utils/format-datetime';
+import { formatDatetimeForAdmin } from 'src/utils/format-datetime-for-admin';
 
 const TEAM_QUERY = gql`
     query TEAM_QUERY {
@@ -35,6 +35,16 @@ const SEASONS_QUERY = gql`
         }
     }
 `;
+
+const teamComparator = (a: Team, b: Team) => {
+    if (a.name < b.name) {
+        return -1;
+    }
+    if (a.name > b.name) {
+        return 1;
+    }
+    return 0;
+};
 
 interface Props {
     game?: RecursivePartial<Game>;
@@ -91,11 +101,14 @@ const GameForm = (props: Props) => {
                     errorClassName="rw-input rw-input-error"
                     validation={{ required: true }}
                 >
-                    {teams.teams.map((team: Team) => (
-                        <option key={team.id} value={team.id}>
-                            {team.name}
-                        </option>
-                    ))}
+                    {teams.teams
+                        .slice()
+                        .sort(teamComparator)
+                        .map((team: Team) => (
+                            <option key={team.id} value={team.id}>
+                                {team.name}
+                            </option>
+                        ))}
                 </SelectField>
 
                 <FieldError name="homeTeamId" className="rw-field-error" />
@@ -168,7 +181,9 @@ const GameForm = (props: Props) => {
 
                 <DatetimeLocalField
                     name="startDateTime"
-                    defaultValue={formatDatetime(props.game?.startDateTime)}
+                    defaultValue={formatDatetimeForAdmin(
+                        props.game?.startDateTime
+                    )}
                     className="rw-input"
                     errorClassName="rw-input rw-input-error"
                     validation={{ required: true }}

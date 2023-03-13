@@ -6,6 +6,7 @@ import { Pill } from 'src/components/Core/Pill/Pill';
 import { XPill } from 'src/components/Core/Pill/XPill';
 import { TeamText } from 'src/components/Core/Text/TeamText';
 import { Text } from 'src/components/Core/Text/Text';
+import { formatDatetimeForUser } from 'src/utils/format-datetime-for-user';
 import {
     getPredictionStatus,
     PREDICTION_STATUS,
@@ -34,7 +35,7 @@ const GameDisplay: React.FC<{ game: Game }> = ({ game }) => {
                         FT
                     </>
                 ) : (
-                    new Date(game.startDateTime).toLocaleDateString()
+                    formatDatetimeForUser(game.startDateTime)
                 )}{' '}
                 {isGameInFuture && <Pill variant="info">Upcoming</Pill>}
             </Text>

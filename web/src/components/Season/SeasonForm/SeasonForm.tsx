@@ -8,7 +8,7 @@ import {
     Submit,
 } from '@redwoodjs/forms';
 
-import { formatDatetime } from 'src/utils/format-datetime';
+import { formatDatetimeForAdmin } from 'src/utils/format-datetime-for-admin';
 
 const SeasonForm = (props) => {
     const onSubmit = (data) => {
@@ -53,7 +53,7 @@ const SeasonForm = (props) => {
 
                 <DatetimeLocalField
                     name="startDate"
-                    defaultValue={formatDatetime(props.season?.startDate)}
+                    defaultValue={formatDatetimeForAdmin(props.season?.startDate)}
                     className="rw-input"
                     errorClassName="rw-input rw-input-error"
                     validation={{ required: true }}
@@ -71,7 +71,7 @@ const SeasonForm = (props) => {
 
                 <DatetimeLocalField
                     name="endDate"
-                    defaultValue={formatDatetime(props.season?.endDate)}
+                    defaultValue={formatDatetimeForAdmin(props.season?.endDate)}
                     className="rw-input"
                     errorClassName="rw-input rw-input-error"
                     validation={{ required: true }}

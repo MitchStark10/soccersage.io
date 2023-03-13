@@ -10,6 +10,7 @@ import { CardContainer } from 'src/components/Core/Card/CardContainer';
 import { Button } from 'src/components/Core/Form/Button';
 import { CheckPill } from 'src/components/Core/Pill/CheckPill';
 import { Text } from 'src/components/Core/Text/Text';
+import { formatDatetimeForUser } from 'src/utils/format-datetime-for-user';
 
 interface Props {
     game: Game;
@@ -105,7 +106,13 @@ export const GameCard: React.VFC<Props> = ({ game, prediction }) => {
                 {predictionResult && <CheckPill variant="info" />}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 justify-between items-center mt-4">
+            <Text>
+                {formatDatetimeForUser(game.startDateTime, {
+                    includeWeekday: true,
+                })}
+            </Text>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 justify-between items-center mt-5">
                 <Button
                     variant={
                         predictedWinningTeam === game.homeTeamId

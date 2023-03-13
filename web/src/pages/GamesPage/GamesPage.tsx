@@ -16,6 +16,7 @@ const UPCOMING_GAMES_QUERY = gql`
     query FindUpcomingGames {
         upcomingGames {
             id
+            startDateTime
             homeTeamId
             homeTeam {
                 name
