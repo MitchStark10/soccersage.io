@@ -123,7 +123,15 @@ const signupOptions = {
             return createResponse;
         } catch (error) {
             if (error.toString().includes('Unique constraint failed')) {
-                throw new RedwoodGraphQLError('Username already taken');
+                if (error.meta?.target?.includes('email')) {
+                    throw new RedwoodGraphQLError('Email already taken');
+                } else if (error.meta?.target?.includes('username')) {
+                    throw new RedwoodGraphQLError('Usernme already taken');
+                }
+
+                throw new RedwoodGraphQLError(
+                    'Username or email already taken'
+                );
             }
 
             throw error;

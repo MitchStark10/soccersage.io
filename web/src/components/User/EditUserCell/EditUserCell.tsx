@@ -1,9 +1,9 @@
 import type { EditUserById } from 'types/graphql';
 
+import { navigate, routes } from '@redwoodjs/router';
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
 import { useMutation } from '@redwoodjs/web';
 import { toast } from '@redwoodjs/web/toast';
-import { navigate, routes } from '@redwoodjs/router';
 
 import UserForm from 'src/components/User/UserForm';
 
@@ -44,7 +44,7 @@ export const Success = ({ user }: CellSuccessProps<EditUserById>) => {
     const [updateUser, { loading, error }] = useMutation(UPDATE_USER_MUTATION, {
         onCompleted: () => {
             toast.success('User updated');
-            navigate(routes.users());
+            navigate(routes.adminUsers());
         },
         onError: (error) => {
             toast.error(error.message);

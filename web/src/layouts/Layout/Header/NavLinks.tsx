@@ -107,6 +107,13 @@ export const NavLinks: React.VFC<Props> = ({
                         >
                             Feedback
                         </HeaderLink>
+                        <HeaderLink
+                            variant={variant}
+                            to={routes.adminUsers()}
+                            onClick={onAdminNavLinkClick}
+                        >
+                            Users
+                        </HeaderLink>
                     </DropDownHeaderLinks>
                 ) : null}
             </div>
