@@ -78,7 +78,10 @@ const GamesPage = () => {
                 Upcoming Games
             </Text>
             {games.length === 0 ? (
-                <Text textAlign="center">There are no upcoming games.</Text>
+                <Text textAlign="center">
+                    There are no upcoming games eligible for prediction. Please
+                    check again later!
+                </Text>
             ) : (
                 <CardGrid>
                     {games.map((game, index) => {

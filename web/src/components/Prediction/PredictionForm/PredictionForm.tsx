@@ -1,3 +1,5 @@
+import { Team } from 'types/graphql';
+
 import {
     Form,
     FormError,
@@ -6,12 +8,30 @@ import {
     TextField,
     NumberField,
     Submit,
+    SelectField,
 } from '@redwoodjs/forms';
+import { useQuery } from '@redwoodjs/web';
+
+import LoadingDots from 'src/components/Core/Form/LoadingDots';
+import { teamComparator, TEAM_QUERY } from 'src/components/Game/GameForm';
 
 const PredictionForm = (props) => {
+    const { data: teams, loading } = useQuery(TEAM_QUERY);
+
     const onSubmit = (data) => {
-        props.onSave(data, props?.prediction?.id);
+        props.onSave(
+            {
+                ...data,
+                userId: props.prediction?.userId,
+                teamId: data.prediction === 'tie' ? null : data.teamId,
+            },
+            props?.prediction?.id
+        );
     };
+
+    if (loading) {
+        return <LoadingDots />;
+    }
 
     return (
         <div className="rw-form-wrapper">
@@ -28,12 +48,12 @@ const PredictionForm = (props) => {
                     className="rw-label"
                     errorClassName="rw-label rw-label-error"
                 >
-                    User id
+                    User Email
                 </Label>
 
                 <TextField
                     name="userId"
-                    defaultValue={props.prediction?.userId}
+                    defaultValue={props.prediction?.user?.email}
                     className="rw-input"
                     errorClassName="rw-input rw-input-error"
                     validation={{ required: true }}
@@ -64,15 +84,25 @@ const PredictionForm = (props) => {
                     className="rw-label"
                     errorClassName="rw-label rw-label-error"
                 >
-                    Team id
+                    Team
                 </Label>
 
-                <NumberField
+                <SelectField
                     name="teamId"
-                    defaultValue={props.prediction?.teamId}
+                    defaultValue={props.game?.homeTeamId}
                     className="rw-input"
                     errorClassName="rw-input rw-input-error"
-                />
+                    validation={{ required: true }}
+                >
+                    {teams.teams
+                        .slice()
+                        .sort(teamComparator)
+                        .map((team: Team) => (
+                            <option key={team.id} value={team.id}>
+                                {team.name}
+                            </option>
+                        ))}
+                </SelectField>
 
                 <FieldError name="teamId" className="rw-field-error" />
 

@@ -1,7 +1,7 @@
 import type { FindPredictions } from 'types/graphql';
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
 
 import { Link, routes } from '@redwoodjs/router';
+import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
 
 import Predictions from 'src/components/Prediction/Predictions';
 
@@ -13,6 +13,12 @@ export const QUERY = gql`
             gameId
             teamId
             prediction
+            user {
+                email
+            }
+            team {
+                name
+            }
         }
     }
 `;

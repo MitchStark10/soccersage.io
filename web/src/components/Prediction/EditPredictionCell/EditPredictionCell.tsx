@@ -1,9 +1,9 @@
 import type { EditPredictionById } from 'types/graphql';
 
+import { navigate, routes } from '@redwoodjs/router';
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web';
 import { useMutation } from '@redwoodjs/web';
 import { toast } from '@redwoodjs/web/toast';
-import { navigate, routes } from '@redwoodjs/router';
 
 import PredictionForm from 'src/components/Prediction/PredictionForm';
 
@@ -15,6 +15,9 @@ export const QUERY = gql`
             gameId
             teamId
             prediction
+            user {
+                email
+            }
         }
     }
 `;

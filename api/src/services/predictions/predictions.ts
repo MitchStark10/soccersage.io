@@ -4,6 +4,8 @@ import type {
     QueryResolvers,
 } from 'types/graphql';
 
+import { RedwoodGraphQLError } from '@redwoodjs/graphql-server';
+
 import { getFirstUserFromContext } from 'src/lib/auth';
 import { db } from 'src/lib/db';
 import {
@@ -21,6 +23,21 @@ interface ScoreData {
     correctWins: number;
     correctTies: number;
 }
+
+const checkIfGameIsInFuture = async (gameId: number) => {
+    if (!gameId) {
+        throw new RedwoodGraphQLError(
+            'Could not validate game start time with missing game id'
+        );
+    }
+    const game = await db.game.findUnique({ where: { id: gameId } });
+
+    console.log(
+        'is game in future',
+        new Date(game?.startDateTime) > new Date()
+    );
+    return new Date(game?.startDateTime) > new Date();
+};
 
 export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
     // TODO: This logic finds all predictions, and includes the associated game for each prediction.
@@ -119,7 +136,9 @@ export const myPredictions: QueryResolvers['myPredictions'] = async (
 
     let streakCount = 0;
 
-    for (const prediction of predictions) {
+    for (const prediction of predictions.filter(
+        (prediction) => prediction.game.isCompleted
+    )) {
         const predictionStatus = getPredictionStatus(prediction);
         if (
             predictionStatus === PREDICTION_STATUS.correctWin ||
@@ -143,18 +162,39 @@ export const prediction: QueryResolvers['prediction'] = ({ id }) => {
     });
 };
 
-export const createPrediction: MutationResolvers['createPrediction'] = ({
+export const createPrediction: MutationResolvers['createPrediction'] = async ({
     input,
 }) => {
+    const isGameInFuture = await checkIfGameIsInFuture(input.gameId);
+    if (!isGameInFuture) {
+        throw new RedwoodGraphQLError(
+            'Cannot make a prediction for a game that has already started'
+        );
+    }
     return db.prediction.create({
         data: input,
     });
 };
 
-export const updatePrediction: MutationResolvers['updatePrediction'] = ({
+export const updatePrediction: MutationResolvers['updatePrediction'] = async ({
     id,
     input,
 }) => {
+    const currentPrediction = await db.prediction.findUnique({
+        where: { id },
+    });
+
+    const isGameInFuture = await checkIfGameIsInFuture(
+        currentPrediction.gameId
+    );
+
+    if (!isGameInFuture) {
+        console.log('throwing error');
+        throw new RedwoodGraphQLError(
+            'Cannot make a prediction for a game that has already started'
+        );
+    }
+
     return db.prediction.update({
         data: input,
         where: { id },

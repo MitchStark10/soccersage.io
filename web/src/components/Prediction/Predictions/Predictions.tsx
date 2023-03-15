@@ -50,9 +50,9 @@ const PredictionsList = ({ predictions }) => {
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>User id</th>
+                            <th>User Email</th>
                             <th>Game id</th>
-                            <th>Team id</th>
+                            <th>Team</th>
                             <th>Prediction</th>
                             <th>&nbsp;</th>
                         </tr>
@@ -61,9 +61,9 @@ const PredictionsList = ({ predictions }) => {
                         {predictions.map((prediction) => (
                             <tr key={prediction.id}>
                                 <td>{truncate(prediction.id)}</td>
-                                <td>{truncate(prediction.userId)}</td>
+                                <td>{truncate(prediction.user.email)}</td>
                                 <td>{truncate(prediction.gameId)}</td>
-                                <td>{truncate(prediction.teamId)}</td>
+                                <td>{truncate(prediction.team?.name)}</td>
                                 <td>{truncate(prediction.prediction)}</td>
                                 <td>
                                     <nav className="rw-table-actions">

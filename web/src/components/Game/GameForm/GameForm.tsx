@@ -18,7 +18,7 @@ import {
 import { Loading } from 'src/components/Core/Loading/Loading';
 import { formatDatetimeForAdmin } from 'src/utils/format-datetime-for-admin';
 
-const TEAM_QUERY = gql`
+export const TEAM_QUERY = gql`
     query TEAM_QUERY {
         teams {
             id
@@ -36,7 +36,7 @@ const SEASONS_QUERY = gql`
     }
 `;
 
-const teamComparator = (a: Team, b: Team) => {
+export const teamComparator = (a: Team, b: Team) => {
     if (a.name < b.name) {
         return -1;
     }
