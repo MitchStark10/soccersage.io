@@ -76,6 +76,43 @@ export const standard = defineScenario<Prisma.PredictionCreateArgs>({
                 },
             },
         },
+        past: {
+            data: {
+                user: {
+                    create: {
+                        username: 'test3',
+                        email: 'test3',
+                        hashedPassword: 'test',
+                        salt: 'test',
+                        roles: 'test',
+                    },
+                },
+                prediction: 'String',
+                game: {
+                    create: {
+                        homeTeamScore: 2210328,
+                        awayTeamScore: 4786303,
+                        homeTeam: { create: { name: 'String2218725' } },
+                        awayTeam: { create: { name: 'String3400905' } },
+                        startDateTime: new Date('2022-06-01'),
+                        season: {
+                            create: {
+                                name: 'String3400905',
+                                startDate: new Date(),
+                                endDate: new Date(),
+                            },
+                        },
+                    },
+                },
+                season: {
+                    create: {
+                        name: 'Test season 3',
+                        startDate: new Date('2022-06-01'),
+                        endDate: new Date('2022-06-30'),
+                    },
+                },
+            },
+        },
     },
 });
 

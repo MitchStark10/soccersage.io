@@ -61,4 +61,23 @@ describe('predictions', () => {
 
         expect(result).toEqual(null);
     });
+
+    scenario(
+        'cannot create a prediction for a past game',
+        async (scenario: StandardScenario) => {
+            const predictionCreator = async () => {
+                await createPrediction({
+                    input: {
+                        userId: scenario.prediction.past.userId,
+                        prediction: 'String',
+                        gameId: scenario.prediction.past.gameId,
+                        seasonId: scenario.prediction.past.seasonId,
+                    },
+                });
+            };
+            await expect(predictionCreator).rejects.toThrow(
+                'Cannot make a prediction for a game that has already started'
+            );
+        }
+    );
 });
