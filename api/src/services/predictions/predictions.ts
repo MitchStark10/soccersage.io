@@ -32,10 +32,6 @@ const checkIfGameIsInFuture = async (gameId: number) => {
     }
     const game = await db.game.findUnique({ where: { id: gameId } });
 
-    console.log(
-        'is game in future',
-        new Date(game?.startDateTime) > new Date()
-    );
     return new Date(game?.startDateTime) > new Date();
 };
 
@@ -189,7 +185,6 @@ export const updatePrediction: MutationResolvers['updatePrediction'] = async ({
     );
 
     if (!isGameInFuture) {
-        console.log('throwing error');
         throw new RedwoodGraphQLError(
             'Cannot make a prediction for a game that has already started'
         );
