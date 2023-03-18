@@ -83,7 +83,6 @@ interface Props {
 }
 
 export const Contentful: FC<Props> = ({ node, influencedBy }) => {
-    console.log('rendering', node?.nodeType);
     if (!node) {
         return null;
     } else if (

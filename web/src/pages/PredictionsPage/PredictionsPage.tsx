@@ -93,7 +93,7 @@ const PredictionsPage = () => {
             <div className="from-primary to-primary-dark bg-gradient-to-r py-6 -mx-5 px-5 text-white mb-5">
                 <div className="grid grid-cols-1 sm:grid-cols-3 sm:justify-center sm:items-center sm:justify-items-center lg:w-1/2 mx-auto">
                     <StatCard title="Completed Predictions">
-                        {predictionResults.length}
+                        {completedPredictionsCount}
                     </StatCard>
                     <StatCard title="Success Rate">
                         {completedPredictionsCount > 0

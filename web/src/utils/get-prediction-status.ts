@@ -9,6 +9,7 @@ export const PREDICTION_STATUS = {
     correctWin: 'correctWin',
     correctTie: 'correctTie',
     incorrect: 'incorrect',
+    pending: 'pending',
 };
 
 // TODO: RedwoodJS doesn't appear to have good code sharing between the API and web sides.
@@ -28,13 +29,12 @@ const getWinningTeamId = (game: PartialGame) => {
 };
 
 export const getPredictionStatus = (prediction: PartialPrediction) => {
-    console.log('prediction', prediction);
     if (!prediction.game) {
         throw 'Prediction must have a game';
     }
 
     if (!prediction.game.isCompleted) {
-        return 'incomplete';
+        return PREDICTION_STATUS.pending;
     }
 
     const winningTeamId = getWinningTeamId(prediction.game);

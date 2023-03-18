@@ -22,6 +22,7 @@ interface ScoreData {
     score: number;
     correctWins: number;
     correctTies: number;
+    numCompletedPredictions: number;
 }
 
 const checkIfGameIsInFuture = async (gameId: number) => {
@@ -68,7 +69,7 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
     const userIdRankings = Object.entries(userPredictionMap).map(
         ([userId, predictions]: [string, PartialPrediction[]]) => {
             const { email, username } = predictions[0].user;
-            const { score, correctTies, correctWins } =
+            const { score, correctTies, correctWins, numCompletedPredictions } =
                 predictions.reduce<ScoreData>(
                     (acc, prediction) => {
                         const predictionStatus =
@@ -79,18 +80,33 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
                                     score: acc.score + 3,
                                     correctWins: acc.correctWins + 1,
                                     correctTies: acc.correctTies,
+                                    numCompletedPredictions:
+                                        acc.numCompletedPredictions + 1,
                                 };
                             case PREDICTION_STATUS.correctTie:
                                 return {
                                     score: acc.score + 2,
                                     correctWins: acc.correctWins,
                                     correctTies: acc.correctTies + 1,
+                                    numCompletedPredictions:
+                                        acc.numCompletedPredictions + 1,
                                 };
-                            default:
+                            case PREDICTION_STATUS.pending:
                                 return acc;
+                            default:
+                                return {
+                                    ...acc,
+                                    numCompletedPredictions:
+                                        acc.numCompletedPredictions + 1,
+                                };
                         }
                     },
-                    { score: 0, correctWins: 0, correctTies: 0 }
+                    {
+                        score: 0,
+                        correctWins: 0,
+                        correctTies: 0,
+                        numCompletedPredictions: 0,
+                    }
                 );
 
             return {
@@ -100,6 +116,7 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
                 score,
                 correctTies,
                 correctWins,
+                numCompletedPredictions,
             };
         }
     );

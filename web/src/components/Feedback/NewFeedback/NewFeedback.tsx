@@ -20,19 +20,16 @@ const NewFeedback = () => {
         CREATE_FEEDBACK_MUTATION,
         {
             onCompleted: () => {
-                console.log('here 1');
                 toast.success('Feedback submitted successfully');
                 navigate(routes.home());
             },
             onError: (error) => {
-                console.log('here 2', error);
                 toast.error(error.message);
             },
         }
     );
 
     const onSave = (input: CreateFeedbackInput) => {
-        console.log('creating feedback', input);
         createFeedback({ variables: { input } });
     };
 

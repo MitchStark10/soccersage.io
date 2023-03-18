@@ -55,12 +55,6 @@ const GamesPage = () => {
     if (error) {
         return <ErrorText>Error: {error.message}</ErrorText>;
     } else if (gameLoading && !gameData) {
-        console.log('rendering loading', {
-            gameLoading,
-            gameData,
-            predictionsData,
-            isAuthenticated,
-        });
         return <Loading />;
     }
 

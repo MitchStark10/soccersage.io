@@ -27,7 +27,6 @@ const App = () => {
         window.addEventListener('orientationchange', setDocHeight);
 
         return () => {
-            console.log('unmounting app, undoing event listeners');
             window.removeEventListener('resize', setDocHeight);
             window.removeEventListener('orientationchange', setDocHeight);
         };

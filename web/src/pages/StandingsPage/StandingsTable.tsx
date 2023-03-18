@@ -8,6 +8,7 @@ interface StandingInfo {
     score: number;
     correctWins: number;
     correctTies: number;
+    numCompletedPredictions: number;
     email: string;
     username: string;
 }
@@ -35,19 +36,27 @@ const StarredUsername: React.VFC<{ username: string; currentUser }> = ({
 export const StandingsTable: React.VFC<Props> = ({ standingsData }) => {
     const { currentUser } = useAuth();
 
-    const tableData = standingsData.map(({ username, score }, index) => [
-        (index + 1).toString(),
-        <StarredUsername
-            key={username}
-            username={username}
-            currentUser={currentUser?.username}
-        />,
-        score.toString(),
-    ]);
+    const tableData = standingsData.map(
+        ({ username, score, numCompletedPredictions }, index) => [
+            (index + 1).toString(),
+            <StarredUsername
+                key={username}
+                username={username}
+                currentUser={currentUser?.username}
+            />,
+            score.toString(),
+            numCompletedPredictions,
+        ]
+    );
 
     return (
         <Table
-            columnLabels={['Ranking', 'User', 'Points']}
+            columnLabels={[
+                'Ranking',
+                'User',
+                'Points',
+                'Completed Predictions',
+            ]}
             tableData={tableData}
         />
     );

@@ -17,6 +17,7 @@ export const schema = gql`
         score: Int!
         correctWins: Int!
         correctTies: Int!
+        numCompletedPredictions: Int!
     }
 
     type StandingsResult {

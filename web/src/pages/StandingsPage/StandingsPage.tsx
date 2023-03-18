@@ -29,6 +29,7 @@ const STANDINGS_QUERY = gql`
                 score
                 correctWins
                 correctTies
+                numCompletedPredictions
             }
         }
     }

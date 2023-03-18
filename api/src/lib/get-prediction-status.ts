@@ -16,6 +16,7 @@ export const PREDICTION_STATUS = {
     correctWin: 'correctWin',
     correctTie: 'correctTie',
     incorrect: 'incorrect',
+    pending: 'pending',
 };
 
 const getWinningTeamId = (game: PartialGame) => {
@@ -29,13 +30,12 @@ const getWinningTeamId = (game: PartialGame) => {
 };
 
 export const getPredictionStatus = (prediction: PartialPrediction) => {
-    console.log('prediction', prediction);
     if (!prediction.game) {
         throw 'Prediction must have a game';
     }
 
     if (!prediction.game.isCompleted) {
-        return 'incomplete';
+        return PREDICTION_STATUS.pending;
     }
 
     const winningTeamId = getWinningTeamId(prediction.game);
