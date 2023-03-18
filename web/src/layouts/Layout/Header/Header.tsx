@@ -7,9 +7,8 @@ import { routes } from '@redwoodjs/router';
 
 import { Button } from 'src/components/Core/Form/Button';
 import { Hamburger } from 'src/components/Icons/Hamburger';
-import { Person } from 'src/components/Icons/Person';
-import { useBodyScrollLock } from 'src/hooks/use-body-scroll-lock';
-import { ClickOutsideRef, useClickOutside } from 'src/hooks/use-click-outside';
+
+import { MobileSideBar } from '../MobileSidebar';
 
 import { HeaderLink } from './HeaderLink';
 import { LogoLink } from './LogoLink';
@@ -62,49 +61,6 @@ const MobileHeader = () => {
                     hamburgerRef={hamburgerRef}
                 />
             ) : null}
-        </div>
-    );
-};
-
-interface MobileSidebarProps {
-    hamburgerRef: ClickOutsideRef;
-    closeSidebar: () => void;
-}
-
-const MobileSideBar: React.VFC<MobileSidebarProps> = ({
-    closeSidebar,
-    hamburgerRef,
-}) => {
-    useBodyScrollLock();
-    const sidebarRef = useRef<HTMLDivElement>(null);
-    const { currentUser, isAuthenticated } = useAuth();
-    useClickOutside([sidebarRef, hamburgerRef], closeSidebar);
-
-    return (
-        <div
-            className="bg-white fixed w-5/6 left-0 bottom-0 fit-under-nav border-t-white px-2 py-2 z-50 overflow-y-auto"
-            ref={sidebarRef}
-        >
-            {isAuthenticated ? (
-                <div className="flex flex-row justify-start items-center py-4">
-                    <Person className="mx-2" />
-                    <p>{currentUser.username}</p>
-                </div>
-            ) : (
-                <HeaderLink
-                    variant="mobile"
-                    to={routes.login()}
-                    onClick={closeSidebar}
-                >
-                    Login
-                </HeaderLink>
-            )}
-            <hr className="my-2" />
-            <NavLinks
-                variant="mobile"
-                onNavLinkClick={closeSidebar}
-                includeLogoLink={false}
-            />
         </div>
     );
 };
