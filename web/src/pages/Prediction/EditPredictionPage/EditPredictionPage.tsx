@@ -1,11 +1,11 @@
-import EditPredictionCell from 'src/components/Prediction/EditPredictionCell'
+import EditPredictionCell from 'src/components/Prediction/EditPredictionCell';
 
 type PredictionPageProps = {
-  id: number
-}
+    id: number;
+};
 
 const EditPredictionPage = ({ id }: PredictionPageProps) => {
-  return <EditPredictionCell id={id} />
-}
+    return <EditPredictionCell id={id} />;
+};
 
-export default EditPredictionPage
+export default EditPredictionPage;
