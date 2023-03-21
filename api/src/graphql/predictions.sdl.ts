@@ -11,9 +11,7 @@ export const schema = gql`
     }
 
     type StandingsData {
-        userId: String!
         username: String!
-        email: String!
         score: Int!
         correctWins: Int!
         correctTies: Int!
@@ -21,7 +19,7 @@ export const schema = gql`
     }
 
     type StandingsResult {
-        userIdRankings: [StandingsData!]!
+        userRankings: [StandingsData!]!
     }
 
     type MyPredictionsResult {

@@ -22,10 +22,8 @@ const SEASON_OPTIONS: OptionData[] = [
 const STANDINGS_QUERY = gql`
     query Standings($seasonId: Int!) {
         standings(seasonId: $seasonId) {
-            userIdRankings {
-                userId
+            userRankings {
                 username
-                email
                 score
                 correctWins
                 correctTies
@@ -67,7 +65,7 @@ const StandingsPage = () => {
                     setValue={setSeason}
                     options={SEASON_OPTIONS}
                 />
-                <StandingsTable standingsData={data.standings.userIdRankings} />
+                <StandingsTable standingsData={data.standings.userRankings} />
             </div>
         </>
     );

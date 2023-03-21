@@ -4,12 +4,10 @@ import { Table } from 'src/components/Core/Table/Table';
 import { Star } from 'src/components/Icons/Star';
 
 interface StandingInfo {
-    userId: string;
     score: number;
     correctWins: number;
     correctTies: number;
     numCompletedPredictions: number;
-    email: string;
     username: string;
 }
 

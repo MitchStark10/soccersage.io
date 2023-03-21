@@ -53,12 +53,14 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
         },
     });
 
+    const users = await db.user.findMany();
+
     const userPredictionMap = predictions.reduce<UserPredictionMap>(
         (acc, prediction) => {
-            if (acc[prediction.userId]) {
-                acc[prediction.userId].push(prediction);
+            if (acc[prediction.user.username]) {
+                acc[prediction.user.username].push(prediction);
             } else {
-                acc[prediction.userId] = [prediction];
+                acc[prediction.user.username] = [prediction];
             }
 
             return acc;
@@ -66,9 +68,14 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
         {}
     );
 
-    const userIdRankings = Object.entries(userPredictionMap).map(
-        ([userId, predictions]: [string, PartialPrediction[]]) => {
-            const { email, username } = predictions[0].user;
+    for (const user of users) {
+        if (!userPredictionMap[user.username]) {
+            userPredictionMap[user.username] = [];
+        }
+    }
+
+    const userRankings = Object.entries(userPredictionMap).map(
+        ([username, predictions]: [string, PartialPrediction[]]) => {
             const { score, correctTies, correctWins, numCompletedPredictions } =
                 predictions.reduce<ScoreData>(
                     (acc, prediction) => {
@@ -110,9 +117,7 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
                 );
 
             return {
-                email,
                 username,
-                userId,
                 score,
                 correctTies,
                 correctWins,
@@ -122,7 +127,7 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
     );
 
     return {
-        userIdRankings,
+        userRankings,
     };
 };
 
