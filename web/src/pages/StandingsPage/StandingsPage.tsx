@@ -15,7 +15,7 @@ import { StandingsTable } from './StandingsTable';
 const SEASON_OPTIONS: OptionData[] = [
     {
         value: '1',
-        label: 'Alpha Season',
+        label: 'Pre-Season',
     },
 ];
 
