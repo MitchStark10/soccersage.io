@@ -4,20 +4,15 @@ import { useQuery } from '@apollo/client';
 
 import { MetaTags } from '@redwoodjs/web';
 
-import { Select } from 'src/components/Core/Form/Select';
-import { OptionData } from 'src/components/Core/Form/Select/Option';
+import {
+    SeasonSelect,
+    SEASON_OPTIONS,
+} from 'src/components/Core/Form/Select/SeasonSelect';
 import { Loading } from 'src/components/Core/Loading/Loading';
 import { ErrorText } from 'src/components/Core/Text/ErrorText';
 import { Text } from 'src/components/Core/Text/Text';
 
 import { StandingsTable } from './StandingsTable';
-
-const SEASON_OPTIONS: OptionData[] = [
-    {
-        value: '1',
-        label: 'Alpha Season',
-    },
-];
 
 const STANDINGS_QUERY = gql`
     query Standings($seasonId: Int!) {
@@ -45,10 +40,6 @@ const StandingsPage = () => {
         return <ErrorText>{error.message}</ErrorText>;
     }
 
-    const currentSeasonTitle = SEASON_OPTIONS.find(
-        (option) => option.value === season
-    )?.label;
-
     return (
         <>
             <MetaTags
@@ -59,12 +50,7 @@ const StandingsPage = () => {
                 Standings
             </Text>
             <div className="max-w-[700px] mx-auto">
-                <Select
-                    title={currentSeasonTitle}
-                    value={season}
-                    setValue={setSeason}
-                    options={SEASON_OPTIONS}
-                />
+                <SeasonSelect season={season} setSeason={setSeason} />
                 <StandingsTable standingsData={data.standings.userRankings} />
             </div>
         </>

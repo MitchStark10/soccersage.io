@@ -6,9 +6,12 @@ import type { DocumentNode } from 'graphql';
 import { useAuth } from '@redwoodjs/auth';
 import { navigate, routes } from '@redwoodjs/router';
 
-export const useAuthenticatedQuery = <T extends {} = {}>(query: DocumentNode) => {
+export const useAuthenticatedQuery = <T extends {} = {}>(
+    query: DocumentNode,
+    options?: { variables: unknown }
+) => {
     const { isAuthenticated, loading: authLoading } = useAuth();
-    const response = useQuery<T>(query);
+    const response = useQuery<T>(query, options);
 
     useEffect(() => {
         if (!authLoading && !isAuthenticated) {

@@ -29,7 +29,7 @@ export const schema = gql`
 
     type Query {
         predictions: [Prediction!]! @requireAuth
-        myPredictions: MyPredictionsResult @requireAuth
+        myPredictions(seasonId: Int!): MyPredictionsResult @requireAuth
         prediction(id: Int!): Prediction @requireAuth
         standings(seasonId: Int!): StandingsResult @skipAuth
     }

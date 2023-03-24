@@ -1,6 +1,7 @@
 import React, { createRef, useState } from 'react';
 
 import { createPopper } from '@popperjs/core';
+import classNames from 'classnames';
 
 import { ChevronDown } from 'src/components/Icons/ChevronDown';
 import { ChevronUp } from 'src/components/Icons/ChevronUp';
@@ -12,6 +13,7 @@ export interface SelectProps {
     value: string;
     options: OptionData[];
     setValue: (value: string) => void;
+    className?: string;
 }
 
 export const Select: React.FC<SelectProps> = ({
@@ -19,6 +21,7 @@ export const Select: React.FC<SelectProps> = ({
     options,
     value,
     setValue,
+    className,
 }) => {
     const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
     const btnDropdownRef = createRef<HTMLButtonElement>();
@@ -34,8 +37,8 @@ export const Select: React.FC<SelectProps> = ({
     };
     return (
         <>
-            <div className="flex flex-wrap">
-                <div className="w-full sm:w-6/12 md:w-4/12">
+            <div className={classNames('flex flex-wrap', className)}>
+                <div>
                     <div className="relative inline-flex align-middle w-full">
                         <button
                             className={
