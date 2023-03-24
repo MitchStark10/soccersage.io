@@ -1,8 +1,14 @@
+import { useState } from 'react';
+
 import { Prediction } from 'types/graphql';
 
 import { MetaTags } from '@redwoodjs/web';
 
 import { CardGrid } from 'src/components/Core/Card/CardGrid';
+import {
+    SeasonSelect,
+    SEASON_OPTIONS,
+} from 'src/components/Core/Form/Select/SeasonSelect';
 import { Loading } from 'src/components/Core/Loading/Loading';
 import { ErrorText } from 'src/components/Core/Text/ErrorText';
 import { Text } from 'src/components/Core/Text/Text';
@@ -15,8 +21,8 @@ import {
 } from 'src/utils/get-prediction-status';
 
 export const MY_PREDICTIONS_QUERY = gql`
-    query FindMyPredictions {
-        myPredictions {
+    query FindMyPredictions($seasonId: Int!) {
+        myPredictions(seasonId: $seasonId) {
             streakCount
             predictions {
                 id
@@ -51,12 +57,13 @@ export const MY_PREDICTIONS_QUERY = gql`
 `;
 
 const PredictionsPage = () => {
+    const [season, setSeason] = useState(SEASON_OPTIONS[0].value);
     const { data, loading, error } = useAuthenticatedQuery<{
         myPredictions: {
             streakCount: number;
             predictions: Prediction[];
         };
-    }>(MY_PREDICTIONS_QUERY);
+    }>(MY_PREDICTIONS_QUERY, { variables: { seasonId: parseInt(season) } });
 
     if (error) {
         return <ErrorText>Error: {error.message}</ErrorText>;
@@ -84,11 +91,6 @@ const PredictionsPage = () => {
                 title="Predictions"
                 description="View all of your recent predictions"
             />
-            {predictionResults.length === 0 ? (
-                <Text As="h1" textAlign="center">
-                    Predictions
-                </Text>
-            ) : null}
 
             <div className="from-primary to-primary-dark bg-gradient-to-r py-6 -mx-5 px-5 text-white mb-5">
                 <div className="grid grid-cols-1 sm:grid-cols-3 sm:justify-center sm:items-center sm:justify-items-center lg:w-1/2 mx-auto">
@@ -110,22 +112,26 @@ const PredictionsPage = () => {
                 </div>
             </div>
 
-            {predictionResults.length === 0 ? (
-                <Text variant="h4" textAlign="center">
-                    You haven&apos;t made any predictions yet.
-                </Text>
-            ) : null}
+            <div className="max-w-2xl mx-auto">
+                <SeasonSelect season={season} setSeason={setSeason} />
 
-            {predictionResults.length > 0 ? (
-                <CardGrid>
-                    {predictionResults.map((prediction) => (
-                        <PredictionCard
-                            key={prediction.id}
-                            prediction={prediction}
-                        />
-                    ))}
-                </CardGrid>
-            ) : null}
+                {predictionResults.length === 0 ? (
+                    <Text variant="h4" textAlign="center">
+                        You haven&apos;t made any predictions yet.
+                    </Text>
+                ) : null}
+
+                {predictionResults.length > 0 ? (
+                    <CardGrid>
+                        {predictionResults.map((prediction) => (
+                            <PredictionCard
+                                key={prediction.id}
+                                prediction={prediction}
+                            />
+                        ))}
+                    </CardGrid>
+                ) : null}
+            </div>
         </>
     );
 };

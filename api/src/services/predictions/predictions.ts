@@ -136,7 +136,7 @@ export const predictions: QueryResolvers['predictions'] = () => {
 };
 
 export const myPredictions: QueryResolvers['myPredictions'] = async (
-    _temp,
+    { seasonId },
     { context }
 ) => {
     const user = getFirstUserFromContext(context);
@@ -144,7 +144,7 @@ export const myPredictions: QueryResolvers['myPredictions'] = async (
     // but that would require us to recalculate the standings for all users. Until there's a more performant solution,
     // this idea will remain in the backlog
     const predictions = await db.prediction.findMany({
-        where: { userId: user.id },
+        where: { userId: user.id, seasonId },
         include: {
             game: true,
             user: true,
