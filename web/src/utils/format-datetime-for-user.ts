@@ -12,6 +12,10 @@ export const formatDatetimeForUser = (
         const format = options?.includeWeekday
             ? 'iii, MMM d, h:mm a'
             : 'MMM d, h:mm a';
-        return formatInTimeZone(new Date(value), 'America/Chicago', format);
+        return formatInTimeZone(
+            new Date(value),
+            Intl.DateTimeFormat().resolvedOptions().timeZone,
+            format
+        );
     }
 };
