@@ -5,6 +5,7 @@ import { useAuth } from '@redwoodjs/auth';
 import { MetaTags } from '@redwoodjs/web';
 
 import { CardGrid } from 'src/components/Core/Card/CardGrid';
+import { SEASON_OPTIONS } from 'src/components/Core/Form/Select/SeasonSelect';
 import { Loading } from 'src/components/Core/Loading/Loading';
 import { ErrorText } from 'src/components/Core/Text/ErrorText';
 import { Text } from 'src/components/Core/Text/Text';
@@ -48,7 +49,11 @@ const GamesPage = () => {
             streakCount: number;
             predictions: Prediction[];
         };
-    }>(MY_PREDICTIONS_QUERY);
+    }>(MY_PREDICTIONS_QUERY, {
+        variables: {
+            seasonId: parseInt(SEASON_OPTIONS[0].value, 10),
+        },
+    });
 
     const error = gameError || (isAuthenticated && predictionsError);
 
