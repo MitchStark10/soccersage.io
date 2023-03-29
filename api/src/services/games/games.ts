@@ -17,6 +17,9 @@ export const games: QueryResolvers['games'] = () => {
 export const upcomingGames: QueryResolvers['upcomingGames'] = () => {
     return db.game.findMany({
         where: { isCompleted: false, startDateTime: { gt: new Date() } },
+        orderBy: {
+            startDateTime: 'asc',
+        },
     });
 };
 
