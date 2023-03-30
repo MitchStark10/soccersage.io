@@ -5,11 +5,7 @@ import { Select } from '.';
 export const SEASON_OPTIONS: OptionData[] = [
     {
         value: '1',
-        label: 'Alpha Season',
-    },
-    {
-        value: '2',
-        label: 'Beta Season',
+        label: 'Pre-Season (April)',
     },
 ];
 
