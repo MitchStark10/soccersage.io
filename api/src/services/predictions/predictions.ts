@@ -36,6 +36,10 @@ const checkIfGameIsInFuture = async (gameId: number) => {
     return new Date(game?.startDateTime) > new Date();
 };
 
+const rankingsSorter = (obj1: { score: number }, obj2: { score: number }) => {
+    return obj2.score - obj1.score;
+};
+
 export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
     // TODO: This logic finds all predictions, and includes the associated game for each prediction.
     // While this works with small amounts of data, this will not scale very well, due to the
@@ -74,8 +78,8 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
         }
     }
 
-    const userRankings = Object.entries(userPredictionMap).map(
-        ([username, predictions]: [string, PartialPrediction[]]) => {
+    const userRankings = Object.entries(userPredictionMap)
+        .map(([username, predictions]: [string, PartialPrediction[]]) => {
             const { score, correctTies, correctWins, numCompletedPredictions } =
                 predictions.reduce<ScoreData>(
                     (acc, prediction) => {
@@ -123,8 +127,8 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
                 correctWins,
                 numCompletedPredictions,
             };
-        }
-    );
+        })
+        .sort(rankingsSorter);
 
     return {
         userRankings,
