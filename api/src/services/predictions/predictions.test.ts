@@ -29,14 +29,19 @@ describe('predictions', () => {
     );
 
     scenario('creates a prediction', async (scenario: StandardScenario) => {
-        const result = await createPrediction({
-            input: {
-                userId: scenario.prediction.one.userId,
-                prediction: 'String',
-                gameId: scenario.prediction.one.gameId,
-                seasonId: scenario.prediction.one.seasonId,
+        const result = await createPrediction(
+            {
+                input: {
+                    userId: scenario.prediction.one.userId,
+                    prediction: 'String',
+                    gameId: scenario.prediction.one.gameId,
+                    seasonId: scenario.prediction.one.seasonId,
+                },
             },
-        });
+            // eslint-disable-next-line -- Ignoring mocked user
+            // @ts-ignore
+            { context: { currentUser: { id: 1 } } }
+        );
 
         expect(result.userId).toEqual(scenario.prediction.one.userId);
         expect(result.gameId).toEqual(scenario.prediction.one.gameId);
@@ -66,14 +71,19 @@ describe('predictions', () => {
         'cannot create a prediction for a past game',
         async (scenario: StandardScenario) => {
             const predictionCreator = async () => {
-                await createPrediction({
-                    input: {
-                        userId: scenario.prediction.past.userId,
-                        prediction: 'String',
-                        gameId: scenario.prediction.past.gameId,
-                        seasonId: scenario.prediction.past.seasonId,
+                await createPrediction(
+                    {
+                        input: {
+                            userId: scenario.prediction.past.userId,
+                            prediction: 'String',
+                            gameId: scenario.prediction.past.gameId,
+                            seasonId: scenario.prediction.past.seasonId,
+                        },
                     },
-                });
+                    // eslint-disable-next-line -- Ignoring mocked user
+                    // @ts-ignore
+                    { context: { currentUser: { id: 1 } } }
+                );
             };
             await expect(predictionCreator).rejects.toThrow(
                 'Cannot make a prediction for a game that has already started'
