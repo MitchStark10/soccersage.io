@@ -99,11 +99,11 @@ const PredictionsPage = () => {
                     </StatCard>
                     <StatCard title="Success Rate">
                         {completedPredictionsCount > 0
-                            ? `${
+                            ? `${(
                                   (correctPredictions /
                                       completedPredictionsCount) *
                                   100
-                              }%`
+                              ).toFixed(2)}%`
                             : 'N/A'}
                     </StatCard>
                     <StatCard title="Current Streak">
