@@ -36,6 +36,15 @@ const checkIfGameIsInFuture = async (gameId: number) => {
     return new Date(game?.startDateTime) > new Date();
 };
 
+const findExistingPrediction = async (userId: number, gameId: number) => {
+    return await db.prediction.findFirst({
+        where: {
+            userId,
+            gameId,
+        },
+    });
+};
+
 const rankingsSorter = (obj1: { score: number }, obj2: { score: number }) => {
     return obj2.score - obj1.score;
 };
@@ -184,18 +193,30 @@ export const prediction: QueryResolvers['prediction'] = ({ id }) => {
     });
 };
 
-export const createPrediction: MutationResolvers['createPrediction'] = async ({
-    input,
-}) => {
+export const createPrediction: MutationResolvers['createPrediction'] = async (
+    { input },
+    { context }
+) => {
     const isGameInFuture = await checkIfGameIsInFuture(input.gameId);
     if (!isGameInFuture) {
         throw new RedwoodGraphQLError(
             'Cannot make a prediction for a game that has already started'
         );
     }
-    return db.prediction.create({
-        data: input,
-    });
+
+    const user = getFirstUserFromContext(context);
+    const existingPrediction = await findExistingPrediction(
+        user.id,
+        input.gameId
+    );
+
+    if (existingPrediction) {
+        return updatePrediction({ id: existingPrediction.id, input });
+    } else {
+        return db.prediction.create({
+            data: input,
+        });
+    }
 };
 
 export const updatePrediction: MutationResolvers['updatePrediction'] = async ({
