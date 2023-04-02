@@ -9,7 +9,11 @@ export const HowToPlay = () => {
     return (
         <div className="-mx-5">
             <div className="px-4 py-10 lg:w-2/3 mx-auto">
-                <CounterContainer count={1} title="Sign up for an account">
+                <CounterContainer
+                    count={1}
+                    title="Sign up for an account"
+                    href="/sign-up"
+                >
                     <Text>
                         Signing up for an account will enable your prediction
                         history to be saved, and will provide us with a way to
@@ -49,8 +53,13 @@ export const HowToPlay = () => {
                         At the end of the season, the user with the highest
                         number of points will be declared the winner of that
                         season. You can view the{' '}
-                        <Link to={routes.standings()}>live standings</Link> at
-                        any point during the season to see where you are at.
+                        <Link
+                            to={routes.standings()}
+                            className="text-primary-dark underline font-bold"
+                        >
+                            live standings
+                        </Link>{' '}
+                        at any point during the season to see where you are at.
                     </Text>
                 </CounterContainer>
                 <CounterContainer count={4} title="Prize Money">
