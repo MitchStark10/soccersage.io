@@ -45,8 +45,12 @@ const findExistingPrediction = async (userId: number, gameId: number) => {
     });
 };
 
-const rankingsSorter = (obj1: { score: number }, obj2: { score: number }) => {
-    return obj2.score - obj1.score;
+const rankingsSorter = (obj1: ScoreData, obj2: ScoreData) => {
+    if (obj2.score !== obj1.score) {
+        return obj2.score - obj1.score;
+    }
+
+    return obj2.numCompletedPredictions - obj1.numCompletedPredictions;
 };
 
 export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
