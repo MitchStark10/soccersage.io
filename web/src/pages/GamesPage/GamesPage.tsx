@@ -10,6 +10,7 @@ import { Loading } from 'src/components/Core/Loading/Loading';
 import { ErrorText } from 'src/components/Core/Text/ErrorText';
 import { Text } from 'src/components/Core/Text/Text';
 import { GameCard } from 'src/components/Game/GameCard/GameCard';
+import { formatDateForComparison } from 'src/utils/format-date-for-comparison';
 
 import { MY_PREDICTIONS_QUERY } from '../PredictionsPage/PredictionsPage';
 
@@ -84,12 +85,29 @@ const GamesPage = () => {
             ) : (
                 <CardGrid>
                     {games.map((game, index) => {
+                        const currentGameDate = formatDateForComparison(
+                            game.startDateTime
+                        );
+                        const previousGameDate = formatDateForComparison(
+                            games[index - 1]?.startDateTime
+                        );
                         return (
-                            <GameCard
-                                key={index}
-                                game={game}
-                                prediction={predictionsMapByGameId[game.id]}
-                            />
+                            <>
+                                {currentGameDate !== previousGameDate && (
+                                    <Text
+                                        variant="h3"
+                                        textAlign="center"
+                                        className="underline"
+                                    >
+                                        {currentGameDate}
+                                    </Text>
+                                )}
+                                <GameCard
+                                    key={index}
+                                    game={game}
+                                    prediction={predictionsMapByGameId[game.id]}
+                                />
+                            </>
                         );
                     })}
                 </CardGrid>
