@@ -50,7 +50,7 @@ const rankingsSorter = (obj1: ScoreData, obj2: ScoreData) => {
         return obj2.score - obj1.score;
     }
 
-    return obj2.numCompletedPredictions - obj1.numCompletedPredictions;
+    return obj1.numCompletedPredictions - obj2.numCompletedPredictions;
 };
 
 export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
