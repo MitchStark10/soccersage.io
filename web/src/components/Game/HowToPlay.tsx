@@ -34,12 +34,8 @@ export const HowToPlay = () => {
                     <Text>
                         <UnorderedList>
                             <ListItem>
-                                3 points - You will receive 3 points when you
-                                successfully predict any team to win.
-                            </ListItem>
-                            <ListItem>
-                                2 points - You will receive 2 points when you
-                                successfully predict a tie.
+                                1 point - You will receive 1 point when you
+                                successfully predict the outcome of any match.
                             </ListItem>
                             <ListItem>
                                 0 points - You will not receive any points for

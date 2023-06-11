@@ -101,7 +101,7 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
                         switch (predictionStatus) {
                             case PREDICTION_STATUS.correctWin:
                                 return {
-                                    score: acc.score + 3,
+                                    score: acc.score + 1,
                                     correctWins: acc.correctWins + 1,
                                     correctTies: acc.correctTies,
                                     numCompletedPredictions:
@@ -109,7 +109,7 @@ export const standings: QueryResolvers['standings'] = async ({ seasonId }) => {
                                 };
                             case PREDICTION_STATUS.correctTie:
                                 return {
-                                    score: acc.score + 2,
+                                    score: acc.score + 1,
                                     correctWins: acc.correctWins,
                                     correctTies: acc.correctTies + 1,
                                     numCompletedPredictions:
