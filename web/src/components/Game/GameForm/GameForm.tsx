@@ -208,7 +208,7 @@ const GameForm = (props: Props) => {
                     errorClassName="rw-input rw-input-error"
                     validation={{ required: true }}
                 >
-                    {sortedSeasons.map((season: Season) => (
+                    {sortedSeasonsList.map((season: Season) => (
                         <option key={season.id} value={season.id}>
                             {season.name}
                         </option>
