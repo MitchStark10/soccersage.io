@@ -75,6 +75,8 @@ const GameForm = (props: Props) => {
     if (loading || loadingSeasons) {
         return <Loading />;
     }
+	
+	const sortedSeasonsList = [...seasons.seasons || []].sort((season1: Season, season2: Season) => season2.id - season1.id);
 
     return (
         <div className="rw-form-wrapper">
@@ -206,7 +208,7 @@ const GameForm = (props: Props) => {
                     errorClassName="rw-input rw-input-error"
                     validation={{ required: true }}
                 >
-                    {seasons.seasons.map((season: Season) => (
+                    {sortedSeasons.map((season: Season) => (
                         <option key={season.id} value={season.id}>
                             {season.name}
                         </option>

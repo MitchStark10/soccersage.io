@@ -3,6 +3,10 @@ import { OptionData } from './Option';
 import { Select } from '.';
 
 export const SEASON_OPTIONS: OptionData[] = [
+	{
+		value: '2',
+		label: 'Pre-Season (July)'
+	},
     {
         value: '1',
         label: 'Pre-Season (April)',
