@@ -52,7 +52,7 @@ export const PredictionCard: React.VFC<Props> = ({ prediction }) => {
         <CardContainer className={'border shadow-md'}>
             <GameDisplay game={prediction.game} />
             <Text
-                className="flex w-full md:w-3/4 mt-6 justify-between items-center gap-1"
+                className="flex w-full md:w-3/4 mt-6 justify-center items-center gap-3"
                 textAlign="left"
             >
                 <span>
